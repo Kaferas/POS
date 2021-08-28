@@ -18,9 +18,9 @@ class CreateCommandeDetailsTable extends Migration
             $table->integer("commande_id");
             $table->integer("produit_id");
             $table->integer("quantite");
-            $table->integer("prix-unitaire");
+            $table->integer("prix_unitaire");
             $table->integer("total");
-            $table->integer("promotion");
+            $table->integer("promotion")->default(0);
             $table->timestamps();
         });
     }

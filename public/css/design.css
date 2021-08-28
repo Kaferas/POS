@@ -12,6 +12,13 @@
         background-color:rgb(44, 41, 41);
         
     }
+    .aside ul a{
+        /* display:none; */
+        width: 100%;
+        text-decoration: none;
+        border:none;
+        color:white;
+    }
     /* .center
     {
         width:25%;
@@ -20,12 +27,17 @@
         left:20%;  
         background-color:rgb(44, 41, 41);
     } */
+    .men{
+        display:flex;
+        justify-content: center;
+        flex-direction: row;
+    }
     .center{
         width:auto;
         height: 90%;
         border-radius: 5px;
-        display:flex;
-        justify-content: center;
+        /* display:flex;
+        justify-content: center; */
     }
     .profile{
         display: flex;
@@ -39,7 +51,7 @@
     .info{
         width:auto;
         height: 11%;
-        margin-bottom:1%;
+        margin-bottom:4%;
         border-bottom:2px solid black;
         background-color:rgba(238, 236, 236, 0.884);
         /* border-radius: 5px; */
@@ -47,6 +59,7 @@
         align-items:center;
         justify-content: space-between;
         position:sticky;
+        z-index:100;
         top:0;
     }
 .both{
@@ -60,25 +73,25 @@ body{
     padding: 0;
     margin:0;
 }
-li{
+li#sidebar{
     list-style: none;
     /* text-align:center; */
     padding:7px 0px;
-    width: 96%;
+    width: 100%;
     text-indent:25%;
     color:rgb(255, 255, 255);
     font-size:1.1rem;
     margin-bottom:10px;
 }
-li:hover,.active
+.actived
 {
     background: rgb(202, 13, 13);
     color:rgb(247, 243, 243);
     /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
     border-right: 6px solid rgb(255, 255, 255)
 }
-ul{
-    height: 100%;
+.sidebar{
+    height: auto;
     width:100%;
 
     /* background-color:green; */
@@ -88,7 +101,7 @@ ul{
     justify-content: flex-start;
     align-items: flex-start;
     padding:0;
-    margin-top:120px;
+   
 }
 .time,.factory_name{
     width: 40vw;
@@ -144,16 +157,11 @@ background: rgb(248, 245, 245);
     border:1px solid grey;
     padding:4px;
 }
-.btn
+i
 {
-    width: 40%;
-    height: 25px;
-    border-radius:6px;
-    border:none;
-    color:white;
-    background: rgb(36, 65, 233);
+    cursor:pointer;
 }
-.btn-danger
+.btno-danger
 {
     width: 40%;
     height: 25px;
@@ -196,4 +204,68 @@ background: rgb(248, 245, 245);
     border-radius:5px;
     background-color:rgb(44, 41, 41);
     border:2px;
+}
+
+
+/* Receipt design */
+
+.main
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.receipt
+{
+    width:35vw;
+    /* min-height: 95vh; */
+    height:auto;
+    /* background-color:brown; */
+    border-radius:2%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border:1px solid black;
+    box-shadow: 2px 6px 8px black;
+}
+.receipt_head
+{
+    height: auto;
+    width: auto;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom:15px;
+    /* background-color:red; */
+}
+.receipt_body
+{
+    height: auto;
+    /* height: 70vh; */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:15px;
+    /* background-color:green; */
+}
+.receipt_footer
+{
+    height: auto;
+    /* height: 10vh; */
+    /* background-color:blue; */
+    border-bottom: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom:15px;
+}
+td,th{
+    width:50px;
+    text-align:center;
+}
+tfoot tr{
+    margin-top:50px;
 }

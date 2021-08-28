@@ -21,11 +21,19 @@ use \App\Http\Controllers\{
 |
 */
 //
-Route::get('/', function () {
-    return view("welcome");
-});
 
-Route::resource("/commande",CommandeController::class);
+Route::get("/commande",function(){
+    return view("order.index");
+});
+Route::get("/utilisateur",function(){
+    return view("utilisateur.index");
+});
+Route::get("/produit",function(){
+    return view("produit.index");
+});
+Route::get("/report",function(){
+    return view("report.index");
+});
 
 Route::resource("/produits",ProduitController::class); 
 

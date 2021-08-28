@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UtilisateurController extends Controller
 {
@@ -13,7 +14,13 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::paginate(5);
+        $activenow="utilisateur";
+        return view("utilisateur.index",[
+            'users'=>$users,
+            'activenow'=>$activenow
+        ]);
+
     }
 
     /**
@@ -34,7 +41,25 @@ class UtilisateurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $this->validate($request,[
+           'name'=>"required|max:10",
+           'email'=>"required|email|unique:Users",
+            'phone'=>"required",
+            'password'=>"required"
+       ]);
+
+       $user=new User;
+       $user->name=$request->name;
+       $user->email=$request->email;
+       $user->phone=$request->phone;
+       $user->password=md5($request->password);
+       $user->is_admin=$request->is_admin;
+       $user->save();
+       if($user)
+       {
+            return redirect()->back()->with("message","User Created Succesfuly");
+       }
+        return redirect()->back()->with("message","User Fail Created");
     }
 
     /**
@@ -68,7 +93,13 @@ class UtilisateurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user= User::find($id);
+            if(!$user)
+            {
+                return back()->with("error","User not Found");
+            }
+            $user->update($request->all());
+            return redirect()->back()->with("message","User Updated Successfully");
     }
 
     /**
@@ -79,6 +110,12 @@ class UtilisateurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user= User::find($id);
+        if(!$user)
+        {
+            return back()->with("error","User not Found");
+        }
+        $user->delete();
+        return redirect()->back()->with("message","User Deleted Successfully");
     }
 }

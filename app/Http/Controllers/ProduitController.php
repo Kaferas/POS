@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Models\Produit;
 
 class ProduitController extends Controller
 {
@@ -13,7 +14,12 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        //
+        $products=Produit::paginate(5);
+        $activenow="produits";
+       return view("produits.index",[
+           'products'=>$products,
+           'activenow'=>$activenow
+       ]);
     }
 
     /**
@@ -34,7 +40,22 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required',
+            'barre'=>"integer",
+            // 'description'=>"|string",
+            'price'=>"required|integer",
+            'quant'=>"required|integer",
+        ]);
+        $produit=new Produit;
+        $produit->nom_produit=$request->name;
+        $produit->Code_barre=$request->barre;
+        $produit->description=$request->description;
+        $produit->categorie_produit=$request->categorie;
+        $produit->prix=$request->price;
+        $produit->quantite=$request->quant;
+        $produit->save();
+        return redirect()->back()->with("message","Product saved Well");
     }
 
     /**
@@ -68,7 +89,16 @@ class ProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $produit=Produit::find($id);
+        // dd($produit);
+         
+        if(!$produit)
+        {
+            return back()->with("error","The Product ain't founded");
+        }
+        $produit->update($request->all());
+        return redirect()->back()->with("message","Product Updated Successfully");
     }
 
     /**
