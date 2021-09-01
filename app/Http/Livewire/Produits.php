@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 class Produits extends Component
 {
     use WithPagination;
+    public $edition=false;
     public $code_barre;
     public $name;
     public $description;
@@ -17,13 +18,15 @@ class Produits extends Component
     public $categories=[];
     public $price;
     public $quantity;
+    public $idPro;
+    public $action;
 
     protected $listeners=[
         'refreshen'
     ];
     public function refreshen()
     {
-        sleep(3);
+        sleep(1);
         $this->resetVar();
     }
     public function resetVar()
@@ -66,7 +69,7 @@ class Produits extends Component
             'stock'=>"required|integer",
             "quantity"=>"required|integer"
         ]);
-        Produit::create([
+       $data=[
             'Code_barre'=>$this->code_barre,
             'nom_produit'=>$this->name,
             'description'=>$this->description,
@@ -74,15 +77,56 @@ class Produits extends Component
             'prix'=>$this->price,
             'quantite'=>$this->quantity,
             'alert_ecoulement'=>$this->stock
-        ]);
-        session()->flash("message","The Product has Been Saved");
-        $this->emit("refreshen");
+        ];
+        if($this->idPro)
+        {
+            Produit::find($this->idPro)->update($data);
+            session()->flash("message","The Product updated ");
+            $this->emit("refreshen");
+        }
+        else{
+            Produit::create($data);
+            session()->flash("message","The Product has Been Saved");
+            $this->emit("refreshen");
+        }
+    }
+    public function toggleEdition()
+    {
+        $this->edition= false;
+        $this->idPro=null;
+        $this->resetVar();
     }
 
+    public function selectItem($id,$action)
+    {
+        $this->idPro=$id;
+        $this->action=$action;
+        if($this->action == "edit"){
+            $this->edition=true;
+            $editable=Produit::find($this->idPro);
+            $this->code_barre= $editable->Code_barre;
+            $this->name= $editable->nom_produit;
+            $this->description= $editable->description;
+            $this->price= $editable->prix;
+            $this->quantity= $editable->quantite;
+            $this->stock= $editable->alert_ecoulement;
+        }
+        if($this->action=="delete")
+        {
+           $this->dispatchBrowserEvent("OpendelProductModal");
+        }
+    }
+     public function deleteProduct()
+     {
+         Produit::destroy($this->idPro);
+         $this->dispatchBrowserEvent("closedelProductModal");
+
+     }
+    
     public function render()
     {
         return view('livewire.produit',[
-            'products'=>Produit::paginate(3)
+            'products'=>Produit::paginate(5)
         ]);
     }
 }

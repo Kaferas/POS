@@ -45,5 +45,33 @@
     <script src="{{asset('js/script.js')}}" defer></script>
     @yield("script")
     <livewire:scripts/>
+    <script>
+        
+        window.addEventListener("modalUser",event =>{
+            $("#addUSer").modal('show');
+        });
+      
+        window.addEventListener("openModalDelete",event =>{
+            $("#deletecategorie").modal('show');
+        });
+        window.addEventListener("closeCategorieModal",event =>{
+            $("#deletecategorie").modal('hide');
+        });
+      
+
+        window.addEventListener("eraseUser",event=>{
+            $("#eraseUser").modal("show");
+        });
+        window.addEventListener("eraseUserClose",event=>{
+            $("#eraseUser").modal("hide");
+        });
+
+        window.addEventListener("OpendelProductModal",event=>{
+            $("#delProduct").modal("show");
+        });
+        window.addEventListener("closedelProductModal",event=>{
+            $("#delProduct").modal("hide");
+        });
+    </script>
 </body>
 </html>

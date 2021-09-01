@@ -10,13 +10,17 @@ class Categories extends Component
 {
 use WithPagination;
     public $name;
+    public $updateName;
+    public $action;
+    public $selecteditem;
+    public $edition=false;
     protected $listeners=[
-        "refreshen"
+        "refreshen",
     ];
 
     public function refreshen()
     {
-        sleep(3);
+        sleep(1);
         $this->resetVar();
     }
     
@@ -26,14 +30,43 @@ use WithPagination;
             'name'=>"required|max:20"
         ]);
     }
-    // public function mount()
-    // {
-    //     $this->name="Kaferas";
-    // }
+    public function selectedItem($selectItem,$action)
+    {
+        $this->selecteditem=$selectItem;
+        $this->action=$action;
+        if($action=="Edit")
+        {
+            $this->edition=true;
+            $updateCategorie=Categorie::find($selectItem);
+            $this->updateName=$updateCategorie->categorie_name;
+        }
+        else{
+            $this->dispatchBrowserEvent("openModalDelete");
+        }
 
+    }
+
+    public function delete($selectItem)
+    {
+        $this->dispatchBrowserEvent("closeCategorieModal");
+        Categorie::destroy($selectItem);
+        
+    }
+   
     public function resetVar()
     {
         $this->name="";
+    }
+    
+    public function updateCategorie()
+    {
+        Categorie::find($this->selecteditem)->update([
+            "categorie_name"=>$this->updateName
+        ]);
+        $this->edition=false;
+        session()->flash("message","Categorie Updated");
+        $this->resetVar();
+        $this->emit("refreshen");
     }
 
     public function save()
