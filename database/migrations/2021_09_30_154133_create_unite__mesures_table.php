@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommandesTable extends Migration
+class CreateUniteMesuresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateCommandesTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('unite__mesures', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable();
-            $table->string("adress")->nullable();
+            $table->string("name")->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateCommandesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commandes');
+        Schema::dropIfExists('unite__mesures');
     }
 }

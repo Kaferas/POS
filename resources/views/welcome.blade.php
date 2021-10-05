@@ -13,12 +13,12 @@
   <div class="both">
         <div class="aside">
             <ul style="margin-top:150px;" class="sidebar">
-                <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur">Approvisionner</a></li>
-                <li id="sidebar" ><a href="/produits" >Produits</a></li>
-                <li id="sidebar" ><a href="/commande" >Caissier</a></li>
-                <li id="sidebar" ><a href="/report" >Caissier</a></li>
-                <li id="sidebar" ><a href="/commande" >Stocks</a></li>
+                <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur">Settings</a></li>
+                <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" >Cashier</a></li>
+                <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" >Stocks</a></li>
                 <li id="sidebar" ><a href="/commande" >Rapports</a></li>
+                <li id="sidebar" ><a href="/commande" >Factures</a></li>
+                <li id="sidebar" ><a href="/commande" >Fournisseurs/Clients</a></li>
                 <li id="sidebar" ><a href="/commande" >Deconnexion</a></li>
                 <!--  -->
             </ul>
@@ -30,12 +30,13 @@
                 </div>
                 <div class="time mt-3">
                     <h6 class="what-time" style="color:brown;"></h6>
-                    <h6>Profile</h6>
-                    <h6><button class="btn-logout">Logout</button></h6>
+                    <h6>{{ Auth::user()->name }}</h6>
+                    <h6><a class="btn btn-danger" href="{{ route('logout') }}">Logout</a></h6>
+
                 </div>
             </div>
             <div class="center">
-                @yield("content")    
+                @yield("content")
             </div>
         </div>
     </div>
@@ -46,18 +47,18 @@
     @yield("script")
     <livewire:scripts/>
     <script>
-        
+
         window.addEventListener("modalUser",event =>{
             $("#addUSer").modal('show');
         });
-      
+
         window.addEventListener("openModalDelete",event =>{
             $("#deletecategorie").modal('show');
         });
         window.addEventListener("closeCategorieModal",event =>{
             $("#deletecategorie").modal('hide');
         });
-      
+
 
         window.addEventListener("eraseUser",event=>{
             $("#eraseUser").modal("show");

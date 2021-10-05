@@ -11,6 +11,9 @@
   <li class="nav-item">
     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Categorie</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" id="unity-tab" data-toggle="tab" href="#unity" role="tab" aria-controls="unity" aria-selected="false">Unite de Mesure</a>
+  </li>
 </ul>
 <div class="tab-content" id="myTabContent">
 
@@ -24,6 +27,9 @@
 
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
         <livewire:categories />
+  </div>
+  <div class="tab-pane fade" id="unity" role="tabpanel" aria-labelledby="unity-tab">
+        <livewire:unite-mesure />
   </div>
 
 </div>

@@ -15,10 +15,10 @@ class CreateFournisseursTable extends Migration
     {
         Schema::create('fournisseurs', function (Blueprint $table) {
             $table->id();
-            $table->string("nom-fournisseur");
-            $table->string("adress-fournisseur");
-            $table->string("phone-fournisseur");
-            $table->string("email-fournisseur")->nullable();
+            $table->string("nom_fournisseur");
+            $table->string("adress_fournisseur");
+            $table->string("phone_fournisseur");
+            $table->string("email_fournisseur")->nullable();
             $table->timestamps();
         });
     }

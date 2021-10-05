@@ -16,12 +16,12 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->integer("commande_Id");
-            $table->integer("montant-payer");
-            $table->integer("montant-restant")->default(0);
-            $table->string("mode-paiment")->default("cash");
+            $table->integer("montant_payer");
+            $table->integer("montant_restant")->default(0);
+            $table->string("mode_paiment")->default("cash");
             $table->integer("utilisateur");
             $table->date("date_Transaction");
-            $table->integer("transaction-montant");
+            $table->integer("transaction_montant");
             $table->timestamps();
         });
     }

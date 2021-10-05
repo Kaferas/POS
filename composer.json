@@ -16,6 +16,7 @@
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
         "mediconesystems/livewire-datatables": "^0.5.2",
+        "picqer/php-barcode-generator": "^2.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "yajra/laravel-datatables-oracle": "^9.18"
     },

@@ -7,7 +7,8 @@ use \App\Http\Controllers\{
                         FournisseurController,
                         UtilisateurController ,
                         CompagnieController   ,
-                        TransactionController
+                        TransactionController,
+                        StockController
                     };
 
 /*
@@ -22,20 +23,23 @@ use \App\Http\Controllers\{
 */
 //
 
-Route::get("/commande",function(){
-    return view("order.index");
-});
-Route::get("/utilisateur",function(){
-    return view("utilisateur.index");
-});
-Route::get("/produit",function(){
-    return view("produit.index");
-});
-Route::get("/report",function(){
-    return view("report.index");
-});
+// Route::get("/commande",function(){
+//     return view("order.index");
+// });
+// Route::get("/utilisateur",function(){
+//     return view("utilisateur.index");
+// });
+// Route::get("/produit",function(){
+//     return view("produit.index");
+// });
+// Route::get("/report",function(){
+//     return view("report.index");
+// });
 
-Route::resource("/produits",ProduitController::class); 
+
+Route::resource("/commande",CommandeController::class);
+
+Route::resource("/produits",ProduitController::class);
 
 Route::resource("/fournisseurs",FournisseurController::class);
 
@@ -44,6 +48,8 @@ Route::resource("/utilisateur",UtilisateurController::class);
 Route::resource("/compagnie",CompagnieController::class);
 
 Route::resource("/transaction",TransactionController::class);
+
+Route::get("/stocks",[StockController::class,"show"]);
 
 Auth::routes();
 

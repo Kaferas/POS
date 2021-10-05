@@ -112,6 +112,7 @@
                                 <div class="form-group">
                                     <label for="" class="text-primary">Role:</label>
                                     <select name="is_admin" id="" class="form-control  border-dark" wire:model="admin">         
+                                        <option value="">---Choose Role---</option>
                                        <option value="1" @if($admin==1) selected @endif>Admin</option>
                                        <option value="2" @if($admin==2) selected @endif >Cashier</option>
                                         <!-- <option value=""></option> -->
@@ -168,6 +169,7 @@
                                     <div class="form-group">
                                         <label for="" class="text-primary">Role:</label>
                                         <select name="is_admin"  id="" class="form-control" wire:model="admin">
+                                            <option value="">---Choose Role---</option>
                                                 <option value="1" >Admin</option>
                                                 <option selected value="2" >Cashier</option>
                                         </select>

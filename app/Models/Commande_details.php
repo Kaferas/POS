@@ -13,7 +13,7 @@ class Commande_details extends Model
         "commande_id", 
         "produit_id", 
         "quantite", 
-        "prix-unitaire", 
+        "prix_unitaire", 
         "total", 
         "promotion"
     ];

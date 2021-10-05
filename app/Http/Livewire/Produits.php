@@ -3,14 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use \App\Models\{Categorie,Produit};
+use \App\Models\{Categorie,Produit, Unite_Mesure};
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Picqer;
 
 class Produits extends Component
 {
     use WithPagination;
+    use WithFileUploads;
+
     public $edition=false;
-    public $code_barre;
+    public $code;
     public $name;
     public $description;
     public $categorie;
@@ -19,7 +23,14 @@ class Produits extends Component
     public $price;
     public $quantity;
     public $idPro;
+    public $interet;
     public $action;
+    public $picture;
+    public $measure;
+    public $buy_price;
+    public $sell_price;
+    public $date_in;
+    public $date_out;
 
     protected $listeners=[
         'refreshen'
@@ -28,10 +39,11 @@ class Produits extends Component
     {
         sleep(1);
         $this->resetVar();
+        $this->mount();
     }
     public function resetVar()
     {
-        $this->code_barre=null;
+        $this->code=null;
         $this->name=null;
         $this->description=null;
         $this->categorie=null;
@@ -41,6 +53,13 @@ class Produits extends Component
     }
     public function mount()
     {
+        $coPro=Produit::get("product_code")->toArray();
+
+        do{
+            $codeGen=rand(1000000,99999999);
+        }while(in_array($codeGen,$coPro));
+
+        $this->code="".$codeGen;
         $this->categories=Categorie::orderBy("categorie_name")
                 ->get();
     }
@@ -48,36 +67,66 @@ class Produits extends Component
     public function updated()
     {
         $this->validate([
-            "code_barre"=>"integer",
+            "code"=>"string",
             "name"=>"required|string|max:20",
             "description"=>"string",
+            "picture"=>"image|mimes:jpg,png,gif",
             "categorie"=>"required",
-            "price"=>"required|integer",
+            "measure"=>"required",
+            "buy_price"=>"required|integer",
+            "sell_price"=>"required|integer",
             'stock'=>"required|integer",
-            "quantity"=>"required|integer"
+            "quantity"=>"required|integer",
+            "date_in"=>"required|date",
+            "date_out"=>"required|date"
         ]);
+    }
+
+    public function updating()
+    {
+        $this->interet=intval($this->sell_price)-intval($this->buy_price);
     }
 
     public function save()
     {
         $this->validate([
-            "code_barre"=>"integer",
+            "code"=>"string",
             "name"=>"required|string|max:20",
             "description"=>"string",
+            "picture"=>"image|mimes:jpg,png,gif",
             "categorie"=>"required",
-            "price"=>"required|integer",
+            "measure"=>"required",
+            "buy_price"=>"required|integer",
+            "interet"=>"required|integer",
+            "sell_price"=>"required|integer",
             'stock'=>"required|integer",
-            "quantity"=>"required|integer"
+            "quantity"=>"required|integer",
+            "date_in"=>"required|date",
+            "date_out"=>"required|date"
         ]);
+
+        $redColor="255,0,0";
+        $generator=new Picqer\Barcode\BarcodeGeneratorHTML();
+        $barcode=$generator->getBarcode($this->code,$generator::TYPE_STANDARD_2_5,2,60);
+
        $data=[
-            'Code_barre'=>$this->code_barre,
+            'Code_barre'=>$barcode,
             'nom_produit'=>$this->name,
             'description'=>$this->description,
             'categorie_produit'=>$this->categorie,
-            'prix'=>$this->price,
+            "prix_achat"=>$this->buy_price,
+            "prix_vente"=>$this->sell_price,
+            "interet"=>500,
+            "date_in"=>$this->date_in,
+            "date_out"=>$this->date_out,
+            "unite_mesure"=>$this->measure,
+            "pic_path"=>$this->picture,
+            "product_code"=>$this->code,
             'quantite'=>$this->quantity,
             'alert_ecoulement'=>$this->stock
         ];
+
+
         if($this->idPro)
         {
             Produit::find($this->idPro)->update($data);
@@ -95,6 +144,8 @@ class Produits extends Component
         $this->edition= false;
         $this->idPro=null;
         $this->resetVar();
+        $this->mount();
+
     }
 
     public function selectItem($id,$action)
@@ -104,7 +155,7 @@ class Produits extends Component
         if($this->action == "edit"){
             $this->edition=true;
             $editable=Produit::find($this->idPro);
-            $this->code_barre= $editable->Code_barre;
+            $this->code= $editable->product_code;
             $this->name= $editable->nom_produit;
             $this->description= $editable->description;
             $this->price= $editable->prix;
@@ -119,14 +170,18 @@ class Produits extends Component
      public function deleteProduct()
      {
          Produit::destroy($this->idPro);
+         $this->idPro=null;
          $this->dispatchBrowserEvent("closedelProductModal");
-
      }
-    
+
     public function render()
     {
+        // dd(Unite_Mesure::orderBy("name"));
+
         return view('livewire.produit',[
-            'products'=>Produit::paginate(5)
+            'products'=>Produit::paginate(5),
+            'categories'=>Categorie::orderBy("categorie_name")->get(),
+            'unites'=>Unite_Mesure::orderBy("name")->get()
         ]);
     }
 }

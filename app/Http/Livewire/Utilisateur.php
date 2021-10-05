@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use \App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class Utilisateur extends Component
 {
@@ -76,7 +77,7 @@ class Utilisateur extends Component
         'email'=>$this->email,
         'phone'=>$this->phone,
         'is_admin'=>$this->admin,
-        'password'=>$this->password
+        'password'=>Hash::make($this->password)
     ];
           if($this->user_id)
           {

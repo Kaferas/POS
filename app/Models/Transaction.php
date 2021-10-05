@@ -11,11 +11,11 @@ class Transaction extends Model
     protected $fillable=
     [
     "commande_Id", 
-    "montant-payer" ,	
-    "montant-restant", 	
-    "mode-paiment", 	
+    "montant_payer" ,	
+    "montant_restant", 	
+    "mode_paiment", 	
     "utilisateur", 	
     "date_Transaction" ,
-    "transaction-montant" 
+    "transaction_montant" 
     ];
 }

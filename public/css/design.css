@@ -1,4 +1,4 @@
-*
+ *
 {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -10,7 +10,7 @@
         /* margin-left:20px; */
         /* border-radius: 6px; */
         background-color:rgb(44, 41, 41);
-        
+
     }
     .aside ul a{
         /* display:none; */
@@ -24,7 +24,7 @@
         width:25%;
         height: 150vh;
         position: relative;
-        left:20%;  
+        left:20%;
         background-color:rgb(44, 41, 41);
     } */
     .men{
@@ -46,7 +46,7 @@
         height: 95vh;
         position: relative;
         left:16%;
-        top:-5%;  
+        top:-5%;
     }
     .info{
         width:auto;
@@ -97,11 +97,10 @@ li#sidebar{
     /* background-color:green; */
     display:flex;
     flex-direction: column;
-
     justify-content: flex-start;
     align-items: flex-start;
     padding:0;
-   
+
 }
 .time,.factory_name{
     width: 40vw;
@@ -263,7 +262,7 @@ i
     margin-bottom:15px;
 }
 td,th{
-    width:50px;
+    width:auto;
     text-align:center;
 }
 tfoot tr{

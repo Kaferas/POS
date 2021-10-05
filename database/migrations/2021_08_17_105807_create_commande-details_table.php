@@ -13,7 +13,7 @@ class CreateCommandeDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commande-details', function (Blueprint $table) {
+        Schema::create('commande_details', function (Blueprint $table) {
             $table->id();
             $table->integer("commande_id");
             $table->integer("produit_id");
