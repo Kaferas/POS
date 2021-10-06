@@ -41,14 +41,14 @@ class UniteMesure extends Component
             $this->updateName=$updateCategorie->name;
         }
         else{
-            $this->dispatchBrowserEvent("openModalDelete");
+            $this->dispatchBrowserEvent("mesureOpenModal");
         }
 
     }
 
     public function delete($selectItem)
     {
-        $this->dispatchBrowserEvent("closeCategorieModal");
+        $this->dispatchBrowserEvent("closeMesureModal");
         Unite_Mesure::destroy($selectItem);
 
     }

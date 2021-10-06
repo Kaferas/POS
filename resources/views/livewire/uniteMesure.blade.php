@@ -70,7 +70,7 @@
                                     </div> -->
 
 
-                                <div class="modal fade" id="deletecategorie" tabindex="-1" role="dialog" aria-labelledby="deletecategorie" aria-hidden="true">
+                                <div class="modal fade" id="deleteUnite" tabindex="-1" role="dialog" aria-labelledby="deleteUnite" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                                 <div class="modal-header">
@@ -147,7 +147,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Modal  -->
 

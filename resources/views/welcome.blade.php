@@ -73,6 +73,13 @@
         window.addEventListener("closedelProductModal",event=>{
             $("#delProduct").modal("hide");
         });
+
+        window.addEventListener("mesureOpenModal",()=>{
+            $("#deleteUnite").modal("show")
+        });
+        window.addEventListener("closeMesureModal",()=>{
+            $("#deleteUnite").modal("hide")
+        });
     </script>
 </body>
 </html>

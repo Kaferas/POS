@@ -21,6 +21,7 @@
                             <h5 style="float:left;font-weight:bold">ORDER NEW PRODUCT</h5>
                             <!-- <input type="text" name="" id="" class="form-control border-primary" placeholder="Barcode Here"> -->
                         </div>
+
                         <form action="{{ route('commande.store') }}" method="POST">
                             @csrf
                         <div class="card-body">
@@ -47,13 +48,13 @@
                                             <select name="product_id[]" id="" class="form-control product_id text-center" wire:model="cart.produit_id">
                                                 <option value="" selected class="text text-primary">---Chosse Product---</option>
                                                 @foreach($products as $product)
-                                                    <option data-price="{{$product->prix}}" data-promote="{{$product->promotion}}" value="{{$product->id}}">{{$product->nom_produit}}</option>
+                                                    <option data-price="{{$product->prix_vente}}" data-promote="{{$product->promotion}}" value="{{$product->id}}">{{$product->nom_produit}}</option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td>
                                             <input type="number" name="quantity[]" id="quantity" class="form-control quantity" wire:model="cart.quantity">
-                                        
+
                                         </td>
                                         <td>
                                             <input type="number" name="price[]" id="price" class="form-control price" readonly>
@@ -72,7 +73,7 @@
                             </table>
                         </div>
                     </div>
-                
+
                 </div>
                 <div class="col-md-4">
                     <div class="card border-secondary">
@@ -117,7 +118,7 @@
                             <div class="row d-flex justify-content-center">
                                 <button class="form-control btn btn-primary col-md-8">Order Now</button>
                             </div>
-                            
+
                             </div>
                         </div>
                     </div>
@@ -151,14 +152,14 @@
                     "<td><input type='number' name='total_amount[]' class='form-control total m-0'></td>"+
                     "<td><i class='btn btn-sm btn-danger delete' style='cursor:pointer'>X</i></td>";
                     $(".addMoreProduct").append(tr);
-                    
-                    
+
+
         })
                     $(".addMoreProduct").delegate(".delete",'click',function(){
                         $(this).parent().parent().remove();
                         Calculate();
                     })
-                    
+
                     function Calculate()
                     {
                         var total=0;
@@ -202,21 +203,21 @@
                     });
 
 
-                    function PrintReceipt(el)
-                    {
-                        var data='<input type="button" id="printPage'+ 'class="printPage" style="display:block;'+
-                        'width="100%"; border:none; background-color:teal ;color:white'+ 'padding:14px 28px; font-size:16px; cursor:pointer'+
-                        'text-align:center; value="Print Receipt" onclick="window.print()">';
-                        data+=document.getElementById(el).innerHTML;
-                        myReceipt=window.open("","myWin","left=150 , top=130 , width=400, height=400");
-                        myReceipt.screenX=0;
-                        myReceipt.screenY=0;
-                        myReceipt.document.write(data);
-                        myReceipt.document.title="Print Receipt";
-                        myReceipt.focus();
-                        setTimeout(() => {
-                            myReceipt.close();
-                        }, 8000);
-                    }
+                    // function PrintReceipt(el)
+                    // {
+                    //     var data='<input type="button" id="printPage'+ 'class="printPage" style="display:block;'+
+                    //     'width="100%"; border:none; background-color:teal ;color:white'+ 'padding:14px 28px; font-size:16px; cursor:pointer'+
+                    //     'text-align:center; value="Print Receipt" onclick="window.print()">';
+                    //     data+=document.getElementById(el).innerHTML;
+                    //     myReceipt=window.open("","myWin","left=150 , top=130 , width=400, height=400");
+                    //     myReceipt.screenX=0;
+                    //     myReceipt.screenY=0;
+                    //     myReceipt.document.write(data);
+                    //     myReceipt.document.title="Print Receipt";
+                    //     myReceipt.focus();
+                    //     setTimeout(() => {
+                    //         myReceipt.close();
+                    //     }, 8000);
+                    // }
     </script>
 @endsection

@@ -57,12 +57,17 @@ class CommandeController extends Controller
             $commande->save();
             $commande_id=$commande->id;
 
+            $proUpdate=new Produit;
             // Enregistrer les Details de la Commande
             for ($prod_id=0; $prod_id < count($request->product_id); $prod_id++) {
                 $details_commande=new Commande_details;
                 $details_commande->commande_id=$commande_id;
+
                 $details_commande->produit_id=$request->product_id[$prod_id];
                 $details_commande->quantite=$request->quantity[$prod_id];
+                $found=$proUpdate::find($details_commande->produit_id);
+                $quantiteRest=$found->quantite-$details_commande->quantite;
+                $found->update(["quantite"=>$quantiteRest]);
                 $details_commande->prix_unitaire=$request->price[$prod_id];
                 $details_commande->total=$request->total_amount[$prod_id];
                 $details_commande->promotion=$request->discount[$prod_id] ?? 0;
@@ -92,13 +97,14 @@ class CommandeController extends Controller
             return view("order.index",[
                 'products'=>$produits,
                 'commandes_details'=>$commande_details,
-                'commandePar'=>$commandePar
+                'commandePar'=>$commandePar,
+                "message"=>"The Order has been successfully made"
             ]);
 
-            return back()->with("message","The Order has been successfully made");
+            // return back()->with("message","");
 
         });
-        return back()->with("error","The Order Fail to be ordered please chaeck your inputs");
+        return back()->with("error","The Order Fail to be ordered please check your inputs");
 
     }
 

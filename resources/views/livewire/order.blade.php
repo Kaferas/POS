@@ -6,7 +6,7 @@
                             <div class="card-header">
                                 <h5 style="float:left;font-weight:bold">ORDER NEW PRODUCT</h5>
                                     <input type="text" name="" id="barre_code_search" class="form-control border-primary"
-                                    placeholder="Barcode Here" wire:model.defer="product_code" wire:keyup="insertCart">
+                                    placeholder="Barcode Here" wire:model="product_code" wire:keyup="insertCart">
                                     @if($message)
                                         <div class="alert alert-danger text-center mt-3">
                                             {{$message}}
@@ -81,9 +81,9 @@
 
                                                 <input type="hidden" value="{{ $cart->product->id }}"  name="product_id[]" class="form-control">
                                                 <input type="hidden" name="quantity[]" value="{{ $cart->product_qnty}}">
-                                                <input type="hidden" name="price[]" value="{{$cart->product->prix}}" class="form-control " readonly>
+                                                <input type="hidden" name="price[]" value="{{$cart->product->prix_vente}}" class="form-control " readonly>
                                                 <input type="hidden" name="discount[]" class="form-control  col-md-8" width="10%" >
-                                                <input type="hidden" name="total_amount[]" class="form-control" value="{{$cart->product->prix * $cart->product_qnty}}" width="40%">
+                                                <input type="hidden" name="total_amount[]" class="form-control" value="{{$cart->product->prix_vente * $cart->product_qnty}}" width="40%">
                                             @endforeach
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center">

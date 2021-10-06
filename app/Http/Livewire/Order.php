@@ -61,6 +61,7 @@ class Order extends Component
     public function IncrementQty($cartid)
     {
         $this->message="";
+        $this->product_code="";
         $carts=Cart::find($cartid);
         $exced_id=$carts->product_id;
         $exced=Produit::find($exced_id);
@@ -79,6 +80,7 @@ class Order extends Component
     public function DecrementQty($cartid)
     {
         $this->message="";
+        $this->product_code="";
         $carts=Cart::find($cartid);
         if($carts->product_qnty == 1)
         {

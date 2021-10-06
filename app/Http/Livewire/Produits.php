@@ -135,6 +135,7 @@ class Produits extends Component
         }
         else{
             Produit::create($data);
+            $this->picture->store("Photos");
             session()->flash("message","The Product has Been Saved");
             $this->emit("refreshen");
         }
@@ -179,7 +180,7 @@ class Produits extends Component
         // dd(Unite_Mesure::orderBy("name"));
 
         return view('livewire.produit',[
-            'products'=>Produit::paginate(5),
+            'products'=>Produit::paginate(3),
             'categories'=>Categorie::orderBy("categorie_name")->get(),
             'unites'=>Unite_Mesure::orderBy("name")->get()
         ]);
