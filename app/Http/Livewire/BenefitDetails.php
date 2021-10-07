@@ -5,23 +5,20 @@ namespace App\Http\Livewire;
 use App\Models\Produit;
 use Livewire\Component;
 
-class DetailsStocks extends Component
+class BenefitDetails extends Component
 {
+    public $display=null;
     public $catched=1;
-    public $display=false;
-    public $data;
-    public $totalIn=0;
+    public $totalIn;
 
     protected $listeners=[
         'catchId'
     ];
-
     public function catchId($id)
     {
         $this->display=true;
         $this->catched= $id;
     }
-
     public function calculateTotal()
     {
         $produit=Produit::find($this->catched);
@@ -31,9 +28,8 @@ class DetailsStocks extends Component
     public function render()
     {
         $this->calculateTotal();
-        return view('livewire.details-stocks',[
-            'choosen'=> $this->catched,
-            'total'=>$this->totalIn
+        return view('livewire.benefit-details',[
+            'total'=> $this->totalIn
         ]);
     }
 }

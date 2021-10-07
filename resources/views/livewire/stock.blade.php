@@ -1,8 +1,8 @@
 <div>
     <div class="container row pl-5">
-        <label for="" class="text-primary mt-2">Search By:</label>
+        <label for="" class="text-primary mt-2">Sort By:</label>
         <div class="col-4">
-            <select name="search_critere" id="" class="form-control" wire:model="critere">
+            <select name="search_critere" id="" class="form-control border-dark" wire:model="critere">
                 <option value="nom_produit">Product Name</option>
                 <option value="category_produit">Category</option>
             </select>
@@ -10,7 +10,7 @@
 
         @if ($critere == "category_produit")
             <div class="col-3">
-                <select name="search_critere" id="" class="form-control" wire:model="query">
+                <select name="search_critere" id="" class="form-control border-dark" wire:model="query">
                     <option value="" selected>---Choose a Categorie--</option>
                     @foreach ($categories as $categorie)
                         <option value="{{$categorie->categorie_name}}">{{$categorie->categorie_name}}</option>
@@ -19,14 +19,15 @@
             </div>
         @else
             <div class="col-3">
-                <input type="text" name="" value="Here" id="" class="form-control" placeholder="Query Here ..." wire:model="category">
+                <input type="text" name="" value="Here" id="" class="form-control border-dark" placeholder="Query Here ..." wire:model="category">
             </div>
          @endif
     </div>
     <div class="row mt-5">
 
-        <div class="col-4 text-center">
-            <h2 class="secondary">List of Products</h2>
+        <div class="col-6 d-flex flex-column ">
+        <div class="pl-5">
+                <h2 class="secondary mb-3">List of Products</h2>
             <table class="table table-striped">
                 <thead>
                     @foreach ($headers as $key => $value )
@@ -60,6 +61,10 @@
                 </tbody>
             </table>
             {{ $data->links() }}
+        </div>
+        <div>
+            <livewire:benefit-details />
+        </div>
         </div>
         <livewire:details-stocks/>
     </div>
