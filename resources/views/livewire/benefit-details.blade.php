@@ -2,7 +2,8 @@
     @if ($display)
         <h4>Section Benefit:</h4>
         <div width="100%">
-            <h3 class="alert alert-secondary text text-secondary">Stock Benefit:
+            <h3 class="alert alert-secondary text text-secondary">
+                Stock <span class="text text-info">{{$total->nom_produit }}</span> Benefit:
                 <span class="text text-success">
                     {{ ($total->prix_vente-$total->prix_achat)*$total->quantite}} FBU
                 </span>

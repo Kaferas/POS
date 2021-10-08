@@ -1,7 +1,7 @@
 <div class="col-6 text-center d-flex flex-column align-items-center">
   @if ($display)
     <div>
-      <h2 class="">Total <span class="text text-info">{{ $totalIn->nom_produit}}</span>:  <span class="text text-danger alert alert-success" style="font-size: 2.5rem">{{number_format($totalIn->quantite * $totalIn->prix_vente,3,'.','')}}</span> FBU</h2>
+      <h2 class="">TOTAL <span class="text text-info">{{ $totalIn->nom_produit}}</span>:  <span class="text text-danger alert alert-success" style="font-size: 2.5rem">{{number_format($totalIn->quantite * $totalIn->prix_vente,3,'.','')}}</span> FBU</h2>
     </div>
     <div class="m-2">
         <img src="{{asset('img/xx.png')}}" alt="" width="150px" height="150px">

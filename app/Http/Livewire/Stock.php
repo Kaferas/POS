@@ -35,7 +35,7 @@ class Stock extends Component
     public function resultData()
     {
         return Produit::orderBy($this->sortColumn,$this->sortDirection)
-        ->paginate(5);
+        ->paginate(3);
     }
 
     public function sort($column)
