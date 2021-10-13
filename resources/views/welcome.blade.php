@@ -13,12 +13,12 @@
   <div class="both">
         <div class="aside">
             <ul style="margin-top:150px;" class="sidebar">
-                <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur">Settings</a></li>
                 <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" >Cashier</a></li>
                 <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" >Stocks</a></li>
                 <li id="sidebar" ><a href="/commande" >Rapports</a></li>
                 <li id="sidebar" ><a href="/commande" >Factures</a></li>
                 <li id="sidebar" ><a href="/commande" >Fournisseurs/Clients</a></li>
+                <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur">Settings</a></li>
                 <li id="sidebar" ><a href="/commande" >Deconnexion</a></li>
                 <!--  -->
             </ul>

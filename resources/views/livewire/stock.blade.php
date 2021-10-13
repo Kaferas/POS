@@ -56,7 +56,11 @@
                             </tr>
                         @endforeach
                     @else
-
+                        <tr>
+                            <td>
+                                <h2 colspan="{{count($headers)}}" class="text-center">No Results Founds</h2>
+                            </td>
+                        </tr>
                     @endif
                 </tbody>
             </table>

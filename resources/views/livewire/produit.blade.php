@@ -7,7 +7,7 @@
         @endif
         <div class="row">
             <div class="btn-group col-md-7 mb-4">
-                <input type="search" name="" id="" class="form-control border-info " placeholder="Search Product Here">
+                <input type="search" name="" id="" class="form-control border-info " placeholder="Search Product Here" wire:model="search">
             </div>
         </div>
         <div class="row">
@@ -28,41 +28,43 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($products)
                                 @foreach($products as $produit)
-                                        <tr >
-                                            <td class="d-flex flex-column justify-content-center align-items-center ">{!!$produit->Code_barre!!}<span style="letter-spacing: 18px">{{ $produit->product_code}}</span></td>
-                                            <td>{{ $produit->nom_produit}}</td>
-                                            <td>{{$produit->prix_vente}} <span class="text-primary">Fbu</span></td>
-                                            <td>{{$produit->quantite}}</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-warning mr-2"
-                                                    wire:click="selectItem({{$produit->id}},'edit')">Edit</button>
-                                                    <button class="btn btn-danger mr-2"
-                                                    wire:click="selectItem({{$produit->id}},'delete')">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                                <!-- Modal For Editing product -->
-                                        <div class="modal fade" id="delProduct" tabindex="-1" role="dialog" aria-labelledby="delProduct" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="delProduct">Delete product</h5>
-                                                            <button type="button"   wire:click="resetVar" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                                <h3>Are u want to Delete ?</h3>
-                                                                <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                                                                <button class="btn btn-danger" wire:click="deleteProduct">Yes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                <tr >
+                                    <td class="d-flex flex-column justify-content-center align-items-center ">{!!$produit->Code_barre!!}<span style="letter-spacing: 18px">{{ $produit->product_code}}</span></td>
+                                    <td>{{ $produit->nom_produit}}</td>
+                                    <td>{{$produit->prix_vente}} <span class="text-primary">Fbu</span></td>
+                                    <td>{{$produit->quantite}}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-warning mr-2"
+                                            wire:click="selectItem({{$produit->id}},'edit')">Edit</button>
+                                            <button class="btn btn-danger mr-2"
+                                            wire:click="selectItem({{$produit->id}},'delete')">Delete</button>
                                         </div>
-                                @endforeach
+                                    </td>
+                                </tr>
+                                        <!-- Modal For Editing product -->
+                                <div class="modal fade" id="delProduct" tabindex="-1" role="dialog" aria-labelledby="delProduct" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="delProduct">Delete product</h5>
+                                                    <button type="button"   wire:click="resetVar" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <h3>Are sure you want to Delete It ?</h3>
+                                                        <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                        <button class="btn btn-danger" wire:click="deleteProduct">Yes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                        @endforeach
+                     @endif
                             </tbody>
                         </table>
                         {{  $products->links() }}

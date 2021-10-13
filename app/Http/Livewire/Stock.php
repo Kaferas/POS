@@ -33,6 +33,12 @@ class Stock extends Component
         $this->headers=$this->headerConfig();
     }
 
+    public function update()
+    {
+        $this->category="";
+        $this->query="";
+    }
+
     public function resultData()
     {
             return Produit::where(function($query){
@@ -51,16 +57,6 @@ class Stock extends Component
             })
             ->orderBy($this->sortColumn,$this->sortDirection)
             ->paginate(3);
-
-            // else if($this->category != "")
-            // {
-            //     return Category::where(function($query){
-            //         $query->where("nom_produit",'like','%'.$this->query.'%');
-            //     })
-            //     ->orderBy($this->sortColumn,$this->sortDirection)
-            //     ->paginate(3);
-            // }
-
     }
 
     public function sort($column)

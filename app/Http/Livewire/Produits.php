@@ -27,6 +27,7 @@ class Produits extends Component
     public $action;
     public $picture;
     public $measure;
+    public $search;
     public $buy_price;
     public $sell_price;
     public $date_in;
@@ -56,7 +57,7 @@ class Produits extends Component
         $coPro=Produit::get("product_code")->toArray();
 
         do{
-            $codeGen=rand(1000000,99999999);
+            $codeGen=rand(100000000,9999999999999);
         }while(in_array($codeGen,$coPro));
 
         $this->code="".$codeGen;
@@ -80,11 +81,6 @@ class Produits extends Component
             "date_in"=>"required|date",
             "date_out"=>"required|date"
         ]);
-    }
-
-    public function updating()
-    {
-        $this->interet=intval($this->sell_price)-intval($this->buy_price);
     }
 
     public function save()
@@ -180,7 +176,15 @@ class Produits extends Component
         // dd(Unite_Mesure::orderBy("name"));
 
         return view('livewire.produit',[
-            'products'=>Produit::paginate(3),
+            'products'=>Produit::where(function($query){
+                if($this->search != "")
+                {
+                    $query->where("nom_produit",'like','%'.$this->search.'%');
+                }
+                else{
+                    $query=Produit::all();
+                }
+            })->paginate(3),
             'categories'=>Categorie::orderBy("categorie_name")->get(),
             'unites'=>Unite_Mesure::orderBy("name")->get()
         ]);

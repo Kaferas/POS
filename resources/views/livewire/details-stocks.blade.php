@@ -8,7 +8,7 @@
     </div>
     <div class="d-flex flex-column justify-content-evenly align-items-center" width="100vw">
 
-        <p  style="font-size: 1.2rem">
+        <p  style="font-size: 1.2rem" class="mt-2">
             Quantite en Stock :
             @if ($totalIn->quantite > $totalIn->alert_ecoulement)
                 <span class="alert alert-success p-2">
