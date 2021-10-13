@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Categorie;
 use App\Models\Produit;
 use Livewire\WithPagination;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class Stock extends Component
 {
@@ -34,8 +35,32 @@ class Stock extends Component
 
     public function resultData()
     {
-        return Produit::orderBy($this->sortColumn,$this->sortDirection)
-        ->paginate(3);
+            return Produit::where(function($query){
+                if($this->query != "")
+                {
+                    $query->where("nom_produit",'like','%'.$this->query.'%');
+                }
+                else if ($this->category != "")
+                {
+                    $query->where("categorie_produit",$this->category);
+                }
+                else
+                {
+                    $query=Produit::all();
+                }
+            })
+            ->orderBy($this->sortColumn,$this->sortDirection)
+            ->paginate(3);
+
+            // else if($this->category != "")
+            // {
+            //     return Category::where(function($query){
+            //         $query->where("nom_produit",'like','%'.$this->query.'%');
+            //     })
+            //     ->orderBy($this->sortColumn,$this->sortDirection)
+            //     ->paginate(3);
+            // }
+
     }
 
     public function sort($column)

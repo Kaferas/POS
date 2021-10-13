@@ -10,16 +10,16 @@
 
         @if ($critere == "category_produit")
             <div class="col-3">
-                <select name="search_critere" id="" class="form-control border-dark" wire:model="query">
+                <select name="search_critere" id="" class="form-control border-dark" wire:model="category">
                     <option value="" selected>---Choose a Categorie--</option>
                     @foreach ($categories as $categorie)
-                        <option value="{{$categorie->categorie_name}}">{{$categorie->categorie_name}}</option>
+                        <option value="{{$categorie->id}}">{{$categorie->categorie_name}}</option>
                     @endforeach
                 </select>
             </div>
         @else
             <div class="col-3">
-                <input type="text" name="" value="Here" id="" class="form-control border-dark" placeholder="Query Here ..." wire:model="category">
+                <input type="text" name="" value="Here" id="" class="form-control border-dark" placeholder="Query Here ..." wire:model="query">
             </div>
          @endif
     </div>
