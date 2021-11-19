@@ -57,7 +57,7 @@ class Produits extends Component
         $coPro=Produit::get("product_code")->toArray();
 
         do{
-            $codeGen=rand(100000000,9999999999999);
+        $codeGen=rand(10000000,99999999);
         }while(in_array($codeGen,$coPro));
 
         $this->code="".$codeGen;
@@ -93,7 +93,6 @@ class Produits extends Component
             "categorie"=>"required",
             "measure"=>"required",
             "buy_price"=>"required|integer",
-            "interet"=>"required|integer",
             "sell_price"=>"required|integer",
             'stock'=>"required|integer",
             "quantity"=>"required|integer",

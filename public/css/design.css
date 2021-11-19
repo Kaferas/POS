@@ -42,7 +42,7 @@
     .profile{
         display: flex;
         flex-direction: column;
-        width: 83%;
+        width: 84%;
         height: 95vh;
         position: relative;
         left:16%;

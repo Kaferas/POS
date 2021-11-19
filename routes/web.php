@@ -7,7 +7,8 @@ use \App\Http\Controllers\{
                         FournisseurController,
                         UtilisateurController ,
                         CompagnieController   ,
-                        TransactionController,
+    Fournisseur_Client,
+    TransactionController,
                         StockController
                     };
 
@@ -50,6 +51,8 @@ Route::resource("/compagnie",CompagnieController::class);
 Route::resource("/transaction",TransactionController::class);
 
 Route::get("/stocks",[StockController::class,"show"]);
+
+Route::get("/fournisseur_client",[Fournisseur_Client::class,"index"]);
 
 Auth::routes();
 

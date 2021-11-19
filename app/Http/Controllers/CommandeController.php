@@ -22,7 +22,7 @@ class CommandeController extends Controller
 
     public function index()
     {
-        $products=Produit::orderBy("nom_produit")->get();
+        $products=Produit::orderBy("nom_produit","desc")->get();
         $activenow="cashier";
         return view("order.index",[
             'activenow'=>$activenow,

@@ -48,22 +48,22 @@
                                                         <h5 class="modal-title" id="eraseUser">Delete User ?</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
-                                                
+
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <p><h3>Are you Sure you Want to Delete It ?</h3></p>
-                                                        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>  
+                                                        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                                         <button class="btn btn-danger" wire:click="delUser">Yes</button>
                                                     <div>
                                                 </div>
                                         </div>
                                     </div>
                                     @endforeach
-                            
+
                                 </tbody>
                             </table>
-                        
+
                         </div>
                     </div>
                 </div>
@@ -75,9 +75,9 @@
                             </div>
                             <div class="card-body">
                             <form  wire:submit.prevent="save" >
-                                                                
+
                                 <div class="form-group">
-                                    <label for="" class="text-primary">Nom:</label>
+                                    <label for="" class="text-primary">Username:</label>
                                     <input type="text" name="name" class="form-control border-dark" value="" wire:model="name">
                                     @error('name')
                                         <span class="text text-danger">{{ $message }}</span>
@@ -107,11 +107,11 @@
                                 <div class="form-group">
                                     <label for="" class="text-primary">Confirmed Password:</label>
                                     <input type="password" name="confirmed_password" class="form-control  border-dark" value="">
-                                
+
                                 </div> -->
                                 <div class="form-group">
                                     <label for="" class="text-primary">Role:</label>
-                                    <select name="is_admin" id="" class="form-control  border-dark" wire:model="admin">         
+                                    <select name="is_admin" id="" class="form-control  border-dark" wire:model="admin">
                                         <option value="">---Choose Role---</option>
                                        <option value="1" @if($admin==1) selected @endif>Admin</option>
                                        <option value="2" @if($admin==2) selected @endif >Cashier</option>
@@ -121,7 +121,7 @@
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-info col-12">Update User</button>
                                 </div>
-                            </form>   
+                            </form>
                             </div>
                         </div>
                 </div>
@@ -134,7 +134,7 @@
                             <div class="card-body">
                             <form action="" wire:submit.prevent="save">
                                     <div class="form-group">
-                                        <label for="" class="text-primary">Nom:</label>
+                                        <label for="" class="text-primary">Username:</label>
                                         <input type="text" name="name" class="form-control " value="" wire:model="name">
                                         @error('name')
                                             <span class="text text-danger">{{ $message }}</span>
@@ -164,7 +164,7 @@
                                     <div class="form-group">
                                         <label for="" class="text-primary">Confirmed Password:</label>
                                         <input type="password" name="confirmed_password" class="form-control" value="">
-                                    
+
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="text-primary">Role:</label>
@@ -173,7 +173,7 @@
                                                 <option value="1" >Admin</option>
                                                 <option selected value="2" >Cashier</option>
                                         </select>
-                                       
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-info col-12">Add New User</button>

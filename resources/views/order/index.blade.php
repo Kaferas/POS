@@ -3,15 +3,19 @@
 @section("content")
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link text text-info active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Cashier</a>
+    <a class="nav-link text text-info active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">BarCode Cashier</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text text-success" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">BarCode Cashier</a>
+    <a class="nav-link text text-success" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"> Cashier</a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
 
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+      @livewire("order")
+
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <div class="container mt-4">
         <div class="col-md-12">
             <div class="row">
@@ -127,10 +131,7 @@
             </div>
         </div>
     </div>
-
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-       @livewire("order")
-  </div>
+</div>
 
 </div>
 

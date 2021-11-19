@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HALLELUIA FAST FOOD</title>
+    <title>POS System</title>
+    <link rel="stylesheet" href="{{ asset('assets/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/design.css')}}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
     <livewire:styles/>
@@ -13,12 +14,12 @@
   <div class="both">
         <div class="aside">
             <ul style="margin-top:150px;" class="sidebar">
-                <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" >Cashier</a></li>
-                <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" >Stocks</a></li>
+                <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" ><i class="fa fa-terminal"></i>Cashier</a></li>
+                <li id="sidebar" ><a href="/commande" >Depenses</a></li>
+                <li id="sidebar" @if($activenow=='fournisseur_client') class='actived' @endif ><a href="/fournisseur_client" >Customers/Suppliers</a></li>
                 <li id="sidebar" ><a href="/commande" >Rapports</a></li>
-                <li id="sidebar" ><a href="/commande" >Factures</a></li>
-                <li id="sidebar" ><a href="/commande" >Fournisseurs/Clients</a></li>
                 <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur">Settings</a></li>
+                <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" >Stocks</a></li>
                 <li id="sidebar" ><a href="/commande" >Deconnexion</a></li>
                 <!--  -->
             </ul>
@@ -26,7 +27,7 @@
         <div class="profile">
             <div class="info">
                 <div class="factory_name">
-                        <h4 style="margin-left:25px;color:dodgerblue;font-family:Arial, Helvetica, sans-serif">GALLERIE ALLELUIA</h4>
+                        <h4 style="margin-left:25px;color:dodgerblue;font-family:Arial, Helvetica, sans-serif">POS MANAGEMENT SYSTEM</h4>
                 </div>
                 <div class="time mt-3">
                     <h6 class="what-time" style="color:brown;"></h6>
@@ -80,6 +81,9 @@
         window.addEventListener("closeMesureModal",()=>{
             $("#deleteUnite").modal("hide")
         });
+        $(document).ready(function(){
+            $("#barre_code_search").focus()
+        })
     </script>
 </body>
 </html>

@@ -33,11 +33,11 @@ class Order extends Component
     public function insertCart()
     {
         $countin_product=Produit::where("product_code",$this->product_code)->first();
-        // dd($countin_product->prix_vente);
-            if(!$countin_product)
-            {
-                return $this->message="Product not Found";
-            }
+
+        if(!$countin_product)
+        {
+            return $this->message="Product not Found";
+        }
         $product_in_cart=Cart::where("product_code",$this->product_code)->count();
             // dd($product_in_cart);
         if($product_in_cart > 0)
@@ -53,7 +53,7 @@ class Order extends Component
         // $add_to_cart->user_id=auth()->user()->id;
         $add_to_cart->save();
         $this->product_code="";
-        $this->productInCart=Cart::all();
+        $this->productInCart=Cart::orderBy("created_at","asc")->get();
         return $this->message="Product Added successfully";
 
     }
