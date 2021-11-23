@@ -72,7 +72,7 @@
                 </div>
             </div>
             @if($edition)
-                <div class="col-md-12 mt-5 mb-5">
+                <div class="col-md-12 mt-5 mb-5 jumbotron">
                     <div class="card border-danger ">
                         <div class="card-header">
                             <h4 class="text-center alert alert-info">Edit Product</h4>
@@ -203,7 +203,7 @@
                 </div>
             @endif
             @if(!$edition)
-                <div class="col-md-12 mt-5 mb-5">
+                <div class="col-md-12 mt-5 mb-5 jumbotron">
                     <div class="card border-primary">
                         <div class="card-header">
                             <h4 class="text-primary text-center">Add New Product</h4>

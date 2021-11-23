@@ -1,7 +1,7 @@
-<div class="col-6 text-center d-flex flex-column align-items-center">
+<div class="col-7 text-center d-flex flex-column align-items-center">
   @if ($display)
     <div>
-      <h2 class="">TOTAL <span class="text text-info">{{ $totalIn->nom_produit}}</span>:  <span class="text text-danger alert alert-success" style="font-size: 2.5rem">{{number_format($totalIn->quantite * $totalIn->prix_vente,3,'.','')}}</span> FBU</h2>
+      <h3 class="">TOTAL <span class="text text-info">{{ $totalIn->nom_produit}}</span>:  <span class="text text-danger alert alert-success" style="font-size: 2.5rem">{{number_format($totalIn->quantite * $totalIn->prix_vente,3,'.','')}}</span> FBU</h2>
     </div>
     <div class="m-2">
         <img src="{{asset('img/xx.png')}}" alt="" width="150px" height="150px">
@@ -23,12 +23,14 @@
         <p class="text text-secondary mt-2" style="font-size: 1.2rem">
             Date Expiration : {{ $totalIn->date_out }}
         </p>
-        <p class="text text-info" style="font-size: 1.2rem">
-            Prix Achat : {{ $totalIn->prix_achat }} FBU
-        </p>
-        <p class="text text-success" style="font-size: 1.2rem">
-            Prix Vente : {{ $totalIn->prix_vente }} FBU
-        </p>
+        <div style="display:  flex ; justify-content:space-around" class="col-12">
+            <p class="text text-info mr-2" style="font-size: 1.2rem">
+                Prix Achat : {{ $totalIn->prix_achat }} FBU
+            </p>
+            <p class="text text-success mr-2 " style="font-size: 1.2rem">
+                Prix Vente : {{ $totalIn->prix_vente }} FBU
+            </p>
+        </div>
     </div>
     <div>
         <h2 class="text-primary" style="font-size: 2rem">{{ $totalIn->nom_produit}} </h2>

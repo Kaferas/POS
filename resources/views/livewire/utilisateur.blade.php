@@ -68,7 +68,7 @@
                     </div>
                 </div>
                @if($edition)
-               <div class="col-md-4">
+               <div class="col-md-4 jumbotron">
                     <div class="card ">
                             <div class="card-header border-danger">
                             <h4 class="text-danger">Edit User</h4>
@@ -126,7 +126,7 @@
                         </div>
                 </div>
                 @else
-                    <div class="col-md-4">
+                    <div class="col-md-4 jumbotron">
                         <div class="card">
                             <div class="card-header border-primary">
                                 <h4 class="text text-primary">Add User</h4>

@@ -25,11 +25,11 @@
     </div>
     <div class="row mt-5">
 
-        <div class="col-6 d-flex flex-column ">
+        <div class="col-5 d-flex flex-column ">
         <div class="pl-5">
                 <h2 class="secondary mb-3">List of Products</h2>
             <table class="table table-striped">
-                <thead>
+                <thead class="text-center">
                     @foreach ($headers as $key => $value )
                         <th style="cursor:pointer" class="text text-primary" wire:click="sort('{{ $key }}')">
                             @if($sortColumn== $key)

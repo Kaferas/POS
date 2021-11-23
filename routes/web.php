@@ -37,8 +37,9 @@ use \App\Http\Controllers\{
 //     return view("report.index");
 // });
 
+Route::middleware(['auth'])->group(function () {
 
-Route::resource("/commande",CommandeController::class);
+    Route::resource("/commande",CommandeController::class);
 
 Route::resource("/produits",ProduitController::class);
 
@@ -54,6 +55,7 @@ Route::get("/stocks",[StockController::class,"show"]);
 
 Route::get("/fournisseur_client",[Fournisseur_Client::class,"index"]);
 
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

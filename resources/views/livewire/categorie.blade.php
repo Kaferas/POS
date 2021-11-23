@@ -13,7 +13,7 @@
                         </div> -->
                         <div class="card-header">
                             <h5 style="float:left;font-weight:bold">ADD CATEGORIE</h5>
-                            
+
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered table-left text-center">
@@ -31,11 +31,11 @@
                                             <td>{{$categorie->categorie_name}}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button class="btn btn-warning mr-2"  
+                                                    <button class="btn btn-warning mr-2"
                                                         wire:click="selectedItem({{ $categorie->id }},'Edit')">Edit</button>
-                                                    <button class="btn btn-danger mr-2"  
+                                                    <button class="btn btn-danger mr-2"
                                                         wire:click="selectedItem({{ $categorie->id }},'Delete')">Delete</button>
-                                                   
+
                                                 </div>
                                             </td>
                                     </tr>
@@ -47,11 +47,11 @@
                                                             <h5 class="modal-title" id="exampleModalScrollableTitle">Add New categorie </h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
-                                                    
+
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="">                     
+                                                            <form action="">
                                                                 <div class="form-group">
                                                                     <label for="" class="text-primary">Product Name:</label>
                                                                     <input type="text" name="nom_produit" class="form-control" wire:model="updateName">
@@ -63,12 +63,12 @@
                                                                     <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                                                                     <button type="submit" class="btn btn-primary">Save product</button>
                                                                 </div>
-                                                            </form>   
+                                                            </form>
                                                         <div>
                                                     </div>
                                             </div>
                                         </div> -->
-                                      
+
 
                                     <div class="modal fade" id="deletecategorie" tabindex="-1" role="dialog" aria-labelledby="deletecategorie" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -77,19 +77,19 @@
                                                         <h5 class="modal-title" id="exampleModalScrollableTitle">Delete categorie ?</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
-                                                
+
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <p><h3>Are you Sure you Want to Delete It ?</h3></p>
-                                                        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>  
+                                                        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                                         <button class="btn btn-danger" wire:click="delete({{ $categorie->id }})">Yes</button>
                                                     <div>
                                                 </div>
                                         </div>
                                     </div>
 
-                                                                            
+
                                         @endforeach
                                 </tbody>
                             </table>
@@ -99,42 +99,42 @@
                 </div>
                 <div class="col-md-4">
                 <div class="card">
-                      
+
                     @if(!$edition)
-                        <div class="card-body">
-                            <div class="card-header">
+                        <div class="card-body jumbotron">
+                            <div >
                                 <h4>New Categorie</h4>
                             </div>
                         <form wire:submit.prevent="save">
-                        
+
                         <div class="form-group">
                             <label for="" class="text-primary">Categorie Name:</label>
                             <input type="text" name="name" class="form-control"  wire:model.lazy="name">
                             @error('name')
                                 <span class="text text-light bg-danger p-1">{{ $message }}</span>
                             @enderror
-                            
-                        </div>                            
+
+                        </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-info col-5" >Reset</button>
                             <button type="submit" class="btn btn-primary ">Save Categorie</button>
                         </div>
-                    </form>  
-                    @else 
-                    <div class="card-body border border-danger">
-                            <div class="card-header">
+                    </form>
+                    @else
+                    <div class="card-body border border-danger jumbotron">
+                            <div >
                                 <h4 class="alert alert-success">Edit Categorie</h4>
                             </div>
                         <form wire:submit.prevent="updateCategorie">
-                        
+
                         <div class="form-group">
                             <label for="" class="text-primary">Categorie Name:</label>
                             <input type="text" name="name" class="form-control border-dark" focus  wire:model.lazy="updateName">
                             @error('name')
                                 <span class="text text-light bg-danger p-1">{{ $message }}</span>
                             @enderror
-                            
-                        </div>                            
+
+                        </div>
                         <div class="modal-footer">
                             <!-- <button type="reset" class="btn btn-danger col-5" >Reset</button> -->
                             <button type="submit" class="btn btn-warning col-12 ">Update Categorie</button>

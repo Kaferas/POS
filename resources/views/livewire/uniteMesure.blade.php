@@ -101,13 +101,14 @@
             <div class="card">
 
                 @if(!$edition)
-                    <div class="card-body">
-                        <div class="card-header">
-                            <h4>New Unity</h4>
+                    <div class="card-body jumbotron">
+                        <div >
+                            <h4 class="alert alert-primary">Add Unity</h4>
                         </div>
                     <form wire:submit.prevent="save">
 
                     <div class="form-group">
+
                         <label for="" class="text-primary">Unity Name:</label>
                         <input type="text" name="name" class="form-control"  wire:model.lazy="name">
                         @error('name')
@@ -121,8 +122,8 @@
                     </div>
                 </form>
                 @else
-                <div class="card-body border border-danger">
-                        <div class="card-header">
+                <div class="card-body border border-danger jumbotron">
+                        <div >
                             <h4 class="alert alert-success">Edit Unity</h4>
                         </div>
                     <form wire:submit.prevent="updateCategorie">

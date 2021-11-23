@@ -38,7 +38,7 @@
                                                <input type="text" value="{{ $cart->product->nom_produit }}"  class="form-control">
                                             </td>
                                             <td>
-                                                <div class="row">
+                                                <div class="d-flex justify-content-around ">
                                                     <button class="btn btn-sm-1 btn-danger " wire:click.prevent="DecrementQty({{ $cart->id }})">-</button>
                                                     <div class="col-sm-3 d-flex justify-content-center align-items-center">{{ $cart->product_qnty}}</div>
                                                     <button class="btn btn-sm-1 btn-success" wire:click.prevent="IncrementQty({{ $cart->id }})">+</button>

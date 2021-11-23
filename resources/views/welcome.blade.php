@@ -30,7 +30,7 @@
                         <h4 style="margin-left:25px;color:dodgerblue;font-family:Arial, Helvetica, sans-serif">POS MANAGEMENT SYSTEM</h4>
                 </div>
                 <div class="time mt-3">
-                    <h6 class="what-time" style="color:brown;"></h6>
+                    <h6 class="what-time" style="color:rgb(211, 18, 18); font-size:3em padding:10px"></h6>
                     <h6>{{ Auth::user()->name }}</h6>
                     <h6><a class="btn btn-danger" href="{{ route('logout') }}">Logout</a></h6>
 
@@ -80,6 +80,12 @@
         });
         window.addEventListener("closeMesureModal",()=>{
             $("#deleteUnite").modal("hide")
+        });
+        window.addEventListener("OpenModaleditclient",()=>{
+            $("#delClient").modal("show")
+        });
+        window.addEventListener("closedelClientModal",()=>{
+            $("#delClient").modal("hide")
         });
         $(document).ready(function(){
             $("#barre_code_search").focus()
