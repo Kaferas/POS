@@ -15,11 +15,12 @@ class Depenses extends Migration
     {
         Schema::create("depenses", function (Blueprint $table) {
             $table->id();
-            $table->integer("userId");
-            $table->integer("productId");
-            $table->integer("quantity");
             $table->text("description");
             $table->integer("total");
+            $table->integer("quantity")->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('produit_id')->nullable();
+            $table->timestamps();
         });
     }
 
