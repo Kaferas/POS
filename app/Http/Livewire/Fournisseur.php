@@ -15,6 +15,8 @@ class Fournisseur extends Component
     public $lastname;
     public $email;
     public $phone;
+    public $idFournisseur;
+    public $action;
     public $avatar;
     public $search;
 
@@ -45,19 +47,50 @@ class Fournisseur extends Component
             "lastname" => "required|string",
             "email" => "required|email",
             "phone" => "required",
-            "avatar" => "required"
+            // "avatar" => "required"
         ]);
-        Fournisseurs::create([
+        $data = [
             "company_name" => $this->company_name,
             "firstname" => $this->firstname,
             "lastname" => $this->lastname,
             "email" => $this->email,
             "phone" => $this->phone,
-            "phone" => $this->avatar,
-        ]);
-        session()->flash("message", "Supplier well created");
-        // $this->resetVar();
+            "avatar" => $this->avatar,
+        ];
+        if ($this->idFournisseur) {
+            Fournisseurs::find($this->idFournisseur)->update($data);
+            session()->flash("message", "Supplier well Updated");
+        } else {
+            Fournisseurs::create($data);
+            session()->flash("message", "Supplier well created");
+        }
         $this->emit("refreshen");
+    }
+
+    public function deleteFournisseur()
+    {
+        Fournisseurs::destroy($this->idFournisseur);
+        $this->idFournisseur = null;
+        $this->search = "";
+        $this->dispatchBrowserEvent("CloseModaldeleteFournisseur");
+    }
+
+    public function selectItem($id, $action)
+    {
+        $this->idFournisseur = $id;
+        $this->action = $action;
+        if ($this->action == 'delete') {
+            $this->dispatchBrowserEvent("OpenModaldeleteFournisseur");
+        }
+        if ($this->action == "edit") {
+            $editable = Fournisseurs::find($this->idFournisseur);
+            $this->company_name = $editable->company_name;
+            $this->firstname = $editable->firstname;
+            $this->lastname = $editable->lastname;
+            $this->email = $editable->email;
+            $this->phone = $editable->phone;
+            $this->avatar = $editable->avatar;
+        }
     }
 
     public function render()

@@ -1,6 +1,11 @@
  *
 {
-    font-family:'Times New Roman', Times, serif
+    font-family:'Times New Roman', Times, serif;
+}
+.commande
+{
+    overflow-y: hidden;
+
 }
 .aside
     {
@@ -78,7 +83,7 @@ li#sidebar{
     /* text-align:center; */
     padding:7px 0px;
     width: 100%;
-    text-indent:25%;
+    text-indent:18%;
     color:rgb(255, 255, 255);
     font-size:1.1rem;
     margin-bottom:10px;
@@ -108,9 +113,9 @@ li#sidebar{
     justify-content: space-between;
     margin-right:15px;
 }
-.what-time
+.what-time,.connectUser
 {
-    font-size:1.3em;
+    font-size:1.2em;
 }
 .details
 {

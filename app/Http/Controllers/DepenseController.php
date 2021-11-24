@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Fournisseur_Client extends Controller
+class DepenseController extends Controller
 {
     public function index()
     {
-        $activenow = "fournisseur_client";
-        return view("fournisseur_client.index", [
+        $activenow = "depenses";
+        return view("depenses.index", [
             'activenow' => $activenow
         ]);
     }

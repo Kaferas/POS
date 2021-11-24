@@ -15,12 +15,12 @@
         <div class="aside">
             <ul style="margin-top:150px;" class="sidebar">
                 <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" ><i class="fa fa-terminal"></i>Cashier</a></li>
-                <li id="sidebar" ><a href="/commande" >Depenses</a></li>
+                <li id="sidebar" @if($activenow=='depenses') class='actived' @endif ><a href="{{route('depenses')}}" >Depenses</a></li>
                 <li id="sidebar" @if($activenow=='fournisseur_client') class='actived' @endif ><a href="/fournisseur_client" >Customers/Suppliers</a></li>
                 <li id="sidebar" ><a href="/commande" >Rapports</a></li>
                 <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur">Settings</a></li>
                 <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" >Stocks</a></li>
-                <li id="sidebar" ><a href="/commande" >Deconnexion</a></li>
+                <li id="sidebar" ><a href="{{route('logout')}}" >Deconnexion</a></li>
                 <!--  -->
             </ul>
         </div>
@@ -31,8 +31,10 @@
                 </div>
                 <div class="time mt-3">
                     <h6 class="what-time" style="color:rgb(211, 18, 18); font-size:3em padding:10px"></h6>
-                    <h6>{{ Auth::user()->name }}</h6>
-                    <h6><a class="btn btn-danger" href="{{ route('logout') }}">Logout</a></h6>
+                    <h6 class="connectUser">{{ Auth::user()->name }}</h6>
+                    <form action="" method="post">
+                        <h6><a class="btn btn-danger" href="{{ route('logout') }}">Logout</a></h6>
+                    </form>
 
                 </div>
             </div>
@@ -83,6 +85,12 @@
         });
         window.addEventListener("OpenModaleditclient",()=>{
             $("#delClient").modal("show")
+        });
+        window.addEventListener("OpenModaldeleteFournisseur",()=>{
+            $("#delfournisseur").modal("show")
+        });
+        window.addEventListener("CloseModaldeleteFournisseur",()=>{
+            $("#delfournisseur").modal("hide")
         });
         window.addEventListener("closedelClientModal",()=>{
             $("#delClient").modal("hide")

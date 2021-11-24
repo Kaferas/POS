@@ -7,33 +7,33 @@ use Livewire\Component;
 
 class DetailsStocks extends Component
 {
-    public $catched=1;
-    public $display=false;
+    public $catched = 1;
+    public $display = false;
     public $data;
-    public $totalIn=0;
+    public $totalIn = 0;
 
-    protected $listeners=[
+    protected $listeners = [
         'catchId'
     ];
 
     public function catchId($id)
     {
-        $this->display=true;
-        $this->catched= $id;
+        $this->display = true;
+        $this->catched = $id;
     }
 
     public function calculateTotal()
     {
-        $produit=Produit::find($this->catched);
-        $this->totalIn=$produit;
+        $produit = Produit::find($this->catched);
+        $this->totalIn = $produit;
     }
 
     public function render()
     {
         $this->calculateTotal();
-        return view('livewire.details-stocks',[
-            'choosen'=> $this->catched,
-            'total'=>$this->totalIn
+        return view('livewire.details-stocks', [
+            'choosen' => $this->catched,
+            'total' => $this->totalIn
         ]);
     }
 }

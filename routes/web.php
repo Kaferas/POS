@@ -2,15 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\{
-                        CommandeController,
-                        ProduitController,
-                        FournisseurController,
-                        UtilisateurController ,
-                        CompagnieController   ,
+    CommandeController,
+    ProduitController,
+    FournisseurController,
+    UtilisateurController,
+    CompagnieController,
     Fournisseur_Client,
     TransactionController,
-                        StockController
-                    };
+    StockController,
+    DepenseController
+};
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,22 +41,25 @@ use \App\Http\Controllers\{
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::resource("/commande",CommandeController::class);
+    Route::resource("/commande", CommandeController::class);
 
-Route::resource("/produits",ProduitController::class);
+    Route::resource("/produits", ProduitController::class);
 
-Route::resource("/fournisseurs",FournisseurController::class);
+    Route::resource("/fournisseurs", FournisseurController::class);
 
-Route::resource("/utilisateur",UtilisateurController::class);
+    Route::resource("/utilisateur", UtilisateurController::class);
 
-Route::resource("/compagnie",CompagnieController::class);
+    Route::resource("/compagnie", CompagnieController::class);
 
-Route::resource("/transaction",TransactionController::class);
+    Route::resource("/transaction", TransactionController::class);
 
-Route::get("/stocks",[StockController::class,"show"]);
+    Route::get("/stocks", [StockController::class, "show"]);
 
-Route::get("/fournisseur_client",[Fournisseur_Client::class,"index"]);
+    Route::get("/fournisseur_client", [Fournisseur_Client::class, "index"]);
 
+    Route::get("/depenses", [DepenseController::class, "index"])->name("depenses");
+
+    Route::get("/logout", [LoginController::class, "logout"])->name('logout');
 });
 Auth::routes();
 
