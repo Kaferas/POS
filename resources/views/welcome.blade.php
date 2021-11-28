@@ -39,7 +39,7 @@
 
                 </div>
             </div>
-            <div class="center">
+            <div class="center jumbotron">
                 @yield("content")
             </div>
         </div>

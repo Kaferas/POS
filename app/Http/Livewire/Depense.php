@@ -23,6 +23,7 @@ class Depense extends Component
     public $selectuser;
     public $username;
     public $spender;
+    public $search;
     public $quantity;
     public $description;
     public $totalAmount;
@@ -95,7 +96,7 @@ class Depense extends Component
             "description" => $this->description,
             "total" => $this->totalAmount,
             "quantity" => $this->quantity,
-            "user_id" => $this->username,
+            "user_id" => Auth()->user()->id,
             "produit_id" => $this->produit,
             "spender" => $this->spender
         ];
@@ -113,7 +114,19 @@ class Depense extends Component
         return view('livewire.depense', [
             'users' => $this->users,
             'products' => $this->products,
-            'depenses' => Depenses::paginate(5)
+            'depenses' => Depenses::where(function ($query) {
+                if (!empty($this->search)) {
+                    $query->where("spender", 'like', '%' . $this->search . '%')
+                        ->orWhere("description", 'like', '%' . $this->search . '%');
+                }
+
+                if (!empty($this->selectuser)) {
+                    $query->where("user_id", $this->selectuser)
+                        ->whereBetween("created_at", [$this->fromdate, $this->todate]);
+                } else {
+                    $query = Depenses::all();
+                }
+            })->paginate(5)
         ]);
     }
 }

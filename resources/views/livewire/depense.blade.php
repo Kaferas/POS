@@ -29,7 +29,8 @@
             </div>
            </div>
            <div class="col-9 m-0">
-                <input type="text" name="" id="" class="form-control border border-primary alert alert-info" placeholder="Search...">
+                <input type="text" name="" id="" class="form-control border border-primary alert alert-info" placeholder="Search..." wire:model="search">
+                {{-- {{$search}} --}}
             </div>
         </div>
         <div class="container text text-danger">
@@ -40,6 +41,7 @@
                     <th scope="col">Concerned</th>
                     <th scope="col">Describe</th>
                     <th scope="col">Total</th>
+                    <th scope="col">Date</th>
                     <th scope="col" class="text text-success">Action</th>
                   </tr>
                 </thead>
@@ -50,8 +52,9 @@
                     <th scope="row">{{$depense->spender}}</th>
                     <th scope="row">{{$depense->description}}</th>
                     <th>{{$depense->total}}</th>
+                    <th scope="row" class="col-3">{{$depense->created_at->format("d-m-Y")}}</th>
                     <td>
-                        <button class="btn btn-success" wire:click="selectItem({{$depense->id}},'edit')">Edit</button>
+                        <button class="btn btn-warning" wire:click="selectItem({{$depense->id}},'edit')">Edit</button>
                         <button class="btn btn-danger" wire:click="selectItem({{$depense->id}},'delete')">Erase</button>
                         {{-- <button class="btn btn-success">Edit</button> --}}
                     </td>

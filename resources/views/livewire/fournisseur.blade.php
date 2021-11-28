@@ -26,7 +26,7 @@
                 <td>{{$supplier->lastname}}</td>
                 <td>{{$supplier->company_name}}</td>
                 <td>
-                    <button class="btn btn-primary" wire:click="selectItem({{ $supplier->id }},'edit')">Edit</button>
+                    <button class="btn btn-warning" wire:click="selectItem({{ $supplier->id }},'edit')">Edit</button>
                     <button class="btn btn-danger" wire:click="selectItem({{ $supplier->id }},'delete')">Delete</button>
                 </td>
             </tr>
