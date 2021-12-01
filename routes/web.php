@@ -10,9 +10,11 @@ use \App\Http\Controllers\{
     Fournisseur_Client,
     TransactionController,
     StockController,
-    DepenseController
+    DepenseController,
+    DashboardController
 };
 use App\Http\Controllers\Auth\LoginController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,8 @@ use App\Http\Controllers\Auth\LoginController;
 // });
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get("/", [DashboardController::class, "index"]);
 
     Route::resource("/commande", CommandeController::class);
 

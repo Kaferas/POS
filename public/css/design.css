@@ -5,7 +5,7 @@
     overflow-y: hidden;
 }
 .aside {
-    width: 16%;
+    width: 15%;
     position: fixed;
     height: 100vh;
     /* top: 0; */
@@ -79,7 +79,7 @@ li#sidebar {
     /* text-align:center; */
     padding: 7px 0px;
     width: 100%;
-    text-indent: 18%;
+    text-indent: 13%;
     color: rgb(255, 255, 255);
     font-size: 1.1rem;
     margin-bottom: 10px;
@@ -255,4 +255,28 @@ th {
 }
 tfoot tr {
     margin-top: 50px;
+}
+.white_notify {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: calc(100% / 3.5);
+    height: 110px;
+    border-radius: 4px;
+    box-shadow: 2px 4px 6px rgb(190, 190, 190);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.counter_notify {
+    width: 40%;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: white;
+    /* background-color: brown; */
 }

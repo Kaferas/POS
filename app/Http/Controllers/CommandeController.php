@@ -44,6 +44,7 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
+        // dd("Hello");
         // return $request->all();
         DB::transaction(function () use ($request) {
             // Enregistrer Commande
@@ -89,13 +90,13 @@ class CommandeController extends Controller
             $produits = Produit::all();
             $commande_details = Commande_details::where("commande_id", $commande_id)->get();
             $commandePar = Order::where("id", $commande_id)->get();
-
             return view("order.index", [
                 'products' => $produits,
                 'commandes_details' => $commande_details,
                 'commandePar' => $commandePar,
                 "message" => "The Order has been successfully made"
             ]);
+            // Cart::truncate();
 
             // return back()->with("message","");
 
