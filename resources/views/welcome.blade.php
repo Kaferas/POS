@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{{asset("img/Flema.svg")}}" sizes="any" type="image/svg+xml">
     <title>POS System</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/design.css')}}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
@@ -12,16 +14,17 @@
 </head>
 <body>
   <div class="both">
-        <div class="aside">
-            <ul style="margin-top:150px;" class="sidebar">
-                <li id="sidebar" @if($activenow=='dashboard') class='actived' @endif ><a href="/" ><i class="fa fa-terminal"></i>Dashboard</a></li>
-                <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" ><i class="fa fa-terminal"></i>Cashier</a></li>
-                <li id="sidebar" @if($activenow=='depenses') class='actived' @endif ><a href="{{route('depenses')}}" >Depenses</a></li>
-                <li id="sidebar" @if($activenow=='fournisseur_client') class='actived' @endif ><a href="/fournisseur_client" >Customers/Suppliers</a></li>
-                <li id="sidebar" ><a href="/commande" >Reports</a></li>
-                <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur">Settings</a></li>
-                <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" >Stocks</a></li>
-                <li id="sidebar" ><a href="{{route('logout')}}" >Logout</a></li>
+      <div class="aside">
+          <img src="{{asset("img/Flema.png")}}" alt="" width="120px" >
+          <ul style="margin-top:50px;" class="sidebar">
+                <li id="sidebar" @if($activenow=='dashboard') class='actived' @endif ><a href="/" ><i class="fa fa-tachometer-alt text text-primary" ></i> &nbsp Dashboard</a></li>
+                <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" ><i class="fas fa-cash-register text text-primary"></i> &nbsp Cashier</a></li>
+                <li id="sidebar" @if($activenow=='depenses') class='actived' @endif ><a href="{{route('depenses')}}" ><i class="fab fa-bitcoin text text-primary"></i> &nbspDepenses</a></li>
+                <li id="sidebar" @if($activenow=='fournisseur_client') class='actived' @endif ><a href="/fournisseur_client" ><i class="fas fa-users text text-primary"></i> &nbspCustomer/Supplier</a></li>
+                <li id="sidebar" ><a href="/commande" ><i class="fas fa-chart-line text text-primary"></i> &nbspReports</a></li>
+                <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur"><i class="fas fa-sliders-h text text-primary"></i> &nbspSettings</a></li>
+                <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" ><i class="fas fa-dolly text text-primary"></i>  &nbspStocks</a></li>
+                <li id="sidebar" ><a href="{{route('logout')}}" ><i class="fas fa-sign-out-alt text text-primary"></i> &nbsp Logout</a></li>
                 <!--  -->
             </ul>
         </div>
@@ -39,7 +42,7 @@
 
                 </div>
             </div>
-            <div class="center jumbotron">
+            <div class="center jumbotron p-2">
                 @yield("content")
             </div>
         </div>
