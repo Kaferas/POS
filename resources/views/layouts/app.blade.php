@@ -23,6 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-flex justify-content-center">
             <div class="container">
+                <img src="{{asset("img/Flema.svg")}}" alt="" width="30px" height="30px">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>

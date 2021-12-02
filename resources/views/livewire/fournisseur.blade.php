@@ -10,7 +10,7 @@
     </span>
     <table class="table table-striped border border-danger border-left-0 border-top-0 ">
         <thead class="text-center">
-            <tr class="table-warning">
+            <tr class="table-primary">
               <th scope="col">#</th>
               <th scope="col">Firstname</th>
               <th scope="col">Lastname</th>

@@ -1,5 +1,5 @@
-<div>
-    <div class="container row pl-5">
+<div class="col-12">
+    <div class="container row pl-5 mt-4">
         <label for="" class="text-primary mt-2">Sort By:</label>
         <div class="col-4">
             <select name="search_critere" id="" class="form-control border-dark" wire:model="critere">
@@ -26,7 +26,7 @@
     <div class="row mt-5">
 
         <div class="col-5 d-flex flex-column ">
-        <div class="pl-5">
+            <div class="pl-5">
                 <h2 class="secondary mb-3">List of Products</h2>
             <table class="table table-striped">
                 <thead class="text-center">
@@ -70,6 +70,6 @@
             <livewire:benefit-details />
         </div>
         </div>
-        <livewire:details-stocks/>
-    </div>
+            <livewire:details-stocks/>
+        </div>
 </div>

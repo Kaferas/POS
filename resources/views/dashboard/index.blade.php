@@ -52,8 +52,15 @@
                             <tr class="text-center">
                             <th scope="row">{{$item->nom_produit}}</th>
                             <td>{{$item->date_out}}</td>
-                            <td>{{$item->quantite}}</td>
-                            <td>{{ $item->categorie_produit }}</td>
+                            <td>
+                                {{$item->quantite}}
+                                @foreach ($item->unite_mesures as $unite)
+                                    <span class="text text-primary">{{$unite->name}}</span>
+                                @endforeach
+                            </td>
+                            @foreach ($item->categories as $categorie )
+                                <td>{{$categorie->categorie_name}}</td>
+                            @endforeach
                             <td>{{ $item->product_code}}</td>
                             </tr>
                     @endif

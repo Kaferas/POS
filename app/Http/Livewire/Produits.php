@@ -111,7 +111,7 @@ class Produits extends Component
             'categorie_produit' => $this->categorie,
             "prix_achat" => $this->buy_price,
             "prix_vente" => $this->sell_price,
-            "interet" => 500,
+            "interet" => $this->interet,
             "date_in" => $this->date_in,
             "date_out" => $this->date_out,
             "unite_mesure" => $this->measure,
@@ -154,11 +154,21 @@ class Produits extends Component
             $this->price = $editable->prix;
             $this->quantity = $editable->quantite;
             $this->stock = $editable->alert_ecoulement;
+            $this->categorie = $editable->categorie_produit;
+            $this->measure = $editable->unite_mesure;
+            $this->buy_price = $editable->prix_achat;
+            $this->sell_price = $editable->prix_vente;
+            $this->interet = $editable->interet;
         }
         if ($this->action == "delete") {
             $this->dispatchBrowserEvent("OpendelProductModal");
         }
     }
+    public function calculInteret()
+    {
+        $this->interet = $this->sell_price - $this->buy_price;
+    }
+
     public function deleteProduct()
     {
         Produit::destroy($this->idPro);

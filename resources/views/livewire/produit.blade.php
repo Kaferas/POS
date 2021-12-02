@@ -114,6 +114,7 @@
                                         <textarea name="description" id="" cols="10" rows="6" class="form-control" wire:model="description">
 
                                         </textarea>
+
                                         @error('description')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
@@ -123,7 +124,7 @@
                                             <select name="categorie" id="" class="form-control " wire:model="categorie">
                                                 <option value="">---Choose Categorie---</option>
                                                 @foreach($categories as $cat)
-                                                    <option value="{{$cat->id}}">{{$cat->categorie_name}}</option>
+                                                    <option value="{{$cat->id}}" @if ($cat->id == $categorie) selected @endif>{{$cat->categorie_name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('categorie')
@@ -135,7 +136,7 @@
                                             <select name="measure" id="" class="form-control " wire:model="measure">
                                                 <option value="">---Choose Unity---</option>
                                                 @foreach($unites as $unite)
-                                                    <option value="{{$unite->id}}">{{$unite->name}}</option>
+                                                    <option value="{{$unite->id}}" @if ($unite->id == $measure) selected @endif>{{$unite->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('measure')
@@ -150,7 +151,7 @@
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
                                             <label for="" class="text-primary">Selling Price:</label>
-                                            <input type="number" name="sell_price" class="form-control " wire:model="sell_price">
+                                            <input type="number" name="sell_price" class="form-control " wire:model="sell_price" wire:change="calculInteret">
                                             @error('sell_price')
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
@@ -219,7 +220,7 @@
                                 <div class="row">
                                     <div class="form-group col-4">
                                         <label for="" class="text-primary">Code-Produit:</label>
-                                        <input type="text" name="code" class="form-control " wire:model="code" disabled>
+                                        <input type="text" name="code" class="form-control " wire:model="code" >
                                         @error('code')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
@@ -281,7 +282,7 @@
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
                                             <label for="" class="text-primary">Selling Price:</label>
-                                            <input type="number" name="sell_price" class="form-control " wire:model="sell_price">
+                                            <input type="number" name="sell_price" class="form-control " wire:model="sell_price" wire:change="calculInteret">
                                             @error('sell_price')
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
