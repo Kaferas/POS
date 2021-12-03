@@ -8,6 +8,143 @@
         <h2 class="text text-primary pr-4">Search: </h3>
         <input type="text" name="" id="" class="pl-4 mb-4 col-7 border border-secondary form-control" placeholder="Search Supplier..." wire:model="search">
     </span>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-block text-left text text-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Add Supplier
+              </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse collapseSup" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                @if($idFournisseur)
+                <fieldset class="col-md-12 border border-danger jumbotron">
+                    <legend class="text text-danger">Edit Supplier</legend>
+                    <form action="" method="" action="multipart/form-data" wire:submit.prevent="save" >
+                        <div class="row col-12">
+                            <div class="form-group mr-3 p-2">
+                                <label for="" class="text text-danger">Company Name:</label>
+                                <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model="company_name">
+            
+                                @error("company_name")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-3 p-2">
+                                <label for="" class="text text-danger">First Name:</label>
+                                <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model="firstname">
+            
+                                @error("firstname")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-3 p-2">
+                                <label for="" class="text text-danger">Last Name:</label>
+                                <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model="lastname">
+            
+                                @error("lastname")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="form-group mr-3 p-1">
+                                <label for="" class="text text-danger">Email</label>
+                                <input type="email" name="email" id="" class="form-control col-12 border-secondary" wire:model="email">
+            
+                                @error("email")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-3 p-1">
+                                <label for="" class="text text-danger">Phone Number</label>
+                                <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model="phone">
+            
+                                @error("phone")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-3 p-1">
+                                <label for="" class="text text-danger">Avatar:</label>
+                                <input type="file" name="avatar" id="" class="form-control col-12 border-secondary" wire:model="avatar">
+            
+                                @error("avatar")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                            @enderror
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <button type="submit" class="btn btn-danger col-md-3">Edit</button>
+                        </div>
+                    </form>
+                </fieldset>
+                @else
+            
+                <fieldset class="col-md-12 border border-success jumbotron">
+                    <legend class="text text-primary">New Supplier</legend>
+                    <form action="" method="" action="multipart/form-data" wire:submit.prevent="save" >
+                        <div class="row col-12">
+                            <div class="form-group mr-3 p-2">
+                                <label for="" class="text text-primary">Company Name:</label>
+                                <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model="company_name">
+            
+                                @error("company_name")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-3 p-2">
+                                <label for="" class="text text-primary">First Name:</label>
+                                <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model="firstname">
+            
+                                @error("firstname")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-3 p-2">
+                                <label for="" class="text text-primary">Last Name:</label>
+                                <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model="lastname">
+                                @error("lastname")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="form-group mr-3 p-1">
+                                <label for="" class="text text-primary">Email</label>
+                                <input type="email" name="email" id="" class="form-control col-12 border-secondary" wire:model="email">
+                                @error("email")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-3 p-1">
+                                <label for="" class="text text-primary">Phone Number</label>
+                                <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model="phone">
+                                @error("phone")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-3 p-1">
+                                <label for="" class="text text-primary">Avatar:</label>
+                                <input type="file" name="avatar" id="" class="form-control col-12 border-secondary" wire:model="avatar">
+                                @error("avatar")
+                                <div class="alert alert-danger mt-3">{{$message}}</div>
+                            @enderror
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <button type="submit" class="btn btn-success col-md-3">Submit</button>
+                        </div>
+                    </form>
+                </fieldset>
+                @endif
+            </div>
+          </div>
+        </div>
+    </div>
+      
     <table class="table table-striped border border-danger border-left-0 border-top-0 ">
         <thead class="text-center">
             <tr class="table-primary">
@@ -52,124 +189,5 @@
         </tbody>
     </table>
     <span>{{$fournisseurs->links()}}</span>
-    @if($idFournisseur)
-    <fieldset class="col-md-12 border border-danger jumbotron">
-        <legend class="text text-danger">Edit Supplier</legend>
-        <form action="" method="" action="multipart/form-data" wire:submit.prevent="save" >
-            <div class="row col-12">
-                <div class="form-group mr-3 p-2">
-                    <label for="" class="text text-danger">Company Name:</label>
-                    <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model="company_name">
 
-                    @error("company_name")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group mr-3 p-2">
-                    <label for="" class="text text-danger">First Name:</label>
-                    <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model="firstname">
-
-                    @error("firstname")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group mr-3 p-2">
-                    <label for="" class="text text-danger">Last Name:</label>
-                    <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model="lastname">
-
-                    @error("lastname")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="row col-12">
-                <div class="form-group mr-3 p-1">
-                    <label for="" class="text text-danger">Email</label>
-                    <input type="email" name="email" id="" class="form-control col-12 border-secondary" wire:model="email">
-
-                    @error("email")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group mr-3 p-1">
-                    <label for="" class="text text-danger">Phone Number</label>
-                    <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model="phone">
-
-                    @error("phone")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group mr-3 p-1">
-                    <label for="" class="text text-danger">Avatar:</label>
-                    <input type="file" name="avatar" id="" class="form-control col-12 border-secondary" wire:model="avatar">
-
-                    @error("avatar")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                @enderror
-                </div>
-            </div>
-            <div class="row col-12">
-                <button type="submit" class="btn btn-danger col-md-3">Edit</button>
-            </div>
-        </form>
-    </fieldset>
-    @else
-
-    <fieldset class="col-md-12 border border-success jumbotron">
-        <legend class="text text-primary">New Supplier</legend>
-        <form action="" method="" action="multipart/form-data" wire:submit.prevent="save" >
-            <div class="row col-12">
-                <div class="form-group mr-3 p-2">
-                    <label for="" class="text text-primary">Company Name:</label>
-                    <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model="company_name">
-
-                    @error("company_name")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group mr-3 p-2">
-                    <label for="" class="text text-primary">First Name:</label>
-                    <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model="firstname">
-
-                    @error("firstname")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group mr-3 p-2">
-                    <label for="" class="text text-primary">Last Name:</label>
-                    <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model="lastname">
-                    @error("lastname")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="row col-12">
-                <div class="form-group mr-3 p-1">
-                    <label for="" class="text text-primary">Email</label>
-                    <input type="email" name="email" id="" class="form-control col-12 border-secondary" wire:model="email">
-                    @error("email")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group mr-3 p-1">
-                    <label for="" class="text text-primary">Phone Number</label>
-                    <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model="phone">
-                    @error("phone")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                    @enderror
-                </div>
-                <div class="form-group mr-3 p-1">
-                    <label for="" class="text text-primary">Avatar:</label>
-                    <input type="file" name="avatar" id="" class="form-control col-12 border-secondary" wire:model="avatar">
-                    @error("avatar")
-                    <div class="alert alert-danger mt-3">{{$message}}</div>
-                @enderror
-                </div>
-            </div>
-            <div class="row col-12">
-                <button type="submit" class="btn btn-success col-md-3">Submit</button>
-            </div>
-        </form>
-    </fieldset>
-    @endif
 </div>

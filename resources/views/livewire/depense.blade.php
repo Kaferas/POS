@@ -55,7 +55,9 @@
                     <th scope="row" class="col-3">{{$depense->created_at->format("d-m-Y")}}</th>
                     <td>
                         <button class="btn btn-warning" wire:click="selectItem({{$depense->id}},'edit')">Edit</button>
-                        <button class="btn btn-danger" wire:click="selectItem({{$depense->id}},'delete')">Erase</button>
+                        @if(Gate::allows("is_admin"))
+                            <button class="btn btn-danger" wire:click="selectItem({{$depense->id}},'delete')">Erase</button>
+                        @endif
                         {{-- <button class="btn btn-success">Edit</button> --}}
                     </td>
                   </tr>
