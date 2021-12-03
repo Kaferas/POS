@@ -1,0 +1,118 @@
+/* body {
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+} */
+.facture_head {
+    background-color: rgb(255, 97, 97);
+    margin-bottom: 3px;
+}
+.facture_head p {
+    width: 100%;
+    color: white;
+    display: flex;
+    font-size: 1.6em;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+.name {
+    height: 35px;
+    display: flex;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgb(85, 82, 82);
+    border-bottom: 1px solid rgb(85, 82, 82);
+}
+.facture > span {
+    margin-top: 10px;
+    display: block;
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+.facture ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid rgb(85, 82, 82);
+}
+.facture {
+    width: 100%;
+    background-color: rgb(219, 219, 198);
+    padding: 10px;
+    border: 1px dashed rgb(70, 71, 71);
+}
+.facture ul li {
+    list-style: none;
+    padding: 5px;
+}
+.identifier {
+    display: flex;
+    text-indent: 60px;
+}
+#bold {
+    font-weight: bolder;
+    padding-right: 15px;
+}
+.facture_identifier {
+    border-bottom: 1px solid rgb(85, 82, 82);
+}
+.items {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid rgb(85, 82, 82);
+    border-top: 1px solid rgb(85, 82, 82);
+}
+table {
+    width: 100%;
+}
+tbody tr {
+    align-items: center;
+    margin-bottom: 3px;
+}
+thead {
+    width: auto;
+    /* background-color: aqua; */
+    border-top: 1px solid rgb(85, 82, 82);
+    border-bottom: 1px solid rgb(85, 82, 82);
+}
+.total {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: space-evenly;
+    border-bottom: 1px solid black;
+}
+.total p {
+    /* background-color: crimson; */
+    width: 100%;
+}
+.thanks {
+    display: flex;
+    margin-top: 10px;
+    /* width: 60%; */
+    /* font-size: 1em; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.footer span {
+    display: block;
+}
+
+.footer {
+    display: flex;
+    width: 100%;
+    /* background-color: crimson; */
+    justify-content: space-around;
+    font-weight: bold;
+}

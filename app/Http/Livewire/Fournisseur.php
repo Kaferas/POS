@@ -91,6 +91,7 @@ class Fournisseur extends Component
             $this->email = $editable->email;
             $this->phone = $editable->phone;
             $this->avatar = $editable->avatar;
+            // $this->editFournisseur = null;
         }
     }
 

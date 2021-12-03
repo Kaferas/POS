@@ -13,7 +13,7 @@
           <div class="card-header" id="headingOne">
             <h2 class="mb-0">
               <button class="btn btn-block text-left text text-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Add Supplier
+                <i class="fas fa-shipping-fast"></i> &nbspAdd Supplier
               </button>
             </h2>
           </div>
@@ -27,7 +27,7 @@
                         <div class="row col-12">
                             <div class="form-group mr-3 p-2">
                                 <label for="" class="text text-danger">Company Name:</label>
-                                <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model="company_name">
+                                <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model.defer="company_name">
             
                                 @error("company_name")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group mr-3 p-2">
                                 <label for="" class="text text-danger">First Name:</label>
-                                <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model="firstname">
+                                <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model.defer="firstname">
             
                                 @error("firstname")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group mr-3 p-2">
                                 <label for="" class="text text-danger">Last Name:</label>
-                                <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model="lastname">
+                                <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model.defer="lastname">
             
                                 @error("lastname")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -53,7 +53,7 @@
                         <div class="row col-12">
                             <div class="form-group mr-3 p-1">
                                 <label for="" class="text text-danger">Email</label>
-                                <input type="email" name="email" id="" class="form-control col-12 border-secondary" wire:model="email">
+                                <input type="email" name="email" id="" class="form-control col-12 border-secondary" wire:model.defer="email">
             
                                 @error("email")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group mr-3 p-1">
                                 <label for="" class="text text-danger">Phone Number</label>
-                                <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model="phone">
+                                <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model.defer="phone">
             
                                 @error("phone")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="form-group mr-3 p-1">
                                 <label for="" class="text text-danger">Avatar:</label>
-                                <input type="file" name="avatar" id="" class="form-control col-12 border-secondary" wire:model="avatar">
+                                <input type="file" name="avatar" id="" class="form-control col-12 border-secondary" wire:model.defer="avatar">
             
                                 @error("avatar")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -89,7 +89,7 @@
                         <div class="row col-12">
                             <div class="form-group mr-3 p-2">
                                 <label for="" class="text text-primary">Company Name:</label>
-                                <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model="company_name">
+                                <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model.defer="company_name">
             
                                 @error("company_name")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -97,7 +97,7 @@
                             </div>
                             <div class="form-group mr-3 p-2">
                                 <label for="" class="text text-primary">First Name:</label>
-                                <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model="firstname">
+                                <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model.defer="firstname">
             
                                 @error("firstname")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="form-group mr-3 p-2">
                                 <label for="" class="text text-primary">Last Name:</label>
-                                <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model="lastname">
+                                <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model.defer="lastname">
                                 @error("lastname")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
                                 @enderror
@@ -114,21 +114,21 @@
                         <div class="row col-12">
                             <div class="form-group mr-3 p-1">
                                 <label for="" class="text text-primary">Email</label>
-                                <input type="email" name="email" id="" class="form-control col-12 border-secondary" wire:model="email">
+                                <input type="email" name="email" id="" class="form-control col-12 border-secondary" wire:model.defer="email">
                                 @error("email")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group mr-3 p-1">
                                 <label for="" class="text text-primary">Phone Number</label>
-                                <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model="phone">
+                                <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model.defer="phone">
                                 @error("phone")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group mr-3 p-1">
                                 <label for="" class="text text-primary">Avatar:</label>
-                                <input type="file" name="avatar" id="" class="form-control col-12 border-secondary" wire:model="avatar">
+                                <input type="file" name="avatar" id="" class="form-control col-12 border-secondary" wire:model.defer="avatar">
                                 @error("avatar")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
                             @enderror

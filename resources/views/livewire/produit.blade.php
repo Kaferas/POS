@@ -7,7 +7,7 @@
         @endif
         <div class="row">
             <div class="btn-group col-md-7 mb-4">
-                <input type="search" name="" id="" class="form-control border-info " placeholder="Search Product Here" wire:model="search">
+                <input type="search" name="" id="" class="form-control border-info " placeholder="Search Product Here" wire:model.defer="search">
             </div>
         </div>
          <div class="accordion" id="accordionExample">
@@ -16,7 +16,7 @@
                   <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                       <button class="btn btn-block text-left text-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                       Add Product
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbspAdd Product
                       </button>
                     </h2>
                   </div>
@@ -40,21 +40,21 @@
                                         <div class="row">
                                             <div class="form-group col-4">
                                                 <label for="" class="text-primary">Code-Produit:</label>
-                                                <input type="text" name="code" class="form-control " wire:model="code" disabled>
+                                                <input type="text" name="code" class="form-control " wire:model.defer="code" disabled>
                                                 @error('code')
                                                     <span class="text text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-4">
                                                 <label for="" class="text-primary">Product Name:</label>
-                                                <input type="text" name="name" class="form-control" wire:model="name">
+                                                <input type="text" name="name" class="form-control" wire:model.defer="name">
                                                 @error('name')
                                                     <span class="text text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-4">
                                                 <label for="" class="text-primary">Picture:</label>
-                                                <input type="file" name="picture" class="form-control" wire:model="picture">
+                                                <input type="file" name="picture" class="form-control" wire:model.defer="picture">
                                                 @error('picture')
                                                     <span class="text text-danger">{{ $message }}</span>
                                                 @enderror
@@ -63,7 +63,7 @@
                                         <div class="row">
                                             <div class="form-group col-4">
                                                 <label for="" class="text-primary">Description:</label>
-                                                <textarea name="description" id="" cols="10" rows="6" class="form-control" wire:model="description">
+                                                <textarea name="description" id="" cols="10" rows="6" class="form-control" wire:model.defer="description">
         
                                                 </textarea>
         
@@ -73,7 +73,7 @@
                                             </div>
                                                 <div class="form-group col-4">
                                                     <label for="" class="text-primary">Categorie:</label>
-                                                    <select name="categorie" id="" class="form-control " wire:model="categorie">
+                                                    <select name="categorie" id="" class="form-control " wire:model.defer="categorie">
                                                         <option value="">---Choose Categorie---</option>
                                                         @foreach($categories as $cat)
                                                             <option value="{{$cat->id}}" @if ($cat->id == $categorie) selected @endif>{{$cat->categorie_name}}</option>
@@ -85,7 +85,7 @@
                                                 </div>
                                                 <div class="form-group col-6">
                                                     <label for="" class="text-primary">Measure Unity:</label>
-                                                    <select name="measure" id="" class="form-control " wire:model="measure">
+                                                    <select name="measure" id="" class="form-control " wire:model.defer="measure">
                                                         <option value="">---Choose Unity---</option>
                                                         @foreach($unites as $unite)
                                                             <option value="{{$unite->id}}" @if ($unite->id == $measure) selected @endif>{{$unite->name}}</option>
@@ -98,17 +98,17 @@
         
                                                 <div class="form-group col-4">
                                                     <label for="" class="text-primary">Buying Price:</label>
-                                                    <input type="number" name="buy_price" class="form-control " wire:model="buy_price">
+                                                    <input type="number" name="buy_price" class="form-control " wire:model.defer="buy_price">
                                                     @error('buy_price')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                     <label for="" class="text-primary">Selling Price:</label>
-                                                    <input type="number" name="sell_price" class="form-control " wire:model="sell_price" wire:change="calculInteret">
+                                                    <input type="number" name="sell_price" class="form-control " wire:model.defer="sell_price" wire:change="calculInteret">
                                                     @error('sell_price')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                     <label for="" class="text-primary">Interet:</label>
-                                                    <input type="number" name="interet" class="form-control " wire:model="interet"  readonly>
+                                                    <input type="number" name="interet" class="form-control " wire:model.defer="interet"  readonly>
         
                                                     @error('interet')
                                                         <span class="text text-danger">{{ $message }}</span>
@@ -119,28 +119,28 @@
                                             <div class="row ml-3">
                                                 <div class="form-group">
                                                     <label for="" class="text-primary">Quantity:</label>
-                                                    <input type="number" name="quant" class="form-control " wire:model="quantity">
+                                                    <input type="number" name="quant" class="form-control " wire:model.defer="quantity">
                                                     @error('quant')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group ml-3">
                                                     <label for="" class="text-danger">Stock Alert:</label>
-                                                    <input type="number" name="quant" class="form-control " wire:model="stock">
+                                                    <input type="number" name="quant" class="form-control " wire:model.defer="stock">
                                                     @error('quant')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group ml-5">
                                                     <label for="" class="text-primary">Date In:</label>
-                                                    <input type="date" name="quant" class="form-control " wire:model="date_in">
+                                                    <input type="date" name="quant" class="form-control " wire:model.defer="date_in">
                                                     @error('quant')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group ml-3">
                                                     <label for="" class="text-danger">Expire Date:</label>
-                                                    <input type="date" name="quant" class="form-control " wire:model="date_out">
+                                                    <input type="date" name="quant" class="form-control " wire:model.defer="date_out">
                                                     @error('quant')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
@@ -172,21 +172,21 @@
                                         <div class="row">
                                             <div class="form-group col-4">
                                                 <label for="" class="text-primary">Code-Produit:</label>
-                                                <input type="text" name="code" class="form-control " wire:model="code" >
+                                                <input type="text" name="code" class="form-control " wire:model.defer="code" >
                                                 @error('code')
                                                     <span class="text text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-4">
                                                 <label for="" class="text-primary">Product Name:</label>
-                                                <input type="text" name="name" class="form-control" wire:model="name">
+                                                <input type="text" name="name" class="form-control" wire:model.defer="name">
                                                 @error('name')
                                                     <span class="text text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-4">
                                                 <label for="" class="text-primary">Picture:</label>
-                                                <input type="file" name="picture" class="form-control" wire:model="picture">
+                                                <input type="file" name="picture" class="form-control" wire:model.lazy="picture">
                                                 @error('picture')
                                                     <span class="text text-danger">{{ $message }}</span>
                                                 @enderror
@@ -195,7 +195,7 @@
                                         <div class="row">
                                             <div class="form-group col-4">
                                                 <label for="" class="text-primary">Description:</label>
-                                                <textarea name="description" id="" cols="10" rows="6" class="form-control" wire:model="description">
+                                                <textarea name="description" id="" cols="10" rows="6" class="form-control" wire:model.defer="description">
         
                                                 </textarea>
                                                 @error('description')
@@ -204,7 +204,7 @@
                                             </div>
                                                 <div class="form-group col-4">
                                                     <label for="" class="text-primary">Categorie:</label>
-                                                    <select name="categorie" id="" class="form-control " wire:model="categorie">
+                                                    <select name="categorie" id="" class="form-control " wire:model.defer="categorie">
                                                         <option value="">---Choose Categorie---</option>
                                                         @foreach($categories as $cat)
                                                             <option value="{{$cat->id}}">{{$cat->categorie_name}}</option>
@@ -216,7 +216,7 @@
                                                 </div>
                                                 <div class="form-group col-6">
                                                     <label for="" class="text-primary">Measure Unity:</label>
-                                                    <select name="measure" id="" class="form-control " wire:model="measure">
+                                                    <select name="measure" id="" class="form-control " wire:model.defer="measure">
                                                         <option value="">---Choose Unity---</option>
                                                         @foreach($unites as $unite)
                                                             <option value="{{$unite->id}}">{{$unite->name}}</option>
@@ -229,17 +229,17 @@
         
                                                 <div class="form-group col-4">
                                                     <label for="" class="text-primary">Buying Price:</label>
-                                                    <input type="number" name="buy_price" class="form-control " wire:model="buy_price">
+                                                    <input type="number" name="buy_price" class="form-control " wire:model.defer="buy_price">
                                                     @error('buy_price')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                     <label for="" class="text-primary">Selling Price:</label>
-                                                    <input type="number" name="sell_price" class="form-control " wire:model="sell_price" wire:change="calculInteret">
+                                                    <input type="number" name="sell_price" class="form-control " wire:model.defer="sell_price" wire:submit="calculInteret">
                                                     @error('sell_price')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                     <label for="" class="text-primary">Interet:</label>
-                                                    <input type="number" name="interet" class="form-control " wire:model="interet"  readonly>
+                                                    <input type="number" name="interet" class="form-control " wire:model.defer="interet"  readonly>
         
                                                     @error('interet')
                                                         <span class="text text-danger">{{ $message }}</span>
@@ -250,28 +250,28 @@
                                             <div class="row ml-3">
                                                 <div class="form-group">
                                                     <label for="" class="text-primary">Quantity:</label>
-                                                    <input type="number" name="quant" class="form-control " wire:model="quantity">
+                                                    <input type="number" name="quant" class="form-control " wire:model.defer="quantity">
                                                     @error('quant')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group ml-3">
                                                     <label for="" class="text-danger">Stock Alert:</label>
-                                                    <input type="number" name="quant" class="form-control " wire:model="stock">
+                                                    <input type="number" name="quant" class="form-control " wire:model.defer="stock">
                                                     @error('quant')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group ml-5">
                                                     <label for="" class="text-primary">Date In:</label>
-                                                    <input type="date" name="quant" class="form-control " wire:model="date_in">
+                                                    <input type="date" name="quant" class="form-control " wire:model.defer="date_in">
                                                     @error('quant')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group ml-3">
                                                     <label for="" class="text-danger">Expire Date:</label>
-                                                    <input type="date" name="quant" class="form-control " wire:model="date_out">
+                                                    <input type="date" name="quant" class="form-control " wire:model.defer="date_out">
                                                     @error('quant')
                                                         <span class="text text-danger">{{ $message }}</span>
                                                     @enderror

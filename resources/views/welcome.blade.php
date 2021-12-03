@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/assets/jquery-3.6.0.min.js') }}">
     <link rel="stylesheet" href="{{ asset('css/design.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/facture.css')}}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
     <livewire:styles/>
 </head>
