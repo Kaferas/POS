@@ -14,15 +14,14 @@ class Order extends Component
     public $productInCart;
     public $discount = 1;
     public $pay_money, $balance = 0;
+    // public $total;
+    public $totalTva = 0;
 
-    protected $listeners = [
-        "updateDiscount"
-    ];
-
-    public function updateDiscount($cartid)
+    public function updateDiscount($id)
     {
-        // $carts=Cart::find($cartid);
-        dd($cartid);
+        $uptodate = Cart::find($id);
+        $up = ['discount' => intval($this->discount)];
+        $uptodate->update($up);
     }
 
     public function mount()
@@ -49,7 +48,8 @@ class Order extends Component
         $add_to_cart->product_qnty = 1;
         $add_to_cart->product_price = $countin_product->prix_vente;
         $add_to_cart->discount = $this->discount;
-        // $add_to_cart->user_id=auth()->user()->id;
+        $add_to_cart->user_id = auth()->user()->id;
+        // $this->totalTva = $countin_product->prix_achat++;
         $add_to_cart->save();
         $this->product_code = "";
         $this->productInCart = Cart::orderBy("created_at", "asc")->get();

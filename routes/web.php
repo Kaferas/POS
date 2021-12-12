@@ -11,7 +11,8 @@ use \App\Http\Controllers\{
     TransactionController,
     StockController,
     DepenseController,
-    DashboardController
+    DashboardController,
+    ReportController
 };
 use App\Http\Controllers\Auth\LoginController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -62,6 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get("/fournisseur_client", [Fournisseur_Client::class, "index"]);
 
     Route::get("/depenses", [DepenseController::class, "index"])->name("depenses");
+
+    Route::get("/reports", [ReportController::class, "index"])->name("reports");
 
     Route::get("/logout", [LoginController::class, "logout"])->name('logout');
 });

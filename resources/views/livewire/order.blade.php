@@ -50,10 +50,10 @@
                                                 <input type="number" name="price[]" id="" value="{{$cart->product->prix_vente}}" class="form-control price" readonly>
                                             </td>
                                             <td>
-                                                <input type="number" name="discount[]" id="" class="form-control discount col-md-8" wire:model="discount" wire:emit="updateDiscount($id)" >
+                                                <input type="number" name="discount[]" id="" class="form-control discount col-md-8" wire:model="discount" wire:change="updateDiscount({{$cart->id}})" value={{$discount}}>
                                             </td>
                                             <td >
-                                                <input type="number" name="total_amount[]" id="" class="form-control" value="{{($cart->product->prix_vente * $cart->product_qnty)*$discount}}"  readonly>
+                                                <input type="number" name="total_amount[]" id="" class="form-control" value="{{ (($cart->product->prix_vente) * ($cart->product_qnty)) * (intval($discount)) }}"  readonly>
                                             </td>
                                             <td>
                                                 <div class="btn btn-sm btn-danger" style="cursor:pointer" wire:click.prevent="removeCart({{$cart->id}})">X</div>
@@ -88,7 +88,9 @@
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center">
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-dark" ><i>Print</i></button>
+                                                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
+                                                           Print
+                                                          </button>
                                                         <button type="button" class="btn btn-primary" ><i>History</i></button>
                                                         <button type="button" class="btn btn-danger" ><i>Report</i></button>
                                                     </div>
@@ -124,7 +126,147 @@
                                                     <button class="form-control btn btn-primary col-md-8">Order Now</button>
                                                 </div>
                                             </div>
-                                        </form>
+                                            @if(count($productInCart))
+                                                <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-body">
+                                                            <div class="facture">
+                                                                <div class="facture_head">
+                                                                    <p>FACTURE</p>
+                                                                </div>
+                                                                <div class="name">
+                                                                    <h2>FLEMA SHOP</h2>
+                                                                </div>
+                                                                <span>BRINADA BUSSINESS S.A </span>
+                                                                <ul>
+                                                                    <li>Commerce General</li>
+                                                                    <li>Centre Fiscal D G C </li>
+                                                                    <li>Carama Avenue Mudwedwe</li>
+                                                                    <li>BP 1523 Bujumbura-Burundi </li>
+                                                                    <li>NIF 4738358954906 </li>
+                                                                    <li>Registre de Commerce N0 32445 </li>
+                                                                    <li>Assujeti de La TVA  OUI<input type="checkbox" checked> NON <input type="checkbox" name="" id=""></li>
+                                                                    <li>Telephone: 22 84 89 54 </li>
+                                                                </ul>
+                                                                <div class="facture_identifier">
+                                                                    <p class="identifier">
+                                                                        <span id="bold">Facture No: </span>
+                                                                        <span>18334</span>
+                                                                        <span>M</span>
+                                                                    </p>
+                                                                    <p class="identifier">
+                                                                        <span id="bold">Date :</span>
+                                                                        <span>Thursday 8 October 2021</span>
+                                                                    </p>
+                                                                    <p class="identifier">
+                                                                        <span id="bold">Client :</span>
+                                                                        <span>Client</span>
+                                                                    </p>
+                                                                    <p class="identifier">
+                                                                        <span id="bold">Assujeti TVA :</span>
+                                                                        <span>Oui</span>
+                                                                    </p>
+                                                                    <p class="identifier">
+                                                                        <span id="bold">NIF :</span>
+                                                                    </p>
+                                                                    <p class="identifier">
+                                                                        <span id="bold">Residant a:</span>
+                                                                    </p>
+                                                                    <p class="identifier">
+                                                                        <span id="bold">Payment :</span>
+                                                                        <span >Cash</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="items">
+                                                                    <table>
+                                                                        <thead>
+                                                                            <th>ITEMS</th>
+                                                                            <th>QTY</th>
+                                                                            <th>PU HTVA</th>
+                                                                            <th>PU AVTVA</th>
+                                                                            <th>PT AVTVA</th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach ($productInCart as $produit)
+                                                                            <tr style="text-align:center">
+                                                                                <td>{{$produit->product->nom_produit}}</td>
+                                                                                <td>{{ ($produit->product_qnty) > 1  ? $produit->product_qnty." Pc(s)" : $produit->product_qnty." Pc"}} </td>
+                                                                                <td>{{$produit->product->prix_vente}}</td>
+                                                                                <td>{{$produit->product->prix_achat}}</td>
+                                                                                <td>{{($produit->product->prix_achat)*$produit->product_qnty}}</td>
+                                                                            </tr>
+                                                                            @endforeach
+                                                                            <tr>
+                                                                                <td style="font-weight: bold;">Garantie : 7jours</td>
+                                                                                <td></td>
+                                                                                <td>
+
+                                                                                </td>
+                                                                                <td>
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <table>
+                                                                                        <thead>
+                                                                                            <th>PT TVAC</th>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr style="text-align:center">
+                                                                                                <td>{{$productInCart->sum("product_price") }}</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="total">
+                                                                    <p>
+                                                                        <span id="bold">TOTAL GENERAL HORS TVA</span>
+                                                                        <span>{{$totalTva}}</span>
+                                                                    </p>
+                                                                    <p>
+
+                                                                        <span id="bold">TOTAL CORRESPONDANCE</span>
+                                                                        <span style="border-bottom: 2px solid black;">30000</span>
+                                                                    </p>
+                                                                    <p>
+                                                                        <span id="bold">TOTAL GENERAL TVAC</span>
+                                                                        <span>7000</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="thanks">
+                                                                    <b>MERCI / THANK YOU </b>
+                                                                    <p>SVP Verifier les marchandises  avant de quitter le magasin , Les marchandises vendues ne sont ni remises ni echangees</p>
+                                                                    <span>**********ACHAT FINAL**********</span>
+                                                                </div>
+                                                                <div class="conditions">
+                                                                    <ol>
+                                                                        <li>L'appareil ne peut etre remis ou rembourse</li>
+                                                                        <li>Pendant une periode de 14(quatorze) jours apres la date de l'achat l'appareil peut etre echange si celui-ci est dans le meme etat qu'il etait a l'achat</li>
+                                                                        <li>Apres 14 (quatorze) jours de la date de l'achat l'apparel sera inspecte et repare gratuitement . Aucun changement d'appareil ne sera effectue</li>
+                                                                        <li>En cas de reparation, la reparation , la garantie ne sera pas prolongee que de 14 (quatorze) jours a compter la date de reparation </li>
+                                                                        <li>Au cas ou l'appareil ne sera pas reparable durant la periode de garantie l'entreprise chargera le client 5% par mois ecoule de la valeur a l'achat et chargera l'appareil si le client accepte la valeur de depreciation</li>
+                                                                    </ol>
+                                                                </div>
+                                                                <div class="footer">
+                                                                    <span>{{date('d/m/Y')}}</span>
+                                                                    <span>{{Auth()->user()->name}}</span>
+                                                                    <span>{{date('h:m:s A ')}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success col-12" data-dismiss="modal">Print Me</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            </form>
                                 </div>
                             </div>
                         </div>

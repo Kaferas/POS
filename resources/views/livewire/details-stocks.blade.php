@@ -5,7 +5,7 @@
     </div>
    <div class="row mt-2">
     <div class="m-2">
-        <img src="{{asset('img/xx.png')}}" alt="" width="150px" height="150px">
+        <img src="{{'storage/Photos/'.$totalIn->pic_path }}"  alt="" width="150px" height="150px">
     </div>
     <div class="d-flex flex-column justify-content-evenly align-items-center" width="100vw">
 

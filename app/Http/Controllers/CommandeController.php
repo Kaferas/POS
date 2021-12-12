@@ -83,7 +83,7 @@ class CommandeController extends Controller
             $transactiom->date_Transaction = date("Y-m-d");
             $transactiom->save();
 
-
+            // dd(auth()->user()->id);
             Cart::where("user_id", auth()->user()->id)->delete();
 
             // Last History

@@ -104,6 +104,9 @@ class Produits extends Component
         $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
         $barcode = $generator->getBarcode($this->code, $generator::TYPE_STANDARD_2_5, 2, 60);
 
+        $path = $this->picture->store("Photos");
+        $exploded = explode("/", $path);
+        $path = end($exploded);
         $data = [
             'Code_barre' => $barcode,
             'nom_produit' => $this->name,
@@ -115,7 +118,7 @@ class Produits extends Component
             "date_in" => $this->date_in,
             "date_out" => $this->date_out,
             "unite_mesure" => $this->measure,
-            "pic_path" => $this->picture,
+            "pic_path" => $path,
             "product_code" => $this->code,
             'quantite' => $this->quantity,
             'alert_ecoulement' => $this->stock
@@ -128,7 +131,6 @@ class Produits extends Component
             $this->emit("refreshen");
         } else {
             Produit::create($data);
-            $this->picture->store("Photos");
             session()->flash("message", "The Product has Been Saved");
             $this->emit("refreshen");
         }
