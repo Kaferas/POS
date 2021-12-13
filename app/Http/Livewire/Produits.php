@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use \App\Models\{Categorie, Produit, Unite_Mesure};
-use Livewire\WithFileUploads;
-use Livewire\WithPagination;
 use Picqer;
+use Livewire\Component;
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
+use \App\Models\{Categorie, Produit, Unite_Mesure};
 
 class Produits extends Component
 {
@@ -36,6 +37,13 @@ class Produits extends Component
     protected $listeners = [
         'refreshen'
     ];
+
+    public function __construct()
+    {
+        if (!Gate::allows('is_admin')) {
+            abort(403);
+        }
+    }
     public function refreshen()
     {
         sleep(1);

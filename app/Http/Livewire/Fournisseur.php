@@ -6,6 +6,7 @@ use Livewire\Component;
 // use App\Models\Fournisseur;
 use App\Models\Fournisseurs;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 
 class Fournisseur extends Component
 {
@@ -23,6 +24,13 @@ class Fournisseur extends Component
     protected $listeners = [
         'refreshen'
     ];
+
+    public function __construct()
+    {
+        if (!Gate::allows('is_admin')) {
+            abort(403);
+        }
+    }
     public function refreshen()
     {
         sleep(1);

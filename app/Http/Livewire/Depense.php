@@ -126,7 +126,7 @@ class Depense extends Component
                 } else {
                     $query = Depenses::all();
                 }
-            })->paginate(5)
+            })->paginate(4)
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Cart;
 use Livewire\Component;
 use \App\Models\Produit;
+use Illuminate\Support\Facades\Gate;
 
 class Order extends Component
 {
@@ -12,16 +13,18 @@ class Order extends Component
     public $product_code;
     public $message = "";
     public $productInCart;
-    public $discount = 1;
+    public $discount = 0;
     public $pay_money, $balance = 0;
     // public $total;
-    public $totalTva = 0;
+    // public $somme = 0;
 
     public function updateDiscount($id)
     {
         $uptodate = Cart::find($id);
-        $up = ['discount' => intval($this->discount)];
+        $up = ["discount" => intval($this->discount)];
+        // dd($up);
         $uptodate->update($up);
+        // $this->somme = Cart::sum("product_price");
     }
 
     public function mount()
@@ -47,7 +50,7 @@ class Order extends Component
         $add_to_cart->product_code = $countin_product->product_code;
         $add_to_cart->product_qnty = 1;
         $add_to_cart->product_price = $countin_product->prix_vente;
-        $add_to_cart->discount = $this->discount;
+        $add_to_cart->discount = 0;
         $add_to_cart->user_id = auth()->user()->id;
         // $this->totalTva = $countin_product->prix_achat++;
         $add_to_cart->save();

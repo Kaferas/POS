@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Clients;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Gate;
 
 class Client extends Component
 {
@@ -20,6 +21,14 @@ class Client extends Component
     protected $listeners = [
         "refreshen",
     ];
+
+
+    public function __construct()
+    {
+        if (!Gate::allows('is_admin')) {
+            abort(403);
+        }
+    }
 
     public function refreshen()
     {

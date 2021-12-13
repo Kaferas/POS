@@ -54,8 +54,8 @@
                     <th>{{$depense->total}}</th>
                     <th scope="row" class="col-3">{{$depense->created_at->format("d-m-Y")}}</th>
                     <td>
-                        <button class="btn btn-warning" wire:click="selectItem({{$depense->id}},'edit')">Edit</button>
-                        <button class="btn btn-danger" wire:click="selectItem({{$depense->id}},'delete')">Erase</button>
+                        <button class="btn btn-warning col-8 mb-2" wire:click="selectItem({{$depense->id}},'edit')">Edit</button>
+                        <button class="btn btn-danger col-8" wire:click="selectItem({{$depense->id}},'delete')">Erase</button>
                         {{-- <button class="btn btn-success">Edit</button> --}}
                     </td>
                   </tr>

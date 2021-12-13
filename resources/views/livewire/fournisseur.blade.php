@@ -52,6 +52,7 @@
         </tbody>
     </table>
     <span>{{$fournisseurs->links()}}</span>
+
     @if($idFournisseur)
     <fieldset class="col-md-12 border border-danger jumbotron">
         <legend class="text text-danger">Edit Supplier</legend>

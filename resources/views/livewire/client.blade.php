@@ -117,7 +117,7 @@
                       <td>{{$client->Adress}}</td>
                       <td scope="row">
                         <div class="btn btn-warning  col-xs-6" wire:click="selectedItem({{$client->id}},'edit')">Edit</div>
-                          <div class="btn btn-danger col-xs-6" wire:click="selectedItem({{$client->id}},'delete')">Delete</div>
+                          <div class="btn btn-danger col-xs-5" wire:click="selectedItem({{$client->id}},'delete')">Delete</div>
                       </tr>
                       <div class="modal fade" id="delClient" tabindex="-1" role="dialog" aria-labelledby="delClient" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable" role="document">

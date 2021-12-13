@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Commande_details, Order, Transaction, Cart};
+use App\Models\{Commande_details, Order, Transaction, Cart, Clients};
 
 class CommandeController extends Controller
 {
@@ -48,9 +48,11 @@ class CommandeController extends Controller
         // return $request->all();
         DB::transaction(function () use ($request) {
             // Enregistrer Commande
-            $commande = new Order;
-            $commande->name = $request->customer_name;
-            $commande->adress = $request->customer_phone;
+            $commande = new Clients;
+            $commande->Customer_name = $request->customer_name;
+            $commande->email = $request->email;
+            $commande->phone_number = $request->phone;
+            $commande->Adress = $request->adress;
             $commande->save();
             $commande_id = $commande->id;
 
@@ -85,7 +87,6 @@ class CommandeController extends Controller
 
             // dd(auth()->user()->id);
             Cart::where("user_id", auth()->user()->id)->delete();
-
             // Last History
             $produits = Produit::all();
             $commande_details = Commande_details::where("commande_id", $commande_id)->get();

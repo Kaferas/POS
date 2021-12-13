@@ -24,6 +24,7 @@
                                             <th>Price</th>
                                             <th>Discount</th>
                                             <th >Total</th>
+                                            {{-- <th>{{date("M/Y/d")}}</th> --}}
                                             <th>
                                                 <i class="btn-sm btn-success" id="">+</i>
                                             </th>
@@ -50,10 +51,10 @@
                                                 <input type="number" name="price[]" id="" value="{{$cart->product->prix_vente}}" class="form-control price" readonly>
                                             </td>
                                             <td>
-                                                <input type="number" name="discount[]" id="" class="form-control discount col-md-8" wire:model="discount" wire:change="updateDiscount({{$cart->id}})" value={{$discount}}>
+                                                <input type="number" name="discount[]" id="" class="form-control discount col-md-8" wire:model="discount" wire:keyup="updateDiscount({{$cart->id}})" value={{$discount}}>
                                             </td>
                                             <td >
-                                                <input type="number" name="total_amount[]" id="" class="form-control" value="{{ (($cart->product->prix_vente) * ($cart->product_qnty)) * (intval($discount)) }}"  readonly>
+                                                <input type="number" name="total_amount[]" id="" class="form-control" value="{{ ($cart->product->prix_vente)-(($cart->product->prix_vente) * (intval($discount))) / 100 }}"  readonly>
                                             </td>
                                             <td>
                                                 <div class="btn btn-sm btn-danger" style="cursor:pointer" wire:click.prevent="removeCart({{$cart->id}})">X</div>
@@ -91,19 +92,15 @@
                                                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
                                                            Print
                                                           </button>
-                                                        <button type="button" class="btn btn-primary" ><i>History</i></button>
-                                                        <button type="button" class="btn btn-danger" ><i>Report</i></button>
+                                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticUser">
+                                                                New Client
+                                                        </button>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="" class="text-primary">Customer Name</label>
-                                                        <input type="text" name="customer_name" id="" class="form-control border-dark">
-                                                    </div>
-                                                    <div class="form-group">
-                                                    <label for="" class="text-primary">Customer Phone</label>
-                                                    <input type="text" name="customer_phone" id="" class="form-control border-dark">
+                                                    <div>
+                                                        <input type="text" name="" id="" class="form-control mt-3 border-dark" placeholder="Search User" >
                                                     </div>
                                                 </div>
-                                                <div class="row d-flex justify-content-around">
+                                                <div class="row d-flex justify-content-around mt-4">
                                                     <p>
                                                         <i>Payment Method</i>
                                                     </p>
@@ -158,7 +155,7 @@
                                                                     </p>
                                                                     <p class="identifier">
                                                                         <span id="bold">Date :</span>
-                                                                        <span>Thursday 8 October 2021</span>
+                                                                        <span>{{date('l d F Y')}}</span>
                                                                     </p>
                                                                     <p class="identifier">
                                                                         <span id="bold">Client :</span>
@@ -193,9 +190,9 @@
                                                                             <tr style="text-align:center">
                                                                                 <td>{{$produit->product->nom_produit}}</td>
                                                                                 <td>{{ ($produit->product_qnty) > 1  ? $produit->product_qnty." Pc(s)" : $produit->product_qnty." Pc"}} </td>
-                                                                                <td>{{$produit->product->prix_vente}}</td>
                                                                                 <td>{{$produit->product->prix_achat}}</td>
-                                                                                <td>{{($produit->product->prix_achat)*$produit->product_qnty}}</td>
+                                                                                <td>{{$produit->product->prix_vente}}</td>
+                                                                                <td >{{($produit->product->prix_vente)*$produit->product_qnty}}</td>
                                                                             </tr>
                                                                             @endforeach
                                                                             <tr>
@@ -214,7 +211,7 @@
                                                                                         </thead>
                                                                                         <tbody>
                                                                                             <tr style="text-align:center">
-                                                                                                <td>{{$productInCart->sum("product_price") }}</td>
+                                                                                                <td class="text text-success">{{$productInCart->sum("product_price")." FBU" }}</td>
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>
@@ -223,7 +220,7 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <div class="total">
+                                                                {{-- <div class="total">
                                                                     <p>
                                                                         <span id="bold">TOTAL GENERAL HORS TVA</span>
                                                                         <span>{{$totalTva}}</span>
@@ -237,7 +234,7 @@
                                                                         <span id="bold">TOTAL GENERAL TVAC</span>
                                                                         <span>7000</span>
                                                                     </p>
-                                                                </div>
+                                                                </div> --}}
                                                                 <div class="thanks">
                                                                     <b>MERCI / THANK YOU </b>
                                                                     <p>SVP Verifier les marchandises  avant de quitter le magasin , Les marchandises vendues ne sont ni remises ni echangees</p>
@@ -255,7 +252,7 @@
                                                                 <div class="footer">
                                                                     <span>{{date('d/m/Y')}}</span>
                                                                     <span>{{Auth()->user()->name}}</span>
-                                                                    <span>{{date('h:m:s A ')}}</span>
+                                                                    <span>{{ Carbon::now()->format('h:m:s A')}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -266,6 +263,37 @@
                                                     </div>
                                                 </div>
                                             @endif
+                                            <div class="modal fade" id="staticUser" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-body ">
+                                                        <h3 class="text-center text text-primary">New Client</h3>
+                                                        <form action="" method="post" class="border-dark p-4">
+                                                            <div class="form-group">
+                                                                <label for="" class="text-primary">Customer FullName</label>
+                                                                <input type="text" name="customer_name" id="" class="form-control border-dark">
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <label for="" class="text-primary"> Email</label>
+                                                            <input type="email" name="email" id="" class="form-control border-dark">
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <label for="" class="text-primary"> Phone</label>
+                                                            <input type="email" name="phone" id="" class="form-control border-dark">
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <label for="" class="text-primary"> Adress</label>
+                                                            <input type="email" name="adress" id="" class="form-control border-dark">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success col-7" data-dismiss="modal">Save user</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
                                             </form>
                                 </div>
                             </div>
