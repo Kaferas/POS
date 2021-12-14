@@ -88,19 +88,32 @@
                                             @endforeach
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center">
-                                                    <div class="btn-group">
+                                                    <div class="form-group">
                                                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
                                                            Print
                                                           </button>
-                                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticUser">
-                                                                New Client
+                                                          <button type="button" class="btn btn-primary" data-toggle="modal">
+                                                            History
                                                         </button>
                                                     </div>
-                                                    <div>
-                                                        <input type="text" name="" id="" class="form-control mt-3 border-dark" placeholder="Search User" >
+                                                    <div class="form-group ">
+                                                        <label for="" class="text-primary">Customer FullName</label>
+                                                        <input type="text" name="customer_name" id="" class="form-control border-dark">
                                                     </div>
-                                                </div>
-                                                <div class="row d-flex justify-content-around mt-4">
+                                                    <div class="form-group ">
+                                                        <label for="" class="text-primary">Phone Number</label>
+                                                        <input type="number" name="phone" id="" class="form-control border-dark">
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="" class="text-primary">Email</label>
+                                                        <input type="email" name="email" id="" class="form-control border-dark">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                    <label for="" class="text-primary"> Adress</label>
+                                                    <input type="text" name="adress" id="" class="form-control border-dark">
+                                                    </div>
+                                                <div class="row d-flex justify-content-between mt-4">
                                                     <p>
                                                         <i>Payment Method</i>
                                                     </p>
@@ -120,7 +133,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row d-flex justify-content-center">
-                                                    <button class="form-control btn btn-primary col-md-8">Order Now</button>
+                                                    <button class="form-control btn btn-primary col-md-12">Buy Now</button>
                                                 </div>
                                             </div>
                                             @if(count($productInCart))
@@ -257,53 +270,29 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                        <button type="button" class="btn btn-success col-12" data-dismiss="modal">Print Me</button>
+                                                        <button type="button" class="btn btn-success col-12"  wire:click="dde">Print Me</button>
                                                         </div>
                                                     </div>
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="modal fade" id="staticUser" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
 
-                                                    <div class="modal-body ">
-                                                        <h3 class="text-center text text-primary">New Client</h3>
-                                                        <form action="" method="post" class="border-dark p-4">
-                                                            <div class="form-group">
-                                                                <label for="" class="text-primary">Customer FullName</label>
-                                                                <input type="text" name="customer_name" id="" class="form-control border-dark">
-                                                            </div>
-                                                            <div class="form-group">
-                                                            <label for="" class="text-primary"> Email</label>
-                                                            <input type="email" name="email" id="" class="form-control border-dark">
-                                                            </div>
-                                                            <div class="form-group">
-                                                            <label for="" class="text-primary"> Phone</label>
-                                                            <input type="email" name="phone" id="" class="form-control border-dark">
-                                                            </div>
-                                                            <div class="form-group">
-                                                            <label for="" class="text-primary"> Adress</label>
-                                                            <input type="email" name="adress" id="" class="form-control border-dark">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-success col-7" data-dismiss="modal">Save user</button>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
                                             </form>
+
                                 </div>
                             </div>
                         </div>
                 </div>
             </div>
         </div>
-        <div class="modal">
-            <div class="print">
-
-            </div>
-        </div>
+        <script>
+             @if(Session::has('message'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+                    toastr.success("{{ session('message') }}");
+            @endif
+        </script>
 

@@ -117,14 +117,17 @@ class Depense extends Component
             'depenses' => Depenses::where(function ($query) {
                 if (!empty($this->search)) {
                     $query->where("spender", 'like', '%' . $this->search . '%')
+                        ->where("user_id", Auth()->user()->id)
                         ->orWhere("description", 'like', '%' . $this->search . '%');
                 }
 
                 if (!empty($this->selectuser)) {
                     $query->where("user_id", $this->selectuser)
+                        ->where("user_id", Auth()->user()->id)
                         ->whereBetween("created_at", [$this->fromdate, $this->todate]);
                 } else {
-                    $query = Depenses::all();
+                    $query = Depenses::all()
+                        ->where("user_id", Auth()->user()->id);
                 }
             })->paginate(4)
         ]);

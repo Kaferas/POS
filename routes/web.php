@@ -46,6 +46,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("/", [DashboardController::class, "index"]);
 
+    Route::get("/storeClient", [CommandeController::class, "storeClient"])->name("storeClient");
+
     Route::resource("/commande", CommandeController::class);
 
     Route::resource("/produits", ProduitController::class);

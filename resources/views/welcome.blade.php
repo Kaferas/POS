@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('css/design.css')}}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/facture.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.css" rel="stylesheet" media="all">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.js"></script>
     <livewire:styles/>
 </head>
 <body>
@@ -57,7 +59,23 @@
     @yield("script")
     <livewire:scripts/>
     <script>
-
+         function printDiv(el) {
+            var divContents = document.getElementById(el).innerHTML;
+            var a = window.open('', '', 'height=auto, width=50vw');
+            a.document.write('<html>');
+            a.document.write('<head>');
+            a.document.write('<link rel="stylesheet" href="css/facture.css"/>');
+            a.document.write('</link>');
+            a.document.write('<body>');
+            a.document.write(divContents);
+            a.document.write('</body></head>');
+            a.document.close();
+            a.print();
+            window.onafterprint=function(){ window.close();}
+        }
+    </script>
+    <script>
+         
         window.addEventListener("modalUser",event =>{
             $("#addUSer").modal('show');
         });
@@ -107,6 +125,12 @@
         });
         window.addEventListener("closedelClientModal",()=>{
             $("#delClient").modal("hide")
+        });
+        window.addEventListener("downloadModal",()=>{
+            printDiv("staticBackdrop");
+        });
+        window.addEventListener("downloadismiss",()=>{
+            $("#staticBackdrop").modal("hide");
         });
         $(document).ready(function(){
             $("#barre_code_search").focus()

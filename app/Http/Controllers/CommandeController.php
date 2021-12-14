@@ -44,17 +44,17 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        // dd("Hello");
-        // return $request->all();
-        DB::transaction(function () use ($request) {
+        // dd($request);
+        $commande = new Clients;
+        $commande->Customer_name = $request->customer_name;
+        $commande->email = $request->email;
+        $commande->phone_number = $request->phone;
+        $commande->Adress = $request->adress;
+        $commande->save();
+        $commande_id = $commande->id;
+
+        DB::transaction(function () use ($request, $commande_id) {
             // Enregistrer Commande
-            $commande = new Clients;
-            $commande->Customer_name = $request->customer_name;
-            $commande->email = $request->email;
-            $commande->phone_number = $request->phone;
-            $commande->Adress = $request->adress;
-            $commande->save();
-            $commande_id = $commande->id;
 
             $proUpdate = new Produit;
             // Enregistrer les Details de la Commande
@@ -85,8 +85,7 @@ class CommandeController extends Controller
             $transactiom->date_Transaction = date("Y-m-d");
             $transactiom->save();
 
-            // dd(auth()->user()->id);
-            Cart::where("user_id", auth()->user()->id)->delete();
+            // Cart::where("user_id", auth()->user()->id)->delete();
             // Last History
             $produits = Produit::all();
             $commande_details = Commande_details::where("commande_id", $commande_id)->get();
@@ -94,17 +93,12 @@ class CommandeController extends Controller
             return view("order.index", [
                 'products' => $produits,
                 'commandes_details' => $commande_details,
-                'commandePar' => $commandePar,
-                "message" => "The Order has been successfully made"
-            ]);
-            // Cart::truncate();
-
-            // return back()->with("message","");
-
+                'commandePar' => $commandePar
+            ])
         });
         return back()->with("error", "The Order Fail to be ordered please check your inputs");
     }
-
+->with('message', 'Data added Successfully');
     /**
      * Display the specified resource.
      *

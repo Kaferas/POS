@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Cart;
 use Livewire\Component;
 use \App\Models\Produit;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class Order extends Component
@@ -16,7 +17,12 @@ class Order extends Component
     public $discount = 0;
     public $pay_money, $balance = 0;
     // public $total;
+    protected $listeners = [
+        "dde",
+    ];
+
     // public $somme = 0;
+
 
     public function updateDiscount($id)
     {
@@ -25,6 +31,14 @@ class Order extends Component
         // dd($up);
         $uptodate->update($up);
         // $this->somme = Cart::sum("product_price");
+    }
+
+    public function dde()
+    {
+        $this->dispatchBrowserEvent("downloadModal");
+        sleep(2);
+        $this->dispatchBrowserEvent("downloadismiss");
+        Cart::truncate();
     }
 
     public function mount()
