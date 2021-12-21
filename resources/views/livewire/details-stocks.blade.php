@@ -4,8 +4,8 @@
       <h3 class="">TOTAL <span class="text text-info">{{ $totalIn->nom_produit}}</span>:  <span class="text text-danger alert alert-success" style="font-size: 2.2rem">{{number_format($totalIn->quantite * $totalIn->prix_vente,3,'.','')}}</span> FBU</h2>
     </div>
    <div class="row mt-2">
-    <div class="m-2">
-        <img src="{{'storage/Photos/'.$totalIn->pic_path }}"  alt="" width="150px" height="150px">
+    <div class="m-2 d-flex">
+        <img src="{{'storage/Photos/'.$totalIn->pic_path }}"  alt="" width="160px" height="200px">
     </div>
     <div class="d-flex flex-column justify-content-evenly align-items-center" width="100vw">
 
@@ -14,9 +14,7 @@
             @if ($totalIn->quantite > $totalIn->alert_ecoulement)
                 <span class="alert alert-success p-2">
                     {{ $totalIn->quantite }}
-                    @foreach($totalIn->unite_mesures as $mesure)
-                        <span class="text text-info" >{{$mesure->name}}</span>
-                    @endforeach
+                        <span class="text text-info" >{{($totalIn->quantite >1) ? $totalIn->unite_mesures->name."s" : $totalIn->unite_mesures->name}}</span>
                 </span>
             @else
                 <span class="p-2" style="background-color: red;color:white">

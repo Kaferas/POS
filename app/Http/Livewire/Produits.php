@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use \App\Models\{Categorie, Produit, Unite_Mesure};
 
 class Produits extends Component
@@ -112,7 +113,9 @@ class Produits extends Component
         $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
         $barcode = $generator->getBarcode($this->code, $generator::TYPE_STANDARD_2_5, 2, 60);
 
-        $path = $this->picture->store("Photos");
+        // $path = $this->picture->store("Photos");
+        $path = Storage::disk('public')->put("Photos", $this->picture);
+        // dd($path);
         $exploded = explode("/", $path);
         $path = end($exploded);
         $data = [

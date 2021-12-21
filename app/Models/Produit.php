@@ -24,6 +24,6 @@ class Produit extends Model
 
     public function unite_mesures()
     {
-        return $this->hasMany(Unite_Mesure::class, "id");
+        return $this->belongsTo(Unite_Mesure::class, "unite_mesure", 'id');
     }
 }
