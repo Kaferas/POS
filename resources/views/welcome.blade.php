@@ -61,7 +61,7 @@
     <script>
          function printDiv(el) {
             var divContents = document.getElementById(el).innerHTML;
-            var a = window.open('', '', 'height=auto, width=50vw');
+            var a = window.open('', '', 'height=auto, width=30vw');
             a.document.write('<html>');
             a.document.write('<head>');
             a.document.write('<link rel="stylesheet" href="css/facture.css"/>');
@@ -75,7 +75,7 @@
         }
     </script>
     <script>
-         
+
         window.addEventListener("modalUser",event =>{
             $("#addUSer").modal('show');
         });
@@ -129,6 +129,9 @@
         window.addEventListener("downloadModal",()=>{
             printDiv("staticBackdrop");
         });
+        window.livewire.on('afterprint',()=>{
+            window.livewire.emit("downloadismiss");
+        })
         window.addEventListener("downloadismiss",()=>{
             $("#staticBackdrop").modal("hide");
         });

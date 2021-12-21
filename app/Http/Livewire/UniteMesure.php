@@ -84,6 +84,7 @@ class UniteMesure extends Component
         session()->flash("message", "Categorie well created");
         $this->resetVar();
         $this->emit("refreshen");
+        return redirect(request()->header('Referer'));
     }
     public function render()
     {

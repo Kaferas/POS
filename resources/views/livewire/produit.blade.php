@@ -1,5 +1,5 @@
-<div class="container mt-4">
-    <div class="col-md-12">
+<div class="container row col-md-12">
+    <div class="col-md-12 mt-3">
         @if(session()->has("message"))
             <div class="alert alert-success">
                 {{ session("message") }}
@@ -10,8 +10,8 @@
                 <input type="search" name="" id="" class="form-control border-info " placeholder="Search Product Here" wire:model="search">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 mt-3">
+        <div class="">
+            <div class="row col-md-12 mt-3">
                 <div class="card">
                     <div class="card-header">
                         <h5 style="float:left;font-weight:bold">PRODUCT LISTING</h5>
@@ -204,8 +204,8 @@
                 </div>
             @endif
             @if(!$edition)
-                <div class="col-md-12 mt-5 mb-5 jumbotron">
-                    <div class="card border-primary">
+                <div class=" col-md-12 mt-5 mb-5 jumbotron">
+                    <div class="row card border-primary">
                         <div class="card-header">
                             <h4 class="text-primary text-center">Add New Product</h4>
                         </div>

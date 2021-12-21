@@ -137,10 +137,12 @@ class Produits extends Component
             Produit::find($this->idPro)->update($data);
             session()->flash("message", "The Product updated ");
             $this->emit("refreshen");
+            return redirect(request()->header('Referer'));
         } else {
             Produit::create($data);
             session()->flash("message", "The Product has Been Saved");
             $this->emit("refreshen");
+            return redirect(request()->header('Referer'));
         }
     }
     public function toggleEdition()

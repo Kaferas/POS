@@ -91,11 +91,13 @@ class Utilisateur extends Component
             $this->edition = false;
             session()->flash("message", "User Updated Well");
             $this->user_id = null;
+            return redirect(request()->header('Referer'));
         } else {
             User::create($data);
             $this->emit("refresh");
             session()->flash("message", "User Created Well");
-            // dd($data);
+            // dd($data);]
+            return redirect(request()->header('Referer'));
         }
     }
     public function render()

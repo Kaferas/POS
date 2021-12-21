@@ -94,11 +94,10 @@ class CommandeController extends Controller
                 'products' => $produits,
                 'commandes_details' => $commande_details,
                 'commandePar' => $commandePar
-            ])
+            ]);
         });
         return back()->with("error", "The Order Fail to be ordered please check your inputs");
     }
-->with('message', 'Data added Successfully');
     /**
      * Display the specified resource.
      *
