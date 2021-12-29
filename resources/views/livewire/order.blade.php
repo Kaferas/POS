@@ -164,8 +164,8 @@
                                                                 </ul>
                                                                 <div class="facture_identifier">
                                                                     <p class="identifier">
-                                                                        <span id="bold">Facture: </span>
-                                                                        <span>{{$generatedQr}}</span>
+                                                                        <span id="bold" style="vertical-align:center">Facture: </span>
+                                                                        <span>{{QrCode::size(60)->generate(route("receipt",$codeFacture))}}</span>
                                                                         {{-- <span>M</span> --}}
                                                                     </p>
                                                                     <p class="identifier">

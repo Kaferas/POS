@@ -44,11 +44,6 @@ class Order extends Component
         Cart::truncate();
     }
 
-    public function hydrated()
-    {
-        $this->generatedQr = Cart::distinct()->select('codefacture');
-        dd($this->generatedQr);
-    }
 
     public function mount()
     {
