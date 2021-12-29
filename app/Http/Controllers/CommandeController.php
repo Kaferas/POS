@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\{Commande_details, Order, Transaction, Cart, Clients};
 
 class CommandeController extends Controller
@@ -44,7 +46,8 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+
+        // dd($request  );
         $commande = new Clients;
         $commande->Customer_name = $request->customer_name;
         $commande->email = $request->email;
@@ -55,6 +58,13 @@ class CommandeController extends Controller
 
         DB::transaction(function () use ($request, $commande_id) {
             // Enregistrer Commande
+
+            $numeroFacture = Commande_details::get("nFacture")->toArray();
+
+            do {
+                $codeGen = rand(10000000, 99999999);
+            } while (in_array($codeGen, $numeroFacture));
+
 
             $proUpdate = new Produit;
             // Enregistrer les Details de la Commande
@@ -69,6 +79,8 @@ class CommandeController extends Controller
                 $found->update(["quantite" => $quantiteRest]);
                 $details_commande->prix_unitaire = $request->price[$prod_id];
                 $details_commande->total = $request->total_amount[$prod_id];
+                $details_commande->nFacture = $request->codeFac;
+                $details_commande->userID = Auth::user()->id;
                 $details_commande->promotion = $request->discount[$prod_id] ?? 0;
                 $details_commande->save();
             }

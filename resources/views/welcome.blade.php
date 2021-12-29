@@ -27,6 +27,7 @@
                 <li id="sidebar" @if($activenow=='fournisseur_client') class='actived' @endif ><a href="/fournisseur_client" ><i class="fas fa-users text text-primary"></i> &nbspCustomer/Supplier</a></li>
                 <li id="sidebar" @if($activenow=='reports') class='actived' @endif ><a href="/reports" ><i class="fas fa-chart-line text text-primary"></i> &nbspReports</a></li>
                 <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" ><i class="fas fa-dolly text text-primary"></i>  &nbspStocks</a></li>
+                <li id="sidebar" ><a href="/stocks" ><i class="fas fa-undo-alt text text-primary"></i>  &nbsp;Produit Retourner</a></li>
                 <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur"><i class="fas fa-sliders-h text text-primary"></i> &nbspSettings</a></li>
                 @endif
                 <li id="sidebar" ><a href="{{route('logout')}}" ><i class="fas fa-sign-out-alt text text-primary"></i> &nbsp Logout</a></li>
@@ -42,7 +43,7 @@
                     <h6 class="what-time" style="color:rgb(211, 18, 18); font-size:3em padding:10px"></h6>
                     <h6 class="connectUser">{{ Auth::user()->name }}</h6>
                     <form action="" method="post">
-                        <h6><a class="btn btn-danger" href="{{ route('logout') }}">Logout</a></h6>
+                        <h6><a class="btn btn-danger p-1" href="{{ route('logout') }}">Logout</a></h6>
                     </form>
 
                 </div>

@@ -10,11 +10,13 @@ class Commande_details extends Model
     use HasFactory;
     protected $fillable=
     [
-        "commande_id", 
-        "produit_id", 
-        "quantite", 
-        "prix_unitaire", 
-        "total", 
-        "promotion"
+        "commande_id",
+        "produit_id",
+        "quantite",
+        "prix_unitaire",
+        "total",
+        "promotion",
+        'nFacture',
+        'userID'
     ];
 }

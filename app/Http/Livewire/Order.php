@@ -6,7 +6,11 @@ use App\Models\Cart;
 use Livewire\Component;
 use \App\Models\Produit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Matrix\Decomposition\QR;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Order extends Component
 {
@@ -15,15 +19,14 @@ class Order extends Component
     public $message = "";
     public $productInCart;
     public $discount = 0;
+    public $codeFacture = 0;
+    public $generatedQr;
     public $pay_money, $balance = 0;
-    // public $total;
     protected $listeners = [
         "dde",
     ];
 
     // public $somme = 0;
-
-
     public function updateDiscount($id)
     {
         $uptodate = Cart::find($id);
@@ -41,14 +44,26 @@ class Order extends Component
         Cart::truncate();
     }
 
+    public function hydrated()
+    {
+        $this->generatedQr = Cart::distinct()->select('codefacture');
+        dd($this->generatedQr);
+    }
+
     public function mount()
     {
         $this->products = Produit::all();
         $this->productInCart = Cart::orderBy("id", "desc")->get();
+        $numeroFacture = Cart::get("codeFacture")->toArray();
+        do {
+            $this->codeFacture = rand(10000000, 99999999);
+        } while (in_array($this->codeFacture, $numeroFacture));
     }
 
     public function insertCart()
     {
+        $this->dispatchBrowserEvent("sendCodeFacture", $this->codeFacture);
+        // dd($this->codeFacture);
         $countin_product = Produit::where("product_code", $this->product_code)->first();
 
         if (!$countin_product) {
@@ -66,10 +81,13 @@ class Order extends Component
         $add_to_cart->product_price = $countin_product->prix_vente;
         $add_to_cart->discount = 0;
         $add_to_cart->user_id = auth()->user()->id;
-        // $this->totalTva = $countin_product->prix_achat++;
+        $add_to_cart->codeFacture = $this->codeFacture;
         $add_to_cart->save();
         $this->product_code = "";
         $this->productInCart = Cart::orderBy("created_at", "asc")->get();
+        // $route = route("receipt", $this->codeFacture);
+        // $this->generatedQr = QrCode::size(20)->generate($route);
+        // dd($route);
         return $this->message = "Product Added successfully";
     }
 
@@ -120,6 +138,7 @@ class Order extends Component
             $totalAmount = $this->pay_money - $this->productInCart->sum("product_price");
             $this->balance = $totalAmount;
         }
+
         return view('livewire.order');
     }
 }

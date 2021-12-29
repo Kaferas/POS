@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-    protected $fillable=["product_id" ,	"product_qnty" , "product_code","product_price" ,	"user_id" ];
+    protected $fillable=["product_id" ,	"product_qnty" , "product_code","product_price" ,	"user_id","codeFacture" ];
 
     public function product()
     {

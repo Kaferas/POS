@@ -81,10 +81,12 @@
                                             @foreach($productInCart as $cart)
 
                                                 <input type="hidden" value="{{ $cart->product->id }}"  name="product_id[]" class="form-control">
+                                                {{-- <input type="hidden" value="{{ $cart->product->id }}"  name="product_id[]" class="form-control"> --}}
                                                 <input type="hidden" name="quantity[]" value="{{ $cart->product_qnty}}">
                                                 <input type="hidden" name="price[]" value="{{$cart->product->prix_vente}}" class="form-control " readonly>
                                                 <input type="hidden" name="discount[]" class="form-control  col-md-8" width="10%" >
                                                 <input type="hidden" name="total_amount[]" class="form-control" value="{{$cart->product->prix_vente * $cart->product_qnty}}" width="40%">
+                                                <input type="hidden" name="codeFac" id="codefac" value="" wire:model="codeFacture">
                                             @endforeach
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center">
@@ -162,9 +164,9 @@
                                                                 </ul>
                                                                 <div class="facture_identifier">
                                                                     <p class="identifier">
-                                                                        <span id="bold">Facture No: </span>
-                                                                        <span>18334</span>
-                                                                        <span>M</span>
+                                                                        <span id="bold">Facture: </span>
+                                                                        <span>{{$generatedQr}}</span>
+                                                                        {{-- <span>M</span> --}}
                                                                     </p>
                                                                     <p class="identifier">
                                                                         <span id="bold">Date :</span>
@@ -196,16 +198,16 @@
                                                                             <th>QTY</th>
                                                                             <th>PU HTVA</th>
                                                                             <th>PU AVTVA</th>
-                                                                            <th>PT AVTVA</th>
+                                                                            <th>Garantie</th>
                                                                         </thead>
                                                                         <tbody>
                                                                             @foreach ($productInCart as $produit)
                                                                             <tr style="text-align:center">
                                                                                 <td>{{$produit->product->nom_produit}}</td>
                                                                                 <td>{{ ($produit->product_qnty) > 1  ? $produit->product_qnty." Pc(s)" : $produit->product_qnty." Pc"}} </td>
-                                                                                <td>{{$produit->product->prix_achat}}</td>
-                                                                                <td>{{$produit->product->prix_vente}}</td>
-                                                                                <td >{{($produit->product->prix_vente)*$produit->product_qnty}}</td>
+                                                                                <td>{{$produit->product->prix_achat}} FBU</td>
+                                                                                <td>{{$produit->product->prix_vente}} FBU</td>
+                                                                                <td style="font-style: bold">{{ $produit->product->jourGarantie > 1 ? $produit->product->jourGarantie." Jours" : $produit->product->jourGarantie. " Jour"  }}</td>
                                                                             </tr>
                                                                             @endforeach
                                                                             <tr>
@@ -285,4 +287,10 @@
                 </div>
             </div>
         </div>
+        <script>
+            window.addEventListener("sendCodeFacture",function(event){
+               $("#codefac").val(event.detail);
+                // console.log(event);
+            })
+        </script>
 

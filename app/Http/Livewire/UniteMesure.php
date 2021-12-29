@@ -15,6 +15,7 @@ class UniteMesure extends Component
     public $action;
     public $selecteditem;
     public $edition = false;
+    protected $paginationTheme = 'bootstrap';
     protected $listeners = [
         "refreshen",
     ];

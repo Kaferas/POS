@@ -131,6 +131,13 @@
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        <div class="form-group col-4">
+                                            <label for="" class="text-primary">Jour de Garantie :</label>
+                                            <input type="text" name="" id="" class="form-control" wire:model="jourGarantie">
+                                            @error('jourGarantie')
+                                                <span class="text text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                         <div class="form-group col-6">
                                             <label for="" class="text-primary">Measure Unity:</label>
                                             <select name="measure" id="" class="form-control " wire:model="measure">
@@ -259,6 +266,13 @@
                                                 @endforeach
                                             </select>
                                             @error('categorie')
+                                                <span class="text text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label for="" class="text-primary">Jour de Garantie :</label>
+                                            <input type="text" name="" id="" class="form-control" wire:model="jourGarantie">
+                                            @error('jourGarantie')
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

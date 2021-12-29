@@ -24,7 +24,8 @@ class CreateProduitsTable extends Migration
             $table->integer("prix_vente");
             $table->integer("interet");
             $table->date("date_in")->default(Carbon::now());
-            $table->date("date_out");
+            $table->date("date_out")->nullable();
+            $table->interger("jourGarantie")->nullable();
             $table->integer("unite_mesure")->nullable();
             $table->integer("quantite");
             $table->string("pic_path")->nullable();

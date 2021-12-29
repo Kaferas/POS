@@ -21,6 +21,8 @@ class CreateCommandeDetailsTable extends Migration
             $table->integer("prix_unitaire");
             $table->integer("total");
             $table->integer("promotion")->default(0);
+            $table->text("nFacture");
+            $table->integer("userID");
             $table->timestamps();
         });
     }

@@ -7,10 +7,11 @@ use Livewire\Component;
 use App\Models\Categorie;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Gate;
-use PhpOffice\PhpSpreadsheet\Calculation\Category;
+// use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class Stock extends Component
 {
+
     use WithPagination;
     public $critere;
     public $query;
@@ -18,7 +19,7 @@ class Stock extends Component
     public $headers;
     public $sortColumn = "created_at";
     public $sortDirection = "asc";
-
+    protected $paginationTheme = 'bootstrap';
 
     public function __construct()
     {

@@ -12,7 +12,6 @@
 <div class="tab-content" id="myTabContent">
 
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
       @livewire("order")
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -139,8 +138,9 @@
 
 @section("script")
     <script>
+         
         const barre= document.querySelector("#barre_code_search")
-        console.log(barre)
+        // console.log(barre)
         $("#addbtn").click(function(){
            var product=$(".product_id").html();
            var numberRow=($(".addMoreProduct tr").length-0)+1;

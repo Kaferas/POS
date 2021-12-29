@@ -34,6 +34,8 @@ class Produits extends Component
     public $sell_price;
     public $date_in;
     public $date_out;
+    public $jourGarantie;
+    protected $paginationTheme = 'bootstrap';
 
     protected $listeners = [
         'refreshen'
@@ -106,7 +108,8 @@ class Produits extends Component
             'stock' => "required|integer",
             "quantity" => "required|integer",
             "date_in" => "required|date",
-            "date_out" => "required|date"
+            "date_out" => "required|date",
+            "jourGarantie" => "required|integer"
         ]);
         // dd($this->picture->store("kaferas"));
         $redColor = "255,0,0";
@@ -132,7 +135,8 @@ class Produits extends Component
             "pic_path" => $path,
             "product_code" => $this->code,
             'quantite' => $this->quantity,
-            'alert_ecoulement' => $this->stock
+            'alert_ecoulement' => $this->stock,
+            "jourGarantie" => $this->jourGarantie
         ];
 
 
@@ -174,6 +178,7 @@ class Produits extends Component
             $this->buy_price = $editable->prix_achat;
             $this->sell_price = $editable->prix_vente;
             $this->interet = $editable->interet;
+            $this->jourGarantie = $editable->jourGarantie;
         }
         if ($this->action == "delete") {
             $this->dispatchBrowserEvent("OpendelProductModal");
