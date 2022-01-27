@@ -8,7 +8,7 @@
                                     <input type="text" name="" id="barre_code_search" class="form-control border-primary"
                                     placeholder="Barcode Here" wire:model="product_code" wire:keyup="insertCart">
                                     @if($message)
-                                        <div class="alert alert-danger text-center mt-3">
+                                        <div class="alert alert-danger  text text-dark text-center mt-3">
                                             {{$message}}
                                         </div>
                                     @endif
@@ -90,30 +90,50 @@
                                             @endforeach
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center">
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
+                                                    <div class="form-group container d-flex justify-content-around">
+                                                        @if (count($productInCart) > 0)
+                                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">
                                                            Print
                                                           </button>
-                                                          <button type="button" class="btn btn-primary" data-toggle="modal">
-                                                            History
+                                                        @endif
+                                                          <button type="button" class="btn btn-primary " wire:model="ancien" wire:click.prevent="chercherAncien" >
+                                                            Chercher Client
                                                         </button>
                                                     </div>
+
+                                                    @if ($ancien)
+                                                        <div class="form-group">
+                                                            <input type="search" name="" id="" class="form-control " wire:model="searchClient" placeholder="Nom ancien Client" wire:keydown="SearchClient">
+                                                        </div>
+                                                        <div class="form-group d-flex flex-column h-50 align-items-center justify-content-center">
+                                                           @if (isset($retrieve))
+                                                                @foreach ($retrieve as $client)
+                                                                    <li class="card p-4 text-center">
+                                                                        {{$client->Customer_name}}
+                                                                        <b class="text text-success">{{$client->Adress}}</b>
+                                                                        <p class="text text-primary">{{$client->phone_number}}</p>
+                                                                        <button class="btn btn-primary" wire:click.prevent="validerClient({{$client->id}})">Valider</button>
+                                                                    </li>
+                                                                @endforeach
+                                                           @endif
+                                                        </div>
+                                                    @else
                                                     <div class="form-group ">
+                                                        <input type="hidden" name="hide" wire:model="hideId">
                                                         <label for="" class="text-primary">Customer FullName</label>
-                                                        <input type="text" name="customer_name" id="" class="form-control border-dark">
+                                                        <input type="text" name="customer_name" id="" class="form-control border-dark" wire:model="fullname">
                                                     </div>
                                                     <div class="form-group ">
                                                         <label for="" class="text-primary">Phone Number</label>
-                                                        <input type="number" name="phone" id="" class="form-control border-dark">
+                                                        <input type="number" name="phone" id="" class="form-control border-dark" wire:model="phone">
                                                     </div>
                                                     <div class="form-group ">
                                                         <label for="" class="text-primary">Email</label>
-                                                        <input type="email" name="email" id="" class="form-control border-dark">
+                                                        <input type="email" name="email" id="" class="form-control border-dark" wire:model="email">
                                                     </div>
-
                                                     <div class="form-group">
-                                                    <label for="" class="text-primary"> Adress</label>
-                                                    <input type="text" name="adress" id="" class="form-control border-dark">
+                                                        <label for="" class="text-primary"> Adress</label>
+                                                        <input type="text" name="adress" id="" class="form-control border-dark" wire:model="adress">
                                                     </div>
                                                 <div class="row d-flex justify-content-between mt-4">
                                                     <p>
@@ -137,6 +157,7 @@
                                                 <div class="row d-flex justify-content-center">
                                                     <button class="form-control btn btn-primary col-md-12">Buy Now</button>
                                                 </div>
+                                                    @endif
                                             </div>
                                             @if(count($productInCart))
                                                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">

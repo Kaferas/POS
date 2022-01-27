@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\{Commande_details, Order, Transaction, Cart, Clients};
 
+use function PHPUnit\Framework\isNull;
+
 class CommandeController extends Controller
 {
     /**
@@ -46,15 +48,16 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-
-        // dd($request  );
-        $commande = new Clients;
-        $commande->Customer_name = $request->customer_name;
-        $commande->email = $request->email;
-        $commande->phone_number = $request->phone;
-        $commande->Adress = $request->adress;
-        $commande->save();
-        $commande_id = $commande->id;
+        if (empty($request->hide)) {
+            // dd($request->hide);
+            $commande = new Clients;
+            $commande->Customer_name = $request->customer_name;
+            $commande->email = $request->email;
+            $commande->phone_number = $request->phone;
+            $commande->Adress = $request->adress;
+            $commande->save();
+        }
+        $commande_id = empty($request->hide) ? $commande->id : $request->hide;
 
         DB::transaction(function () use ($request, $commande_id) {
             // Enregistrer Commande

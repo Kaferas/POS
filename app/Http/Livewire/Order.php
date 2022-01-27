@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Cart;
+use App\Models\Clients;
 use Livewire\Component;
 use \App\Models\Produit;
 use Illuminate\Http\Request;
@@ -21,11 +22,40 @@ class Order extends Component
     public $discount = 0;
     public $codeFacture = 0;
     public $generatedQr;
+    public $ancien = 1;
+    public $retrieve;
+    public $searchClient;
     public $pay_money, $balance = 0;
     protected $listeners = [
         "dde",
     ];
+    public $fullname;
+    public $phone;
+    public $email;
+    public $adress;
+    public $hideId;
 
+    public function SearchClient()
+    {
+        $this->retrieve = Clients::where("Customer_name", 'like', '%' . $this->searchClient . '%')->get();
+        // dd($this->retrieve);
+    }
+
+    public function validerClient($id)
+    {
+        $ancien = Clients::find($id);
+        $this->fullname = $ancien->Customer_name;
+        $this->phone = $ancien->phone_number;
+        $this->email = $ancien->email;
+        $this->adress = $ancien->Adress;
+        $this->hideId = $ancien->id;
+        $this->ancien = !$this->ancien;
+    }
+
+    public function chercherAncien()
+    {
+        $this->ancien = !$this->ancien;
+    }
     // public $somme = 0;
     public function updateDiscount($id)
     {
