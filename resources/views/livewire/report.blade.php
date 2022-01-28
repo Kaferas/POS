@@ -1,4 +1,4 @@
-<div class="row col-md-10">
+<div class="row col-md-10 h-100">
     <div class="col-md-5">
         <div class="bg-light text text-dark p-5 ">
             <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" wire:click.prevent="whatisCurrent('client')"><i class="fa fa-user" aria-hidden="true"></i>
@@ -20,13 +20,16 @@
             Client
         </div>
     @elseif ($current == "ventes")
-        <div class="col-md-4 d-flex justify-content-around flex-column align-items-center list-none">
-            <ul class="card p-4 m-4 ">
-                <li>Rapport Journalier</li>
-                <li>Graphical Journalier</li>
-                <li>Summary Journalier</li>
-            </ul>
+    <div class="col-md-5">
+        <div class="bg-light text text-dark p-5 ">
+            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" wire:click.prevent="whatisCurrent('client')"><i class="fa fa-user" aria-hidden="true"></i>
+                Rapport Journalier</a></li>
+            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" wire:click.prevent="whatisCurrent('ventes')"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Rapport  Graphical</a></li>
+            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" wire:click.prevent="whatisCurrent('categories')"><i class="fa fa-list-alt" aria-hidden="true"></i>
+                Historique</a></li>
         </div>
+    </div>
     @elseif ($current == "categories")
     <div class="col-md-4">
         Categories

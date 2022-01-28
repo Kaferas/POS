@@ -1,0 +1,101 @@
+<div class="row col-md-11">
+    <div class="col-md-7">
+        <form action="" method="post" class="card p-4 bg-dark" >
+            <div class="row col-md-12">
+                <div class="form-group col-md-4">
+                    <label for="" class="text text-light">Code-Produit</label>
+                    <input type="text" name="" id="" class="form-control" disabled wire:model="codeBarre">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="" class="text text-light">Nom Produit:</label>
+                    <select name="" id="" class="form-control" wire:model="produit" wire:change="grabCodeBarre">
+                        <option value=""></option>
+                        @foreach ($produits as $pro)
+                            <option value="{{$pro->id}}" @if ($pro->quantite <= $pro->alert_ecoulement)
+                                class="text text-danger"
+                            @endif> @if ($pro->quantite <= $pro->alert_ecoulement)
+                            {{$pro->nom_produit}} ({{$pro->quantite}} restants)
+                            @else
+                            {{$pro->nom_produit}}
+                        @endif</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="" class="text text-warning">Stock Alert</label>
+                    <input type="text" name="" id="" class="form-control" wire:model="stockAlert">
+                </div>
+            </div>
+            <div class="row col-md-11">
+                <div class="form-group col-md-3">
+                    <label for="" class="text text-light">Prix Achat</label>
+                    <input type="text" class="form-control" wire:model="prixachat">
+                </div>
+                @error("prixachat")
+                        <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                <div class="form-group col-md-3">
+                    <label for="" class="text text-light">Prix Vente</label>
+                    <input type="text" class="form-control" wire:model="prixvente" wire:keyup="costInteret">
+                </div>
+                @error("prixvente")
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                <div class="form-group col-md-3">
+                    <label for="" class="text text-light">Interet</label>
+                    <input type="text" class="form-control" wire:model="interet">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="" class="text text-light">Quantite</label>
+                    <input type="text" class="form-control" wire:model="quantite">
+                </div>
+                @error("quantite")
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                <div class="form-group col-md-12">
+                    <p></p>
+                    <div class="btn btn-warning mt-3 text-light container" wire:click.prevent="save">Approvisionner</div>
+                </div>
+            </div>
+        </form>
+        <table class="table" style="overflow: auto">
+            @dump($latest)
+            <h3 class="text text-center p-2 text-sucess"><i>Recent Produit</i></h3>
+            <thead class="thead-light">
+              <tr class="text-center">
+                <th scope="col">CodeProduit</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Quantite Restant</th>
+                <th scope="col">Prix Unitaire</th>
+
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>the Bird</td>
+
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+       <h2 class="text text-center"> Historique </h2>
+    </div>
+</div>

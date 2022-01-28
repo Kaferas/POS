@@ -19,7 +19,7 @@
   <div class="both">
       <div class="aside">
           <img src="{{asset("img/Flema.png")}}" alt="" width="120px" >
-          <ul style="margin-top:50px;" class="sidebar">
+          <ul style="margin-top:35px;" class="sidebar">
                 <li id="sidebar" @if($activenow=='dashboard') class='actived' @endif ><a href="/" ><i class="fa fa-tachometer-alt text text-primary" ></i> &nbsp Dashboard</a></li>
                 <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" ><i class="fas fa-cash-register text text-primary"></i> &nbsp Cashier</a></li>
                 <li id="sidebar" @if($activenow=='depenses') class='actived' @endif ><a href="{{route('depenses')}}" ><i class="fab fa-bitcoin text text-primary"></i> &nbspDepenses</a></li>
@@ -28,6 +28,7 @@
                 <li id="sidebar" @if($activenow=='reports') class='actived' @endif ><a href="/reports" ><i class="fas fa-chart-line text text-primary"></i> &nbspReports</a></li>
                 <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" ><i class="fas fa-dolly text text-primary"></i>  &nbspStocks</a></li>
                 <li id="sidebar" ><a href="/stocks" ><i class="fas fa-undo-alt text text-primary"></i>  &nbsp;Produit Retourner</a></li>
+                <li id="sidebar" @if($activenow=='approvision') class='actived' @endif ><a href="/approvision" ><i class="fas fa-undo-alt text text-primary"></i>  &nbsp;Approvisionner</a></li>
                 <li id="sidebar" @if($activenow=='utilisateur') class='actived' @endif ><a href="/utilisateur"><i class="fas fa-sliders-h text text-primary"></i> &nbspSettings</a></li>
                 @endif
                 <li id="sidebar" ><a href="{{route('logout')}}" ><i class="fas fa-sign-out-alt text text-primary"></i> &nbsp Logout</a></li>

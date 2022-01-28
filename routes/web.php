@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\{
+    ApprovisionnerController,
     CommandeController,
     ProduitController,
     FournisseurController,
@@ -12,7 +13,7 @@ use \App\Http\Controllers\{
     StockController,
     DepenseController,
     DashboardController,
-    ReportController
+    ReportController,
 };
 use App\Http\Controllers\Auth\LoginController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -71,6 +72,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get("/depenses", [DepenseController::class, "index"])->name("depenses");
 
     Route::get("/reports", [ReportController::class, "index"])->name("reports");
+
+    Route::get("/approvision", [ApprovisionnerController::class, "index"])->name("approvision");
 
     Route::get("/logout", [LoginController::class, "logout"])->name('logout');
 });
