@@ -76,6 +76,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get("/approvision", [ApprovisionnerController::class, "index"])->name("approvision");
 
     Route::get("/logout", [LoginController::class, "logout"])->name('logout');
+
+    Route::get("/report", [ReportController::class, "index"])->name("report");
 });
 Auth::routes();
 

@@ -38,7 +38,7 @@
         <h3 class="text-center mt-4">Items expiring soon</h3>
         <table class="table table-stripped">
             <thead>
-              <tr class="text-center text text-secondary">
+              <tr class="text-center text text-dark">
                 <th scope="col">Nom Produit</th>
                 <th scope="col">Date Expiration</th>
                 <th scope="col">Quantite Expiration</th>
@@ -49,7 +49,7 @@
             <tbody>
                 @foreach ($soonExpire as $item)
                     @if((new \DateTime($item->date_out))->diff(new \DateTime($item->date_in))->days <= 30 )
-                            <tr class="text-center">
+                            <tr class="text-center bg-light">
                             <th scope="row">{{$item->nom_produit}}</th>
                             <td>{{$item->date_out}}</td>
                             <td>

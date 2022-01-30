@@ -60,6 +60,7 @@
                                                 <div class="btn btn-sm btn-danger" style="cursor:pointer" wire:click.prevent="removeCart({{$cart->id}})">X</div>
                                             </td>
                                         </tr>
+
                                     @endforeach
                                 </tbody>
                                 </table>

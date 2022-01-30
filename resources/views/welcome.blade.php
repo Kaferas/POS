@@ -8,7 +8,9 @@
     <title>POS System</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/assets/jquery-3.6.0.min.js') }}">
     <link rel="stylesheet" href="{{ asset('css/design.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/facture.css')}}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/facture.css')}}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.css" rel="stylesheet" media="all">
@@ -23,7 +25,8 @@
                 <li id="sidebar" @if($activenow=='dashboard') class='actived' @endif ><a href="/" ><i class="fa fa-tachometer-alt text text-primary" ></i> &nbsp Dashboard</a></li>
                 <li id="sidebar" @if($activenow=='cashier') class='actived' @endif ><a href="/commande" ><i class="fas fa-cash-register text text-primary"></i> &nbsp Cashier</a></li>
                 <li id="sidebar" @if($activenow=='depenses') class='actived' @endif ><a href="{{route('depenses')}}" ><i class="fab fa-bitcoin text text-primary"></i> &nbspDepenses</a></li>
-                @if(Gate::allows("is_admin"))
+
+                @if (Gate::allows("is_admin"))
                 <li id="sidebar" @if($activenow=='fournisseur_client') class='actived' @endif ><a href="/fournisseur_client" ><i class="fas fa-users text text-primary"></i> &nbspCustomer/Supplier</a></li>
                 <li id="sidebar" @if($activenow=='reports') class='actived' @endif ><a href="/reports" ><i class="fas fa-chart-line text text-primary"></i> &nbspReports</a></li>
                 <li id="sidebar" @if($activenow=='stocks') class='actived' @endif><a href="/stocks" ><i class="fas fa-dolly text text-primary"></i>  &nbspStocks</a></li>
@@ -88,7 +91,12 @@
         window.addEventListener("closeCategorieModal",event =>{
             $("#deletecategorie").modal('hide');
         });
-
+        window.addEventListener("addShowClass",event =>{
+            $("#collapseOne").addClass('show');
+        });
+        window.addEventListener("collapseSupplier",event =>{
+            $(".collapseSup").addClass('show');
+        });
 
         window.addEventListener("eraseUser",event=>{
             $("#eraseUser").modal("show");

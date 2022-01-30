@@ -91,6 +91,7 @@ class Fournisseur extends Component
             $this->dispatchBrowserEvent("OpenModaldeleteFournisseur");
         }
         if ($this->action == "edit") {
+            $this->dispatchBrowserEvent("collapseSupplier");
             $editable = Fournisseurs::find($this->idFournisseur);
             $this->company_name = $editable->company_name;
             $this->firstname = $editable->firstname;
@@ -98,6 +99,7 @@ class Fournisseur extends Component
             $this->email = $editable->email;
             $this->phone = $editable->phone;
             $this->avatar = $editable->avatar;
+            // $this->editFournisseur = null;
         }
     }
 

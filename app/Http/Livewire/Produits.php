@@ -165,6 +165,7 @@ class Produits extends Component
         $this->idPro = $id;
         $this->action = $action;
         if ($this->action == "edit") {
+            $this->dispatchBrowserEvent("addShowClass");
             $this->edition = true;
             $editable = Produit::find($this->idPro);
             $this->code = $editable->product_code;
