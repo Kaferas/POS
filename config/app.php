@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         \Maatwebsite\Excel\ExcelServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class,
     ],
 
     /*

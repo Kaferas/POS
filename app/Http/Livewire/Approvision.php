@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Approvisionnement;
+use toastr;
 use App\Models\Produit;
 use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\Approvisionnement;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Approvision extends Component
 {
+    use WithPagination;
     public $produits;
     public $produit;
     public $produitValider;
@@ -17,6 +21,7 @@ class Approvision extends Component
     public $prixvente;
     public $interet;
     public $quantite;
+    protected $paginationTheme = "bootstrap";
 
     public function mount()
     {
@@ -54,9 +59,10 @@ class Approvision extends Component
             'prixvente' => "required|integer",
             'quantite' => "required|integer"
         ]);
-        $last = json_encode(Produit::where("product_code", $this->codeBarre)->first());
-        // dd($last);
-        Approvisionnement::create([
+        $Retrieve_quantite = Produit::where("product_code", $this->codeBarre)->first()->quantite;
+        $wasLast = Produit::where("product_code", $this->codeBarre)->first();
+        $last = json_encode($wasLast);
+        $data = [
             'codeProduit' => $this->codeBarre,
             'stock_alert' => $this->stockAlert,
             'quantite' => $this->quantite,
@@ -64,14 +70,28 @@ class Approvision extends Component
             'prixVenteUnit' => $this->prixvente,
             'Interet' => $this->interet,
             'LastStock' => $last
+        ];
+        Approvisionnement::create($data);
+        Produit::find(Produit::where("product_code", $this->codeBarre)->first()->id)->update([
+            'alert_ecoulement' => $this->stockAlert,
+            'quantite' => $this->quantite + $Retrieve_quantite,
+            'prix_achat' => $this->prixachat,
+            'prix_vente' => $this->prixvente,
+            'interet' => $this->interet
         ]);
         $this->resetAll();
-        return redirect(request()->header("Referer"));
+        return redirect(request()->header("Referer"))->with('message', 'Data added Successfully');;
     }
+
+    public function floo($id)
+    {
+        dd("Last Chance Is Now =" . $id);
+    }
+
     public function render()
     {
         return view('livewire.approvision', [
-            'latest' => Approvisionnement::latest()->paginate(4)
+            'latest' => Approvisionnement::latest()->paginate(2)
         ]);
     }
 }

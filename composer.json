@@ -17,8 +17,10 @@
         "maatwebsite/excel": "^3.1",
         "mediconesystems/livewire-datatables": "^0.5.2",
         "picqer/php-barcode-generator": "^2.2",
+        "realrashid/sweet-alert": "^4.1",
         "simplesoftwareio/simple-qrcode": "~4",
-        "yajra/laravel-datatables-oracle": "^9.18"
+        "yajra/laravel-datatables-oracle": "^9.18",
+        "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -1,6 +1,7 @@
 <div class="row col-md-11">
+
     <div class="col-md-7">
-        <form action="" method="post" class="card p-4 bg-dark" >
+        <form action="" method="post" class="card p-2 bg-dark" >
             <div class="row col-md-12">
                 <div class="form-group col-md-4">
                     <label for="" class="text text-light">Code-Produit</label>
@@ -8,6 +9,7 @@
                 </div>
                 <div class="form-group col-md-5">
                     <label for="" class="text text-light">Nom Produit:</label>
+                    {{-- @dump($produits) --}}
                     <select name="" id="" class="form-control" wire:model="produit" wire:change="grabCodeBarre">
                         <option value=""></option>
                         @foreach ($produits as $pro)
@@ -53,13 +55,12 @@
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
                 <div class="form-group col-md-12">
-                    <p></p>
-                    <div class="btn btn-warning mt-3 text-light container" wire:click.prevent="save">Approvisionner</div>
+                    <div class="btn btn-warning mt-3 text-dark container" wire:click.prevent="save">Approvisionner</div>
                 </div>
             </div>
         </form>
         <table class="table" style="overflow: auto">
-            @dump($latest)
+            {{-- @dump($latest) --}}
             <h3 class="text text-center p-2 text-sucess"><i>Recent Produit</i></h3>
             <thead class="thead-light">
               <tr class="text-center">
@@ -71,31 +72,22 @@
               </tr>
             </thead>
             <tbody class="text-center">
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>Thornton</td>
-
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>the Bird</td>
-
-              </tr>
+                @foreach ($latest as $last)
+                    <tr style="cursor: pointer" wire:click="floo({{$last->id}})" id="apprHover">
+                        <th scope="row">{{$last->codeProduit}}</th>
+                        <td>{{$last->nameProduit()->first()->nom_produit}}</td>
+                        <td>{{$last->nameProduit()->first()->quantite}}</td>
+                        <td>{{$last->nameProduit()->first()->prix_vente}}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
+        {{$latest->links()}}
     </div>
     <div class="col-md-4">
-       <h2 class="text text-center"> Historique </h2>
+        <h4 class="text text-primary"> Historique </h4>
+        <div class="card">
+
+        </div>
     </div>
 </div>
