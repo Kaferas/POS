@@ -22,11 +22,11 @@
     @elseif ($current == "ventes")
     <div class="col-md-5">
         <div class="bg-light text text-dark p-5 ">
-            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" wire:click.prevent="whatisCurrent('client')"><i class="fa fa-user" aria-hidden="true"></i>
+            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="{{ route("optionReport") }}"><i class="fa fa-user" aria-hidden="true"></i>
                 Rapport Journalier</a></li>
-            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" wire:click.prevent="whatisCurrent('ventes')"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 Rapport  Graphical</a></li>
-            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" wire:click.prevent="whatisCurrent('categories')"><i class="fa fa-list-alt" aria-hidden="true"></i>
+            <li class="border-secondary border-bottom m-3 list-unstyled pl-4"><a href="" ><i class="fa fa-list-alt" aria-hidden="true"></i>
                 Historique</a></li>
         </div>
     </div>

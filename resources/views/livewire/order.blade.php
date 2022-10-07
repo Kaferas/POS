@@ -132,19 +132,19 @@
                                                         <label for="" class="text-primary">Email</label>
                                                         <input type="email" name="email" id="" class="form-control border-dark" wire:model="email">
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group row">
                                                         <label for="" class="text-primary"> Adress</label>
                                                         <input type="text" name="adress" id="" class="form-control border-dark" wire:model="adress">
                                                     </div>
-                                                <div class="row d-flex justify-content-between mt-4">
-                                                    <p>
-                                                        <i>Payment Method</i>
-                                                    </p>
-                                                    <p>
-                                                        <span class="text-primary">Cash:</span>
-                                                        <input type="radio" name="payment" checked id="" value="cash">
-                                                    </p>
-                                                </div>
+                                                    <div class="row d-flex justify-content-between mt-4">
+                                                        <p>
+                                                            <i>Payment Method</i>
+                                                        </p>
+                                                        <p>
+                                                            <span class="text-primary">Cash:</span>
+                                                            <input type="radio" name="payment" checked id="" value="cash">
+                                                        </p>
+                                                    </div>
                                                 <div class="row d-flex justify-content-center">
                                                     <div class="form-group">
                                                         <label for="" class="text-primary">Payment Fees:</label>
@@ -158,7 +158,7 @@
                                                 <div class="row d-flex justify-content-center">
                                                     <button class="form-control btn btn-primary col-md-12">Buy Now</button>
                                                 </div>
-                                                    @endif
+                                            @endif
                                             </div>
                                             @if(count($productInCart))
                                                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -312,7 +312,6 @@
         <script>
             window.addEventListener("sendCodeFacture",function(event){
                $("#codefac").val(event.detail);
-                // console.log(event);
             })
         </script>
 

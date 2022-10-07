@@ -1,9 +1,11 @@
 * {
     font-family: "Times New Roman", Times, serif;
 }
+
 .commande {
     overflow-y: hidden;
 }
+
 .aside {
     width: 15%;
     position: fixed;
@@ -14,6 +16,7 @@
     /* border-radius: 6px; */
     background-color: rgb(44, 41, 41);
 }
+
 .aside ul a {
     /* display:none; */
     width: 100%;
@@ -21,6 +24,7 @@
     border: none;
     color: white;
 }
+
 /* .center
     {
         width:25%;
@@ -34,6 +38,7 @@
     justify-content: center;
     flex-direction: row;
 }
+
 .center {
     width: auto;
     height: 90%;
@@ -41,6 +46,7 @@
     /* display:flex;
         justify-content: center; */
 }
+
 .profile {
     display: flex;
     flex-direction: column;
@@ -50,10 +56,12 @@
     left: 16%;
     top: -5%;
 }
+
 #apprHover:hover {
     background-color: rgba(68, 68, 68, 0.253);
     color: rgb(0, 0, 0);
 }
+
 .info {
     width: 100%;
     height: 11%;
@@ -68,16 +76,19 @@
     z-index: 100;
     top: 0;
 }
+
 .both {
     height: 100vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
+
 body {
     padding: 0;
     margin: 0;
 }
+
 li#sidebar {
     list-style: none;
     /* text-align:center; */
@@ -88,12 +99,14 @@ li#sidebar {
     font-size: 1.1rem;
     margin-bottom: 10px;
 }
+
 .actived {
     background: rgb(202, 13, 13);
     color: rgb(247, 243, 243);
     /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
     border-right: 6px solid rgb(255, 255, 255);
 }
+
 .sidebar {
     height: auto;
     width: 100%;
@@ -104,28 +117,33 @@ li#sidebar {
     align-items: flex-end;
     padding: 0;
 }
+
 .time,
 .factory_name {
-    width: 40vw;
+    width: 50vw;
     display: flex;
     justify-content: space-between;
     margin-right: 15px;
 }
+
 .what-time,
 .connectUser {
     font-size: 1.2em;
 }
+
 .details {
     width: 70%;
     height: auto;
     background: rgb(248, 245, 245);
 }
+
 .in-out {
     width: 30%;
     height: auto;
     display: flex;
     flex-direction: column;
 }
+
 .inside {
     width: 100%;
     height: 50%;
@@ -135,6 +153,7 @@ li#sidebar {
     justify-content: space-evenly;
     border-bottom: 1px solid black;
 }
+
 .outside {
     width: 100%;
     height: 50%;
@@ -143,14 +162,16 @@ li#sidebar {
     align-items: center;
     justify-content: space-evenly;
 }
+
 .dropdown {
     width: 60%;
     border: none;
     height: 27px;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     border-radius: 3px;
     text-align: center;
 }
+
 .put {
     width: 60%;
     height: 25px;
@@ -158,9 +179,11 @@ li#sidebar {
     border: 1px solid grey;
     padding: 4px;
 }
+
 i {
     cursor: pointer;
 }
+
 .btno-danger {
     width: 40%;
     height: 25px;
@@ -169,6 +192,7 @@ i {
     color: white;
     background: rgb(202, 13, 13);
 }
+
 .btn-logout {
     width: 100%;
     background-color: rgb(243, 78, 78);
@@ -177,22 +201,26 @@ i {
     border-radius: 3px;
     color: white;
 }
+
 .picker {
     display: flex;
     margin-top: 20px;
     justify-content: flex-end;
     margin-right: 20px;
 }
+
 .data {
     display: flex;
     justify-content: center;
     margin-top: 30px;
 }
+
 .total {
     display: flex;
     margin-top: 15px;
     justify-content: space-around;
 }
+
 .tot-in,
 .tot-out {
     width: 35%;
@@ -209,6 +237,7 @@ i {
     justify-content: center;
     align-items: center;
 }
+
 .receipt {
     width: 35vw;
     /* min-height: 95vh; */
@@ -222,6 +251,7 @@ i {
     border: 1px solid black;
     box-shadow: 2px 6px 8px black;
 }
+
 .receipt_head {
     height: auto;
     width: auto;
@@ -232,6 +262,7 @@ i {
     margin-bottom: 15px;
     /* background-color:red; */
 }
+
 .receipt_body {
     height: auto;
     /* height: 70vh; */
@@ -242,6 +273,7 @@ i {
     margin-bottom: 15px;
     /* background-color:green; */
 }
+
 .receipt_footer {
     height: auto;
     /* height: 10vh; */
@@ -252,14 +284,17 @@ i {
     align-items: center;
     margin-bottom: 15px;
 }
+
 td,
 th {
     width: auto;
     text-align: center;
 }
+
 tfoot tr {
     margin-top: 50px;
 }
+
 .white_notify {
     background-color: rgba(255, 255, 255, 0.9);
     width: calc(100% / 3.5);
@@ -274,6 +309,7 @@ tfoot tr {
     justify-content: space-between;
     align-items: flex-end;
 }
+
 .counter_notify {
     width: 40%;
     height: 110px;

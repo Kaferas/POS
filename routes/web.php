@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -63,9 +64,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("/stocks", [StockController::class, "show"]);
 
-    Route::get("receipt/{id}", function () {
+    Route::get("/receipt/{id}", function () {
         return "Well Done";
     })->name("receipt");
+
+    Route::get("reports/option", [ReportController::class, "option"])->name("optionReport");
 
     Route::get("/fournisseur_client", [Fournisseur_Client::class, "index"]);
 

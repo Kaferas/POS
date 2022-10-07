@@ -1,5 +1,5 @@
 @extends("welcome")
 
 @section("content")
-    <livewire:report/>
+    <livewire:chart.chart-component element=""/>
 @endsection

@@ -12,11 +12,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-        // $firstDate  = new \DateTime("2019-01-01");
-        // $secondDate = new \DateTime("2020-03-04");
-        // $intvl = $firstDate->diff($secondDate);
-        // dd($intvl);
-        // dd(date('Y-m-d'));
         $ventes = DB::table('commande_details')
             ->select("commande_id")
             ->where("created_at", 'like', '%' . date('Y-m-d') . '%')
@@ -27,7 +22,6 @@ class DashboardController extends Controller
         $clients = Clients::all()->count();
         $produits = Produit::all()->count();
         $itemsExpiring = Produit::all();
-        // dd($itemsExpiring);
         $activenow = "dashboard";
         return view("dashboard.index", [
             "activenow" => $activenow,

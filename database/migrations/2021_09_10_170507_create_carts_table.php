@@ -19,6 +19,7 @@ class CreateCartsTable extends Migration
             $table->integer("product_qnty")->default(1);
             $table->integer("product_price")->default(1);
             $table->integer("product_code");
+            $table->integer("codeFacture");
             $table->integer("discount")->default(1);
             $table->integer("user_id")->default(1);
             $table->timestamps();

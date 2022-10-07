@@ -61,16 +61,13 @@ class Order extends Component
     {
         $uptodate = Cart::find($id);
         $up = ["discount" => intval($this->discount)];
-        // dd($up);
         $uptodate->update($up);
-        // $this->somme = Cart::sum("product_price");
     }
 
     public function dde()
     {
         $this->dispatchBrowserEvent("downloadModal");
         sleep(2);
-        $this->dispatchBrowserEvent("downloadismiss");
         Cart::truncate();
     }
 
@@ -82,20 +79,18 @@ class Order extends Component
         $numeroFacture = Cart::get("codeFacture")->toArray();
         do {
             $this->codeFacture = rand(10000000, 99999999);
-        } while (in_array($this->codeFacture, $numeroFacture));
+        }while (in_array($this->codeFacture, $numeroFacture));
     }
 
     public function insertCart()
     {
         $this->dispatchBrowserEvent("sendCodeFacture", $this->codeFacture);
-        // dd($this->codeFacture);
         $countin_product = Produit::where("product_code", $this->product_code)->first();
 
         if (!$countin_product) {
             return $this->message = "Product not Found";
         }
         $product_in_cart = Cart::where("product_code", $this->product_code)->count();
-        // dd($product_in_cart);
         if ($product_in_cart > 0) {
             return $this->message = "Product " . $countin_product->nom_produit . " Already exists in Cart increase the quantity";
         }
@@ -110,9 +105,6 @@ class Order extends Component
         $add_to_cart->save();
         $this->product_code = "";
         $this->productInCart = Cart::orderBy("created_at", "asc")->get();
-        // $route = route("receipt", $this->codeFacture);
-        // $this->generatedQr = QrCode::size(20)->generate($route);
-        // dd($route);
         return $this->message = "Product Added successfully";
     }
 
@@ -163,7 +155,6 @@ class Order extends Component
             $totalAmount = $this->pay_money - $this->productInCart->sum("product_price");
             $this->balance = $totalAmount;
         }
-
         return view('livewire.order');
     }
 }
