@@ -7,7 +7,7 @@ use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use \App\Models\LastCommandeFacture;
 use App\Models\{Commande_details, Order, Transaction, Cart, Clients};
 
 use function PHPUnit\Framework\isNull;
@@ -57,23 +57,52 @@ class CommandeController extends Controller
             $commande->Adress = $request->adress;
             $commande->save();
         }
-        $commande_id = empty($request->hide) ? $commande->id : $request->hide;
+        $commande_id = empty($request->hide) ? 1 : $request->hide;
 
         DB::transaction(function () use ($request, $commande_id) {
             // Enregistrer Commande
 
             $numeroFacture = Commande_details::get("nFacture")->toArray();
 
+
+            $lastCmdFac=LastCommandeFacture::latest('last_cmd')->first();
+            $newCmd= new LastCommandeFacture();
+            $lastlast=null;
+            if($lastCmdFac == null){
+                $newCmd->last_cmd=1;
+                $newCmd->last_facture=1;
+                $newCmd->created_at=date('d-m-Y h:s:i');
+                $newCmd->save();
+                // dd("EMPTY",$lastCmdFac);
+            }else{
+                $newCmd = LastCommandeFacture::find(4);
+                $lastCmd=LastCommandeFacture::latest('last_cmd')->first();
+                $lastFac=LastCommandeFacture::latest('last_facture')->first();
+                $newCmd->last_cmd = intval($lastCmd->last_cmd)+1;
+                $newCmd->last_facture = intval($lastFac->last_facture)+1;
+                $newCmd->where("id",4)->update(['last_cmd'=>$newCmd->last_cmd,'last_facture'=>$newCmd->last_facture]);           
+                }
+            
             do {
                 $codeGen = rand(10000000, 99999999);
             } while (in_array($codeGen, $numeroFacture));
 
 
             $proUpdate = new Produit;
+            
+            $transactiom = new Transaction;
+            $transactiom->code_commande = "V00".$newCmd->last_cmd;
+            $transactiom->utilisateur = Auth::user()->id;
+            $transactiom->montant_payer = $request->paid_amount;
+            $transactiom->montant_restant = $request->remain_amount;
+            $transactiom->mode_paiment = $request->payment;
+            $transactiom->date_Transaction = date("Y-m-d");
+            $transactiom->save();
+
             // Enregistrer les Details de la Commande
             for ($prod_id = 0; $prod_id < count($request->product_id); $prod_id++) {
                 $details_commande = new Commande_details;
-                $details_commande->commande_id = $commande_id;
+                $details_commande->commande_id = $transactiom->id;
 
                 $details_commande->produit_id = $request->product_id[$prod_id];
                 $details_commande->quantite = $request->quantity[$prod_id];
@@ -90,16 +119,7 @@ class CommandeController extends Controller
 
             // Enregistrer la transaction
             // commande_Id 	montant-payer 	montant-restant 	mode-paiment 	utilisateur 	date_Transaction 	transaction-montant
-            $transactiom = new Transaction;
-            $transactiom->commande_Id = $commande_id;
-            $transactiom->utilisateur = 1;
-            $transactiom->montant_payer = $request->paid_amount;
-            $transactiom->montant_restant = $request->remain_amount;
-            $transactiom->mode_paiment = $request->payment;
-            $transactiom->transaction_montant = $details_commande->total;
-            $transactiom->date_Transaction = date("Y-m-d");
-            $transactiom->save();
-
+            
             // Cart::where("user_id", auth()->user()->id)->delete();
             // Last History
             $produits = Produit::all();

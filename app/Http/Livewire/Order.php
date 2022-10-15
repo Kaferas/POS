@@ -6,13 +6,6 @@ use App\Models\Cart;
 use App\Models\Clients;
 use Livewire\Component;
 use \App\Models\Produit;
-// use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Gate;
-// use Matrix\Decomposition\QR;
-// use SimpleSoftwareIO\QrCode\Facades\QrCode;
-
 class Order extends Component
 {
     public $products = [];
@@ -48,8 +41,8 @@ class Order extends Component
         $this->phone = $ancien->phone_number;
         $this->email = $ancien->email;
         $this->adress = $ancien->Adress;
-        $this->hideId = $ancien->id;
         $this->ancien = !$this->ancien;
+        $this->hideId = $ancien->id;
     }
 
     public function chercherAncien()
