@@ -66,7 +66,7 @@
                         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="text text-danger fas fa-bell 2xl"><span class="badge text-bg-secondary"
-                                    style="font-size:20px">4</span></i>
+                                    style="font-size:15px">4</span></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Action</a>
@@ -108,12 +108,10 @@
             a.document.write('</body></head>');
             a.document.close();
             a.print();
-            window.onafterprint = function() {
-                window.close();
-            }
         }
     </script>
     <script>
+        var b;
         window.addEventListener("modalUser", event => {
             $("#addUSer").modal('show');
         });
@@ -145,6 +143,11 @@
             $("#delProduct").modal("hide");
         });
 
+        window.addEventListener("printCode", event => {
+            let code=document.querySelector("#codePrintBarre");
+            console.log(code.children)
+        });
+        
         window.addEventListener("mesureOpenModal", () => {
             $("#deleteUnite").modal("show")
         });

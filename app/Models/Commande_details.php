@@ -19,4 +19,8 @@ class Commande_details extends Model
         'nFacture',
         'userID'
     ];
+    public function produit()
+    {
+        return $this->hasMany("\App\Models\Produit",'id','produit_id');
+    }
 }

@@ -15,6 +15,7 @@ use \App\Http\Controllers\{
     DepenseController,
     DashboardController,
     ReportController,
+    URLController
 };
 use App\Http\Controllers\Auth\LoginController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -42,7 +43,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // });
 // Route::get("/report",function(){
 //     return view("report.index");
-// });
 
 Route::middleware(['auth'])->group(function () {
 
@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("/stocks", [StockController::class, "show"]);
 
-    Route::get("/receipt/{id}", function () {
+    Route::get(url('')."/receipt/{id}", function () {
         return "Well Done";
     })->name("receipt");
 

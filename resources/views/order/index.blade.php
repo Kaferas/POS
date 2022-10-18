@@ -1,5 +1,4 @@
 @extends("welcome")
-
 @section("content")
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
@@ -15,18 +14,18 @@
       @livewire("order")
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    <div class="row jumbotron">
-        <div class="col-md-7">
-            <h1>Commmandes</h1>
+    <div class="row mt-4">
+        <div class="col-md-5">
+            <h4 class="text text-primary pl-4 mb-3">Listes des Commandes</h4>
+                @livewire("commande")
         </div>
-        <div class="col-md-4">
-            <h1>Commmandes Details</h1>
+        <div class="col-md-6">
+                @livewire("commande-details")
         </div>
     </div>
 </div>
 
 </div>
-
 @endsection
 
 @section("script")

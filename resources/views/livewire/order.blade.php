@@ -314,25 +314,6 @@
                                                             Les marchandises vendues ne sont ni remises ni echangees</p>
                                                         <span>**********ACHAT FINAL**********</span>
                                                     </div>
-                                                    <div class="conditions">
-                                                        <ol>
-                                                            <li>L'appareil ne peut etre remis ou rembourse</li>
-                                                            <li>Pendant une periode de 14(quatorze) jours apres la date
-                                                                de l'achat l'appareil peut etre echange si celui-ci est
-                                                                dans le meme etat qu'il etait a l'achat</li>
-                                                            <li>Apres 14 (quatorze) jours de la date de l'achat
-                                                                l'apparel sera inspecte et repare gratuitement . Aucun
-                                                                changement d'appareil ne sera effectue</li>
-                                                            <li>En cas de reparation, la reparation , la garantie ne
-                                                                sera pas prolongee que de 14 (quatorze) jours a compter
-                                                                la date de reparation </li>
-                                                            <li>Au cas ou l'appareil ne sera pas reparable durant la
-                                                                periode de garantie l'entreprise chargera le client 5%
-                                                                par mois ecoule de la valeur a l'achat et chargera
-                                                                l'appareil si le client accepte la valeur de
-                                                                depreciation</li>
-                                                        </ol>
-                                                    </div>
                                                     <div class="footer">
                                                         <span>{{ date('d/m/Y') }}</span>
                                                         <span>{{ Auth()->user()->name }}</span>
@@ -342,7 +323,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success col-12"
-                                                    wire:click="dde">Print Me</button>
+                                                    wire:click="dde">Imprimer</button>
                                             </div>
                                         </div>
                                     </div>

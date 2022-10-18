@@ -16,6 +16,10 @@ class DetailsStocks extends Component
         'catchId'
     ];
 
+    public function printCode(){
+        $this->dispatchBrowserEvent('printCode');
+    }
+
     public function catchId($id)
     {
         $this->display = true;

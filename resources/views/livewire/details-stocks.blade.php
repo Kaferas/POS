@@ -37,14 +37,11 @@
    </div>
     <div>
         <h2 class="text-primary" style="font-size: 2rem">{{ $totalIn->nom_produit}} </h2>
-        <p class='codeBarre'>
-            {!! $totalIn->Code_barre !!}
+        <p id='codePrintBarre'>
+            <div>{!! $totalIn->Code_barre !!}</div>
             <span style="letter-spacing: 16px;">{{ $totalIn->product_code }}</span>
         </p>
-        <p class="pBar"><i class=" btn btn-sm btn-primary fa fa-print text text-light">print</i></p>
+        <p class="pBar" wire:click="printCode"><i class=" btn btn-sm btn-primary fa fa-print text text-light">print</i></p>
     </div>
   @endif
 </div>
-<script>
-    console.log("EEEEEEEEEEEEE")
-</script>

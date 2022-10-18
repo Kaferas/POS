@@ -18,4 +18,9 @@ class Transaction extends Model
     "date_Transaction" ,
     "transaction_montant" 
     ];
+
+    public function user()
+    {
+        return $this->hasMany("\App\Models\User",'id','utilisateur');
+    }
 }

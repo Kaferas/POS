@@ -6,3 +6,5 @@
 {{-- </div> --}}
    <livewire:stock />
 @endsection
+
+
