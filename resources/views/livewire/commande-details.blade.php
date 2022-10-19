@@ -42,7 +42,7 @@
                             <td>
                                 <p
                                     style="display:flex; justify-content:center;align-items:center;background-color:rgba(255, 255, 255, 0.914); height:50px">
-                                    <span style="color:blue;font-size:20px"> {{ $found->quantite.' '.$found->produit[0]->unite_mesures->name }}</span>
+                                    <span style="font-size:18px"> {{ $found->quantite.' '.$found->produit[0]->unite_mesures->name }}</span>
                                 </p>
                             </td>
                             <td>

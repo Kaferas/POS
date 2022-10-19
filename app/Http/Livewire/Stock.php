@@ -32,7 +32,7 @@ class Stock extends Component
         return [
             'id' => "#",
             "nom_produit" => "Name",
-            "product_code" => "Item Code",
+            "product_code" => "Code Article",
             '' => "Action"
         ];
     }

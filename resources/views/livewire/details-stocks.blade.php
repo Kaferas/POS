@@ -37,7 +37,7 @@
    </div>
     <div>
         <h2 class="text-primary" style="font-size: 2rem">{{ $totalIn->nom_produit}} </h2>
-        <p id='codePrintBarre'>
+        <p id='codePrintBarre' data-code="{{ $totalIn->product_code }}" data-value="{{ $totalIn->Code_barre }}">
             <div>{!! $totalIn->Code_barre !!}</div>
             <span style="letter-spacing: 16px;">{{ $totalIn->product_code }}</span>
         </p>

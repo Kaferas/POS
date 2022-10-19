@@ -101,6 +101,7 @@ class CommandeController extends Controller
 
             // Enregistrer les Details de la Commande
             for ($prod_id = 0; $prod_id < count($request->product_id); $prod_id++) {
+               
                 $details_commande = new Commande_details;
                 $details_commande->commande_id = $transactiom->id;
 

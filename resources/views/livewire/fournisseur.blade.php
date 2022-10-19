@@ -5,15 +5,15 @@
         </div>
     @endif
     <span style="width:100%; display:flex; justify-content:flex-start">
-        <h2 class="text text-primary pr-4">Search: </h3>
-        <input type="text" name="" id="" class="pl-4 mb-4 col-7 border border-secondary form-control" placeholder="Search Supplier..." wire:model="search">
+        <h2 class="text text-primary pr-4">Chercher: </h3>
+        <input type="text" name="" id="" class="pl-4 mb-4 col-7 border border-secondary form-control" placeholder="Chercher fournisseur..." wire:model="search">
     </span>
     <div class="accordion" id="accordionExample">
         <div class="card">
           <div class="card-header" id="headingOne">
             <h2 class="mb-0">
               <button class="btn btn-block text-left text text-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <i class="fas fa-shipping-fast"></i> &nbspAdd Supplier
+                <i class="fas fa-shipping-fast"></i> &nbspAjouter Fournisseur
               </button>
             </h2>
           </div>
@@ -22,11 +22,11 @@
             <div class="card-body">
                 @if($idFournisseur)
                 <fieldset class="col-md-12 border border-danger jumbotron">
-                    <legend class="text text-danger">Edit Supplier</legend>
+                    <legend class="text text-danger">Edit Fournisseur</legend>
                     <form action="" method="" action="multipart/form-data" wire:submit.prevent="save" >
                         <div class="row col-12">
                             <div class="form-group mr-3 p-2">
-                                <label for="" class="text text-danger">Company Name:</label>
+                                <label for="" class="text text-danger">Nom Compagnie:</label>
                                 <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model.defer="company_name">
 
                                 @error("company_name")
@@ -34,7 +34,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mr-3 p-2">
-                                <label for="" class="text text-danger">First Name:</label>
+                                <label for="" class="text text-danger">Nom:</label>
                                 <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model.defer="firstname">
 
                                 @error("firstname")
@@ -42,7 +42,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mr-3 p-2">
-                                <label for="" class="text text-danger">Last Name:</label>
+                                <label for="" class="text text-danger">Prenom:</label>
                                 <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model.defer="lastname">
 
                                 @error("lastname")
@@ -60,7 +60,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mr-3 p-1">
-                                <label for="" class="text text-danger">Phone Number</label>
+                                <label for="" class="text text-danger">Numero Tel:</label>
                                 <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model.defer="phone">
 
                                 @error("phone")
@@ -84,11 +84,11 @@
                 @else
 
                 <fieldset class="col-md-12 border border-success jumbotron">
-                    <legend class="text text-primary">New Supplier</legend>
+                    <legend class="text text-primary">Nouveau Fournisseur</legend>
                     <form action="" method="" action="multipart/form-data" wire:submit.prevent="save" >
                         <div class="row col-12">
                             <div class="form-group mr-3 p-2">
-                                <label for="" class="text text-primary">Company Name:</label>
+                                <label for="" class="text text-primary">Nom Compagnie:</label>
                                 <input type="text" name="company_name" id="" class="form-control col-lg-12 border-secondary" wire:model.defer="company_name">
 
                                 @error("company_name")
@@ -96,7 +96,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mr-3 p-2">
-                                <label for="" class="text text-primary">First Name:</label>
+                                <label for="" class="text text-primary">Nom :</label>
                                 <input type="text" name="firstname" id="" class="form-control col-12 border-secondary" wire:model.defer="firstname">
 
                                 @error("firstname")
@@ -104,7 +104,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mr-3 p-2">
-                                <label for="" class="text text-primary">Last Name:</label>
+                                <label for="" class="text text-primary">Prenom:</label>
                                 <input type="text" name="lastname" id="" class="form-control col-12 border-secondary" wire:model.defer="lastname">
                                 @error("lastname")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -120,7 +120,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mr-3 p-1">
-                                <label for="" class="text text-primary">Phone Number</label>
+                                <label for="" class="text text-primary">Numero Tel:</label>
                                 <input type="number" name="phone" id="" class="form-control col-12 border-secondary" wire:model.defer="phone">
                                 @error("phone")
                                 <div class="alert alert-danger mt-3">{{$message}}</div>
@@ -135,7 +135,7 @@
                             </div>
                         </div>
                         <div class="row col-12">
-                            <button type="submit" class="btn btn-success col-md-3">Submit</button>
+                            <button type="submit" class="btn btn-success col-md-3">Confirmer</button>
                         </div>
                     </form>
                 </fieldset>
@@ -149,9 +149,9 @@
         <thead class="text-center">
             <tr class="table-primary">
               <th scope="col">#</th>
-              <th scope="col">Firstname</th>
-              <th scope="col">Lastname</th>
-              <th scope="col">CompanyName</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prenom</th>
+              <th scope="col">Nom Compagnie</th>
               <th scope="col" class="text text-info">Action</th>
             </tr>
         </thead>
@@ -163,8 +163,8 @@
                 <td>{{$supplier->lastname}}</td>
                 <td>{{$supplier->company_name}}</td>
                 <td>
-                    <button class="btn btn-warning" wire:click="selectItem({{ $supplier->id }},'edit')">Edit</button>
-                    <button class="btn btn-danger" wire:click="selectItem({{ $supplier->id }},'delete')">Delete</button>
+                    <button class="btn btn-warning" wire:click="selectItem({{ $supplier->id }},'edit')">Editer</button>
+                    <button class="btn btn-danger" wire:click="selectItem({{ $supplier->id }},'delete')">Supprimer</button>
                 </td>
             </tr>
             <div class="modal fade" id="delfournisseur" tabindex="-1" role="dialog" aria-labelledby="delfournisseur" aria-hidden="true">

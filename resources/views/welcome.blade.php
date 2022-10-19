@@ -145,8 +145,24 @@
 
         window.addEventListener("printCode", event => {
             let code=document.querySelector("#codePrintBarre");
-            console.log(code.children)
-        });
+            let codeBarre= ($(code).attr("data-value"));
+            let codeNumber= ($(code).attr("data-code"));
+            var a = window.open('', '', 'height=auto, width=60vw');
+            a.document.write('<html>');
+            a.document.write('<head>');
+            a.document.write('<link rel="stylesheet" href="css/facture.css"/>');
+            a.document.write('</link>');
+            a.document.write('<body>');
+                a.document.write('<div style="display:flex; align-items:center; flex-direction:column; justify-content:center">')
+                for(let i=0 ; i<8 ; i ++){
+                    a.document.write(codeBarre);    
+                    a.document.write(codeNumber);  
+                    a.document.write("<p style='margin-bottom:5px'>")  
+                }
+            a.document.write('</body></head>');
+            a.document.close();
+            a.print();   
+            });
         
         window.addEventListener("mesureOpenModal", () => {
             $("#deleteUnite").modal("show")

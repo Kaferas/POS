@@ -35,14 +35,14 @@
         </div>
         <div class="container text text-danger">
             <table class="table border border-primary border-top-0 border-bottom-0 ">
-                <thead class="thead-dark text-center">
+                <thead style="opacity:0.7" class="thead-dark text-center">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Concerned</th>
-                    <th scope="col">Describe</th>
+                    <th scope="col">Concerne</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Total</th>
                     <th scope="col">Date</th>
-                    <th scope="col" class="text text-success">Action</th>
+                    <th scope="col" class="text text-primary">Action</th>
                   </tr>
                 </thead>
                 <tbody class="text-center">
@@ -53,9 +53,9 @@
                     <th scope="row">{{$depense->description}}</th>
                     <th>{{$depense->total}}</th>
                     <th scope="row" class="col-3">{{$depense->created_at->format("d-m-Y")}}</th>
-                    <td>
-                        <button class="btn btn-warning col-8 mb-2" wire:click="selectItem({{$depense->id}},'edit')">Edit</button>
-                        <button class="btn btn-danger col-8" wire:click="selectItem({{$depense->id}},'delete')">Erase</button>
+                    <td class="d-flex justify-content-around">
+                        <button class="btn btn-sm btn-warning col-4 " wire:click="selectItem({{$depense->id}},'edit')">Edit</button>
+                        <button class="btn btn-sm btn-danger col-4" wire:click="selectItem({{$depense->id}},'delete')">Erase</button>
                         {{-- <button class="btn btn-success">Edit</button> --}}
                     </td>
                   </tr>
@@ -63,7 +63,7 @@
                     <div class="modal-dialog  modal-dialog-scrollable" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="deldepense">Delete Outcome</h5>
+                                    <h5 class="modal-title" id="deldepense">Supprimer Depense</h5>
                                     <button type="button"   wire:click="resetVar" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
 
@@ -85,7 +85,7 @@
     </div>
     <div class="col-4">
         <div class="container p-0">
-            <h5>Outcome Type: </h5>
+            <h5>Depense Type: </h5>
             <select name="" id="" class="form-control mb-3 border border-primary" wire:model="type">
                 <optgroup>
                     <option value="ordinaire">Ordinary</option>
@@ -96,7 +96,7 @@
             <form action="" method="post" class="jumbotron border border-primary border-top-0 border-bottom-0 p-3" >
                 {{-- @method("PUT") --}}
                 <div>
-                    <label for="">Spender:</label>
+                    <label for="">Dépensier(e):</label>
                     <input type="text" name="" id=""  class="form-control border border-primary" value="" wire:model="spender">
                 </div>
                 @error("spender")
@@ -144,7 +144,7 @@
                     </div>
                  @enderror
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-primary" wire:click.prevent="save">Submit Spend</button>
+                    <button type="submit" class="btn btn-primary" wire:click.prevent="save">Confirmer Depense</button>
                 </div>
             </form>
         </div>

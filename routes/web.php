@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("/stocks", [StockController::class, "show"]);
 
-    Route::get(url('')."/receipt/{id}", function () {
+    Route::get("/receipt/{id}", function () {
         return "Well Done";
     })->name("receipt");
 
