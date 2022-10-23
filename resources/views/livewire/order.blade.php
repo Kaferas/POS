@@ -83,7 +83,7 @@
             <div class="col-md-4">
                 <div class="card border-secondary">
                     <div class="card-header bg-success">
-                        <h4><span>Total: </span><b
+                        <h4><span>Total: </span><b id='TotalEvel'
                                 style="color:white">{{ $productInCart->sum('product_price') }}</b><span> F</span></h4>
                     </div>
                     <form action="{{ route('commande.store') }}" method="post">
@@ -180,7 +180,7 @@
                                         </div>
                                     </div>
                                     <div class="row d-flex justify-content-center">
-                                        <button class="form-control btn btn-primary col-md-12">Buy Now</button>
+                                        <button class="form-control btn-sbmt btn btn-primary col-md-12">Payer</button>
                                     </div>
                                 @endif
                             </div>
@@ -189,7 +189,6 @@
                                     role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-
                                             <div class="modal-body">
                                                 <div class="facture">
                                                     <div class="facture_head">
@@ -283,7 +282,7 @@
                                                                             <tbody>
                                                                                 <tr style="text-align:center">
                                                                                     <td class="text text-success">
-                                                                                        {{ $productInCart->sum('product_price') . ' FBU' }}
+                                                                                                                            {{ $productInCart->sum('product_price') . ' FBU' }}
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>

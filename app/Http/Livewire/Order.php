@@ -6,6 +6,9 @@ use App\Models\Cart;
 use App\Models\Clients;
 use Livewire\Component;
 use \App\Models\Produit;
+use App\Models\Transaction;
+use LastCmdFacture;
+
 class Order extends Component
 {
     public $products = [];
@@ -57,7 +60,7 @@ class Order extends Component
         $uptodate->update($up);
     }
 
-    public function dde()
+    public function dde()   
     {
         $this->dispatchBrowserEvent("downloadModal");
         sleep(2);
@@ -69,17 +72,32 @@ class Order extends Component
     {
         $this->products = Produit::all();
         $this->productInCart = Cart::orderBy("id", "desc")->get();
-        $numeroFacture = Cart::get("codeFacture")->toArray();
-        do {
-            $this->codeFacture = rand(10000000, 99999999);
-        }while (in_array($this->codeFacture, $numeroFacture));
+        $numeroFacture = Transaction::get("codeFacture")->toArray();
+        $hasEl=Cart::all();
+        if(!isset($hasEl[0]->codeFacture)){
+            // dd("EMPTY");
+            do {
+                $this->codeFacture = rand(10000000, 99999999);
+            }while (in_array($this->codeFacture, $numeroFacture));
+        }else{
+            // dd($hasEl[0]->codeFacture);
+            $this->codeFacture=$hasEl[0]->codeFacture;
+        }
+       
     }
 
     public function insertCart()
     {
-        $this->dispatchBrowserEvent("sendCodeFacture", $this->codeFacture);
+        $isEmpty= Cart::all();
+        if(count($isEmpty) == 0){
+            $this->dispatchBrowserEvent("sendCodeFacture", $this->codeFacture);
+        }
+        else{
+            $this->productInCart = Cart::orderBy("id", "desc")->get();
+            $this->codeFacture=$this->productInCart[0]->codeFacture;
+            $this->dispatchBrowserEvent("sendCodeFacture",$this->codeFacture);
+        }
         $countin_product = Produit::where("product_code", $this->product_code)->first();
-
         if (!$countin_product) {
             return $this->message = "Product not Found";
         }

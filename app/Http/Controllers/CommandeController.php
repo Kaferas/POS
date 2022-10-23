@@ -49,7 +49,6 @@ class CommandeController extends Controller
     public function store(Request $request)
     {
         if (empty($request->hide)) {
-            // dd($request->hide);
             $commande = new Clients;
             $commande->Customer_name = $request->customer_name;
             $commande->email = $request->email;
@@ -59,12 +58,8 @@ class CommandeController extends Controller
         }
         $commande_id = empty($request->hide) ? 1 : $request->hide;
 
-        DB::transaction(function () use ($request, $commande_id) {
-            // Enregistrer Commande
-
+        DB::transaction(function () use ($request, $commande_id) {            
             $numeroFacture = Commande_details::get("nFacture")->toArray();
-
-
             $lastCmdFac=LastCommandeFacture::latest('last_cmd')->first();
             $newCmd= new LastCommandeFacture();
             $lastlast=null;
@@ -73,16 +68,20 @@ class CommandeController extends Controller
                 $newCmd->last_facture=1;
                 $newCmd->created_at=date('d-m-Y h:s:i');
                 $newCmd->save();
-                // dd("EMPTY",$lastCmdFac);
-            }else{
-                $newCmd = LastCommandeFacture::find(4);
-                $lastCmd=LastCommandeFacture::latest('last_cmd')->first();
-                $lastFac=LastCommandeFacture::latest('last_facture')->first();
-                $newCmd->last_cmd = intval($lastCmd->last_cmd)+1;
-                $newCmd->last_facture = intval($lastFac->last_facture)+1;
-                $newCmd->where("id",4)->update(['last_cmd'=>$newCmd->last_cmd,'last_facture'=>$newCmd->last_facture]);           
+            }
+            else
+            {
+                $newCmd = LastCommandeFacture::find(1);
+                $lastCmd=$newCmd->last_cmd;
+                $lastFac=$newCmd->last_facture;
+                $newCmd->last_cmd = intval($lastCmd)+1;
+                $newCmd->last_facture = intval($lastFac)+1;
+                $newCmd->update(
+                    [
+                        'last_cmd'=>$newCmd->last_cmd+1,'last_facture'=>$newCmd->last_facture+1
+                    ]);           
                 }
-            
+        
             do {
                 $codeGen = rand(10000000, 99999999);
             } while (in_array($codeGen, $numeroFacture));
@@ -91,12 +90,13 @@ class CommandeController extends Controller
             $proUpdate = new Produit;
             
             $transactiom = new Transaction;
-            $transactiom->code_commande = "V00".$newCmd->last_cmd;
+            $transactiom->code_commande = "C00".$newCmd->last_cmd+1;
             $transactiom->utilisateur = Auth::user()->id;
             $transactiom->montant_payer = $request->paid_amount;
             $transactiom->montant_restant = $request->remain_amount;
             $transactiom->mode_paiment = $request->payment;
             $transactiom->date_Transaction = date("Y-m-d");
+            $transactiom->codeFacture = $request->codeFac;
             $transactiom->save();
 
             // Enregistrer les Details de la Commande

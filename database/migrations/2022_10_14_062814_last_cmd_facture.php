@@ -17,6 +17,7 @@ class LastCmdFacture extends Migration
             $table->id();
             $table->string("last_cmd");
             $table->string("last_facture");
+            $table->string("generated_code_facture")->nullable();
             $table->timestamps();
         });
     }

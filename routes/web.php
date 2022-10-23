@@ -15,7 +15,7 @@ use \App\Http\Controllers\{
     DepenseController,
     DashboardController,
     ReportController,
-    URLController
+    FactureController
 };
 use App\Http\Controllers\Auth\LoginController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -64,9 +64,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("/stocks", [StockController::class, "show"]);
 
-    Route::get("/receipt/{id}", function () {
-        return "Well Done";
-    })->name("receipt");
+    Route::get("/receipt/{id}", [FactureController::class,'receipt'])->name("receipt");
 
     Route::get("reports/option", [ReportController::class, "option"])->name("optionReport");
 

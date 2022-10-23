@@ -25,7 +25,7 @@
         <div class="white_notify">
             <div class="pl-4 pb-3">
                 <h3 class="text text-danger">{{ $produits }}</h3>
-                <span>Global Articles</span>
+                {{-- <span>Global Articles {{dd($ecoule)}}</span> --}}
             </div>
             <div class="counter_notify bg-danger">
                 <i class="fas fa-hdd "></i>

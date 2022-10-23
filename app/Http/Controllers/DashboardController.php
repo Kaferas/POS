@@ -22,13 +22,15 @@ class DashboardController extends Controller
         $clients = Clients::all()->count();
         $produits = Produit::all()->count();
         $itemsExpiring = Produit::all();
+        // $ecoule= DB::table("produits")->select("`count(id)` as `nbre`,`nom_produit`,`quantite`,`alert_ecoulement`")->WHERE("quantite <= alert_ecoulement")->get();
         $activenow = "dashboard";
         return view("dashboard.index", [
             "activenow" => $activenow,
             'ventes' => $ventes,
             'clients' => $clients,
             'produits' => $produits,
-            'soonExpire' => $itemsExpiring
+            'soonExpire' => $itemsExpiring,
+            // 'ecoule' => $ecoule
         ]);
     }
 }

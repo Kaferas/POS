@@ -23,4 +23,8 @@ class Commande_details extends Model
     {
         return $this->hasMany("\App\Models\Produit",'id','produit_id');
     }
+    public function user()
+    {
+        return $this->hasMany("\App\Models\User",'id','userID');
+    }
 }

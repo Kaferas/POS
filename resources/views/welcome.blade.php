@@ -40,7 +40,7 @@
                                 class="fas fa-chart-line text text-primary"></i> &nbspRapports</a></li>
                     <li id="sidebar" @if ($activenow == 'stocks') class='actived' @endif><a href="/stocks"><i
                                 class="fas fa-dolly text text-primary"></i> &nbspStocks</a></li>
-                    <li id="sidebar"><a href="/stocks"><i class="fas fa-undo-alt text text-primary"></i> &nbsp;Produit
+                    <li id="sidebar"><a href="{{route('receipt',"75744324")}}"><i class="fas fa-undo-alt text text-primary"></i> &nbsp;Produit
                             Retourner</a></li>
                     <li id="sidebar" @if ($activenow == 'approvision') class='actived' @endif><a
                             href="/approvision"><i class="fas fa-plus text text-primary"></i>
@@ -157,11 +157,11 @@
                 for(let i=0 ; i<8 ; i ++){
                     a.document.write(codeBarre);    
                     a.document.write(codeNumber);  
-                    a.document.write("<p style='margin-bottom:5px'>")  
+                    a.document.write("<p style='margin-bottom:3px'>")  
                 }
             a.document.write('</body></head>');
-            a.document.close();
             a.print();   
+            a.document.close();
             });
         
         window.addEventListener("mesureOpenModal", () => {
