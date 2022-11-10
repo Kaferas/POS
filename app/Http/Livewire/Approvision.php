@@ -21,6 +21,8 @@ class Approvision extends Component
     public $prixvente;
     public $interet;
     public $quantite;
+    public $history;
+    public $hasHistory=false;
     protected $paginationTheme = "bootstrap";
 
     public function mount()
@@ -35,6 +37,7 @@ class Approvision extends Component
         $this->stockAlert = $grab->alert_ecoulement;
         $this->prixachat = $grab->prix_achat;
         // $this->codeBarre;/
+       $this->hasHistory=false;
     }
 
     public function costInteret()
@@ -83,9 +86,15 @@ class Approvision extends Component
         return redirect(request()->header("Referer"))->with('message', 'Data added Successfully');;
     }
 
-    public function floo($id)
+    public function floo($codeProduit)
     {
-        dd("Last Chance Is Now =" . $id);
+        $this->hasHistory=true;
+        $producHistory=Approvisionnement::where('codeProduit',$codeProduit)->get('LastStock');
+        $this->history=json_decode($producHistory);
+        // dd($this->history);
+        // return view("livewire.approvision",[
+        //     'history'=> $this->history
+        // ]);
     }
 
     public function render()

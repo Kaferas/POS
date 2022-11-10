@@ -3,9 +3,9 @@
 
 @section('content')
     <h1 class="mt-2">Dashboard</h1>
-    <div class="row container d-flex justify-content-around">
+    <div class=" d-flex justify-content-between">
         <div class="white_notify">
-            <div class="pl-4 pb-3">
+            <div class="pl-2 pb-3">
                 <h3 class="text text-primary">{{ $ventes }}</h3>
                 <span>Global Ventes</span>
             </div>
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="white_notify">
-            <div class="pl-4 pb-3">
+            <div class="pl-2 pb-3">
                 <h3 class="text text-success">{{ $clients }}</h3>
                 <span>Global Clients</span>
             </div>
@@ -23,12 +23,22 @@
             </div>
         </div>
         <div class="white_notify">
-            <div class="pl-4 pb-3">
-                <h3 class="text text-danger">{{ $produits }}</h3>
-                {{-- <span>Global Articles {{dd($ecoule)}}</span> --}}
+            <div class="pl-2 pb-3">
+                <h3 class="text text-warning">{{ $produits }}</h3>
+                <span>Global Articles </span>
+            </div>
+            <div class="counter_notify bg-warning">
+                <i class="fas fa-hdd "></i>
+
+            </div>
+        </div>
+        <div class="white_notify">
+            <div class="pl-2 pb-3">
+                <h3 class="text text-danger">{{ $total }} FBU</h3>
+                <span>Total Ventes </span>
             </div>
             <div class="counter_notify bg-danger">
-                <i class="fas fa-hdd "></i>
+                <i class="fas fa-credit-card "></i>
 
             </div>
         </div>

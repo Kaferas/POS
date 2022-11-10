@@ -36,8 +36,6 @@
                     <li id="sidebar" @if ($activenow == 'fournisseur_client') class='actived' @endif><a
                             href="/fournisseur_client"><i class="fas fa-users text text-primary"></i>
                             &nbspClient/Fournisseur</a></li>
-                    <li id="sidebar" @if ($activenow == 'reports') class='actived' @endif><a href="/reports"><i
-                                class="fas fa-chart-line text text-primary"></i> &nbspRapports</a></li>
                     <li id="sidebar" @if ($activenow == 'stocks') class='actived' @endif><a href="/stocks"><i
                                 class="fas fa-dolly text text-primary"></i> &nbspStocks</a></li>
                     <li id="sidebar"><a href="{{route('receipt',"75744324")}}"><i class="fas fa-undo-alt text text-primary"></i> &nbsp;Produit
@@ -48,6 +46,8 @@
                     <li id="sidebar" @if ($activenow == 'utilisateur') class='actived' @endif><a
                             href="/utilisateur"><i class="fas fa-sliders-h text text-primary"></i> &nbspParametres</a>
                     </li>
+                    <li id="sidebar" @if ($activenow == 'reports') class='actived' @endif><a href="/reports"><i
+                        class="fas fa-chart-line text text-primary"></i> &nbspRapports</a></li>
                 @endif
                 <li id="sidebar"><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt text text-primary"></i>
                         &nbsp Deconnexion</a></li>
@@ -65,13 +65,14 @@
                     <div class="dropdown" title="Articles pres a epuiser dans le Stock">
                         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="text text-danger fas fa-bell 2xl"><span class="badge text-bg-secondary"
-                                    style="font-size:15px">4</span></i>
+                        <i class="text text-primary fas fa-bell 2xl"><span class="badge text-bg-secondary"
+                                    style="font-size:18px;font-weight:bold">{{DB::table('produits')->select('alert_ecoulement','quantite')->where('quantite','<',20)->count()}}</span></i>
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"title="Article ecoule en Stock">
+                            <?php $data=DB::table('produits')->select('nom_produit','quantite')->where('quantite','<',20)->get() ?>
+                            @foreach($data as $one)
+                                <a class="dropdown-item text text text-success" style="font-style:italic;font-weight:bold" href="#">L'article <span class='text text-danger'>{{$one->nom_produit}}</span> reste {{$one->quantite}} en Stock</a>
+                            @endforeach
                         </div>
                     </div>
 
@@ -88,6 +89,7 @@
                 @yield('content')
             </div>
         </div>
+        
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.js') }}"></script>

@@ -73,7 +73,7 @@
             </thead>
             <tbody class="text-center">
                 @foreach ($latest as $last)
-                    <tr style="cursor: pointer" wire:click="floo({{$last->id}})" id="apprHover">
+                    <tr style="cursor: pointer" wire:click="floo({{$last->codeProduit}})" id="apprHover">
                         <th scope="row">{{$last->codeProduit}}</th>
                         <td>{{$last->nameProduit()->first()->nom_produit}}</td>
                         <td>{{$last->nameProduit()->first()->quantite}}</td>
@@ -84,10 +84,33 @@
         </table>
         {{$latest->links()}}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <h4 class="text text-primary"> Historique </h4>
-        <div class="card">
-
+        <div>
+            @if($hasHistory)
+                <table class="table" style="overflow: auto">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">CodeProduit</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Quantite Restant</th>
+                            <th scope="col">Prix Unitaire</th>
+                            <th scope="col">Date Approvisonement</th>
+                          </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach($history as $singlentry)
+                        <tr style="cursor: pointer">
+                            <td >{{json_decode($singlentry->LastStock)->product_code}}</td>
+                            <td >{{json_decode($singlentry->LastStock)->nom_produit}}</td>
+                            <td >{{json_decode($singlentry->LastStock)->quantite}}</td>
+                            <td >{{json_decode($singlentry->LastStock)->prix_vente}}</td>
+                            <td >{{date_format(date_create(json_decode($singlentry->LastStock)->updated_at),"d-m-y h:m:i")}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+             @endif
         </div>
     </div>
 </div>

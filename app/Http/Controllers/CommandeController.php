@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use App\Events\AfterPayPrintEvent;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use \App\Models\LastCommandeFacture;
-use App\Models\{Commande_details, Order, Transaction, Cart, Clients};
+use Illuminate\Support\Facades\Auth;
 
 use function PHPUnit\Framework\isNull;
+use App\Models\{Commande_details, Order, Transaction, Cart, Clients};
 
 class CommandeController extends Controller
 {
@@ -92,6 +93,7 @@ class CommandeController extends Controller
             $transactiom = new Transaction;
             $transactiom->code_commande = "C00".$newCmd->last_cmd+1;
             $transactiom->utilisateur = Auth::user()->id;
+            $transactiom->clientId = $request->hide;
             $transactiom->montant_payer = $request->paid_amount;
             $transactiom->montant_restant = $request->remain_amount;
             $transactiom->mode_paiment = $request->payment;
@@ -131,6 +133,7 @@ class CommandeController extends Controller
                 'commandes_details' => $commande_details,
                 'commandePar' => $commandePar
             ]);
+            event(new AfterPayPrintEvent($transactiom));
         });
         return back()->with("error", "The Order Fail to be ordered please check your inputs");
     }

@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->integer("montant_restant")->default(0);
             $table->string("mode_paiment")->default("cash");
             $table->integer("utilisateur");
+            $table->integer("clientId");
             $table->date("date_Transaction");
             $table->string("codeFacture")->nullable();
             $table->timestamps();
