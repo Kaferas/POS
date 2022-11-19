@@ -7,11 +7,11 @@
         @endif
         <div class="row">
             <div class="btn-group col-md-7 mb-4">
-                <input type="search" name="" id="" class="form-control border-info " placeholder="Search Product Here" wire:model.defer="search">
+                <input type="search" name="" id="" class="form-control border-info " placeholder="Search Product Here" wire:model="search">
             </div>
         </div>
         <div class="">
-            <div class="row col-md-12 mt-3">
+            <div class="col-md-12 mt-3">
                 <div class="card">
                     <div class="card-header">
                         <h5 style="float:left;font-weight:bold">PRODUCT LISTING</h5>

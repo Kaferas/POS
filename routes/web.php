@@ -68,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("reports/option", [ReportController::class, "option"])->name("optionReport");
 
-    Route::get("/fournisseur_client", [Fournisseur_Client::class, "index"]);
+    Route::get("/fournisseur_client", [Fournisseur_Client::class, "index"])->name("fournisseur_client");
 
     Route::get("/depenses", [DepenseController::class, "index"])->name("depenses");
 

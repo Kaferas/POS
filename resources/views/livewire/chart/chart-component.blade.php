@@ -33,7 +33,6 @@ const ctx = document.getElementById('myChart').getContext('2d');
 const ctx1 = document.getElementById('my1Chart').getContext('2d');
 const ctx2 = document.getElementById('my2Chart').getContext('2d');
 const ctx3 = document.getElementById('my3Chart').getContext('2d');
-let x = @json($line);
 let chiffreAffaire= @json($chifffre);
 let bestClientsName= @json($bestClientsName);
 let bestClientsChiffre= @json($bestClientsChiffre);

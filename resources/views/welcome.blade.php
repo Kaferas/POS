@@ -8,12 +8,11 @@
     <link rel="icon" href="{{ asset('img/Flema.svg') }}" sizes="any" type="image/svg+xml">
     <title>POS System</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('assets/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/assets/jquery-3.6.0.min.js') }}">
     <link rel="stylesheet" href="{{ asset('css/design.css') }}">
     <link rel="stylesheet" href="{{ asset('css/facture.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/facture.css') }}">
+    <script src="{{ asset('css/assets/jquery-3.6.0.min.js') }}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.css" rel="stylesheet" media="all">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.js"></script>
     <livewire:styles />
@@ -38,8 +37,8 @@
                             &nbspClient/Fournisseur</a></li>
                     <li id="sidebar" @if ($activenow == 'stocks') class='actived' @endif><a href="/stocks"><i
                                 class="fas fa-dolly text text-primary"></i> &nbspStocks</a></li>
-                    <li id="sidebar"><a href="{{route('receipt',"75744324")}}"><i class="fas fa-undo-alt text text-primary"></i> &nbsp;Produit
-                            Retourner</a></li>
+                    {{-- <li id="sidebar"><a href="{{route('receipt',"75744324")}}"><i class="fas fa-undo-alt text text-primary"></i> &nbsp;Produit
+                            Retourner</a></li> --}}
                     <li id="sidebar" @if ($activenow == 'approvision') class='actived' @endif><a
                             href="/approvision"><i class="fas fa-plus text text-primary"></i>
                             &nbsp;Approvisionner</a></li>
@@ -47,12 +46,13 @@
                             href="/utilisateur"><i class="fas fa-sliders-h text text-primary"></i> &nbspParametres</a>
                     </li>
                     <li id="sidebar" @if ($activenow == 'reports') class='actived' @endif><a href="/reports"><i
-                        class="fas fa-chart-line text text-primary"></i> &nbspRapports</a></li>
+                        class="fas fa-chart-bar text text-primary"></i> &nbspRapports</a></li>
                 @endif
                 <li id="sidebar"><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt text text-primary"></i>
                         &nbsp Deconnexion</a></li>
                 <!--  -->
             </ul>
+            {{-- <p class="text text-light" style="float:bottom">Here you must provide a Date</p> --}}
         </div>
         <div class="profile">
             <div class="info">
@@ -68,12 +68,12 @@
                         <i class="text text-primary fas fa-bell 2xl"><span class="badge text-bg-secondary"
                                     style="font-size:18px;font-weight:bold">{{DB::table('produits')->select('alert_ecoulement','quantite')->where('quantite','<',20)->count()}}</span></i>
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"title="Article ecoule en Stock">
-                            <?php $data=DB::table('produits')->select('nom_produit','quantite')->where('quantite','<',20)->get() ?>
-                            @foreach($data as $one)
-                                <a class="dropdown-item text text text-success" style="font-style:italic;font-weight:bold" href="#">L'article <span class='text text-danger'>{{$one->nom_produit}}</span> reste {{$one->quantite}} en Stock</a>
-                            @endforeach
-                        </div>
+                        <?php $data=DB::table('produits')->select('nom_produit','quantite')->where('quantite','<',20)->get() ?>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" title="Article ecoule en Stock">
+                                @foreach($data as $one)
+                                    <a class="dropdown-item text text text-success" style="font-style:italic;font-weight:bold" href="#">L'article <span class='text text-danger'>{{$one->nom_produit}}</span> reste {{$one->quantite}} en Stock</a>
+                                @endforeach
+                            </div>
                     </div>
 
                     <h6 class="connectUser">{{ Auth::user()->name }}</h6>

@@ -12,8 +12,7 @@ class ChartComponent extends Component
     public $bestClientsName=[];
     public $bestClientsChiffre=[];
 
-    public function mount($element){
-        $this->myData =  $element;
+    public function mount(){
     }
 
 
@@ -107,7 +106,6 @@ class ChartComponent extends Component
         }
 
         return view('livewire.chart.chart-component',[
-            'line' => $data,
             'bestClientsName'=>$this->bestClientsName,
             'bestClientsChiffre'=>$this->bestClientsChiffre,
             'chifffre'=>$this->chiffreAffaire(),
