@@ -91,11 +91,11 @@ body {
 li#sidebar {
     list-style: none;
     /* text-align:center; */
-    padding: 7px 0px;
+    padding: 17px 04px;
     width: 100%;
     text-indent: 13%;
     color: rgb(255, 255, 255);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 10px;
 }
 

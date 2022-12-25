@@ -100,7 +100,7 @@ class Approvision extends Component
     public function render()
     {
         return view('livewire.approvision', [
-            'latest' => Approvisionnement::distinct("codeProduit")->paginate(2)
+            'latest' => Approvisionnement::distinct("codeProduit")->paginate(4)
         ]);
     }
 }
